@@ -1,0 +1,7 @@
+<h1>Emails list</h1>
+
+<ul>
+  <% @emails.each do |email| %>
+    <li><%= link_to email, email_path(email) %></li>
+  <% end %>
+</ul>
