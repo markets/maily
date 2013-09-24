@@ -1,4 +1,5 @@
-maily
-=====
+Maily
+==============
+Rails Engine to follow up application emails.
 
-Rails Engine to follow up application emails
+Work in progress...
