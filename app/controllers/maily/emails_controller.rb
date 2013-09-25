@@ -1,15 +1,21 @@
 module Maily
   class EmailsController < ApplicationController
 
-    layout 'maily/application'
-
     def index
-      @emails = Notifier.instance_methods(false)
+      @mailers = Maily.mailers
     end
 
     def show
-      @email = Notifier.send(params[:id])
-      @email_raw = File.read("#{Rails.root}/app/views/notifier/#{params[:id]}.html.erb")
+      mailer = params[:mailer].camelize
+      hook = "Maily::#{mailer}Hook".constantize
+
+      @email = if hook.send(:new).respond_to?(params[:method])
+        hook.send(:new).send(params[:method])
+      else
+        mailer.constantize.send(params[:method])
+      end
+
+      @email_raw = File.read("#{Rails.root}/app/views/#{params[:mailer]}/#{params[:method]}.html.erb")
     end
   end
 end

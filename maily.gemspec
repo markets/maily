@@ -20,4 +20,6 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_dependency "rails", "~> 3.2.13"
+
+  s.add_development_dependency 'debugger'
 end

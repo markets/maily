@@ -1,6 +1,5 @@
 Maily::Engine.routes.draw do
+  get ':mailer/:method' => 'emails#show', as: :maily_email
 
-  resources :emails, only: [:index, :show]
   root :to => 'emails#index'
-
 end

@@ -1,8 +1,9 @@
-<h1><%= params[:id] %></h1>
+<h1><%= "#{params[:mailer]} > #{params[:method]}" %></h1>
 
-<p><%= link_to 'Return to list', emails_path %></p>
+<p><%= link_to 'Return to list', root_path %></p>
 
+<h2>Details</h2>
 <%= @email %><hr/>
 
-<b>RAW</b><br/> 
+<h2>Raw</h2>
 <%= @email_raw %>
