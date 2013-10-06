@@ -1,7 +1,7 @@
 <h1><%= "#{params[:mailer]} > #{params[:method]}" %></h1>
 
 <p><%= link_to 'Return to list', root_path %></p>
-<p><%= link_to 'Raw', maily_email_raw_path(mailer: params[:mailer], method: params[:method]) %></p>
+<p><%= link_to 'Edit', edit_maily_email_path(mailer: params[:mailer], method: params[:method]) %></p>
 
 <h2>Body</h2>
 <%= @email.body %>

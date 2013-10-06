@@ -31,7 +31,7 @@ module Maily
     end
 
     def find_email(email_name)
-      emails.detect { |email| email.name == email_name.to_sym}
+      emails.detect { |email| email.name == email_name.to_sym }
     end
   end
 end
