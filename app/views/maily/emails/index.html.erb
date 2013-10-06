@@ -1,10 +1,10 @@
 <h1>Emails list</h1>
 
 <ul>
-  <% @mailers.each do |mailer, emails| %>
-  <h2><%= mailer %></h2>
-    <% emails.each do |email| %>
-      <li><%= link_to email, maily_email_path(mailer: mailer, method: email) %></li>
+  <% @mailers.each do |mailer| %>
+  <h2><%= mailer.name %></h2>
+    <% mailer.emails.each do |email| %>
+      <li><%= link_to email.name, maily_email_path(mailer: mailer.name, method: email.name) %></li>
     <% end %>
   <% end %>
 </ul>
