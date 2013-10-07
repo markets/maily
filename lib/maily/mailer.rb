@@ -25,9 +25,14 @@ module Maily
       end
     end
 
-    def self.register_hook(mailer, method, &block)
-      email = find(mailer).find_email(method)
-      email.register_hook(&block)
+    def self.define_hooks_for(mailer_name)
+      mailer = find(mailer_name)
+      yield(mailer) if block_given?
+    end
+
+    def register_hook(email_name, *args)
+      email = find_email(email_name)
+      email.register_hook(args)
     end
 
     def find_email(email_name)

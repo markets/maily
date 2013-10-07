@@ -1,4 +1,4 @@
-<h1><%= "#{params[:mailer]} > #{params[:method]}" %></h1>
+<h1><%= "Editing: #{params[:mailer]} > #{params[:method]}" %></h1>
 
 <p><%= link_to 'Return to list', root_path %></p>
 <p><%= link_to 'Show', maily_email_path(mailer: params[:mailer], method: params[:method]) %></p>
