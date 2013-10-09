@@ -1,12 +1,11 @@
 module Maily
   class Email
 
-    attr_accessor :name, :mailer, :has_hook, :arguments
+    attr_accessor :name, :mailer, :arguments
 
     def initialize(name, mailer)
       self.name      = name
       self.mailer    = mailer
-      self.has_hook  = false
       self.arguments = nil
     end
 
@@ -26,7 +25,7 @@ module Maily
       mailer_klass_name.constantize
     end
 
-    def render
+    def call
       mailer_klass.send(name, *arguments)
     end
   end
