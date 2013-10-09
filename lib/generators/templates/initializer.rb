@@ -4,10 +4,12 @@ Maily.init!
 #   maily.allowed_environments << :production
 # end
 
-# def demo_user
-#   User.all.sample
-# end
-
-# Maily::Mailer.define_hooks_for('notifier') do |mailer|
-#   mailer.register_hook(:welcome, demo_user)
-# end
+<% Maily::Mailer.all.each do |mailer| %>
+  Maily::Mailer.define_hooks_for('<%= mailer.name %>') do |mailer|
+    <% mailer.emails.each do |email| %>
+      <% if email.require_hook? %>
+        mailer.register_hook(:<%= email.name %>, <%= email.required_arguments.join(', ') %>)
+      <% end %>
+    <% end %>
+  end
+<% end %>

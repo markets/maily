@@ -6,7 +6,7 @@ module Maily
 
       def install
         generate_routing
-        add_initializer
+        build_initializer
       end
 
       private
@@ -15,8 +15,10 @@ module Maily
         route "mount Maily::Engine, at: 'maily'"
       end
 
-      def add_initializer
-        copy_file 'initializer.rb', 'config/initializers/maily.rb'
+      def build_initializer
+        Maily.init!
+
+        template 'initializer.rb', 'config/initializers/maily.rb'
       end
     end
   end

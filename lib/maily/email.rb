@@ -13,6 +13,10 @@ module Maily
       mailer_klass.instance_method(name).parameters.any?
     end
 
+    def required_arguments
+      mailer_klass.instance_method(name).parameters.map(&:last)
+    end
+
     def register_hook(*args)
       self.arguments = args.flatten
     end
