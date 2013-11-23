@@ -9,7 +9,7 @@ module Maily
     attr_accessor :allowed_environments
 
     def init!
-      self.allowed_environments = [:development, :test]
+      self.allowed_environments = [:development]
       build_mailers
     end
 
@@ -19,6 +19,11 @@ module Maily
         methods = klass.camelize.constantize.send(:instance_methods, false)
         Maily::Mailer.new(klass, methods)
       end
+    end
+
+    def define_hooks_for(mailer_name)
+      mailer = Maily::Mailer.find(mailer_name.underscore)
+      yield(mailer) if block_given?
     end
 
     def setup

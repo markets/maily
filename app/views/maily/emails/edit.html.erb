@@ -1,4 +1,4 @@
-<h1><%= "Editing: #{params[:mailer]} > #{params[:method]}" %></h1>
+<h1><%= "Editing: #{params[:mailer].humanize} > #{params[:method].humanize}" %></h1>
 
 <p>
   <%= link_to 'Return to list', root_path %> |

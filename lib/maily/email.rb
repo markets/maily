@@ -4,7 +4,7 @@ module Maily
     attr_accessor :name, :mailer, :arguments
 
     def initialize(name, mailer)
-      self.name      = name
+      self.name      = name.to_s
       self.mailer    = mailer
       self.arguments = nil
     end

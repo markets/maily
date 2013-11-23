@@ -10,6 +10,13 @@ module Maily
       @email  = @mailer.find_email(params[:method]).call
     end
 
+    def raw
+      @mailer = Maily::Mailer.find(params[:mailer])
+      @email  = @mailer.find_email(params[:method]).call
+
+      render text: @email.body, layout: false
+    end
+
     def edit
       @email = File.read("#{Rails.root}/app/views/#{params[:mailer]}/#{params[:method]}.html.erb")
     end

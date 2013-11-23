@@ -2,9 +2,9 @@
 
 <ul>
   <% @mailers.each do |mailer| %>
-  <h2><%= mailer.name %></h2>
+  <h2><%= mailer.name.humanize %></h2>
     <% mailer.emails.each do |email| %>
-      <li><%= link_to email.name, maily_email_path(mailer: mailer.name, method: email.name) %></li>
+      <li><%= link_to email.name.humanize, maily_email_path(mailer: mailer.name, method: email.name) %></li>
     <% end %>
   <% end %>
 </ul>

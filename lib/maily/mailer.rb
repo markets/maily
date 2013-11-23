@@ -25,18 +25,13 @@ module Maily
       end
     end
 
-    def self.define_hooks_for(mailer_name)
-      mailer = find(mailer_name)
-      yield(mailer) if block_given?
-    end
-
     def register_hook(email_name, *args)
       email = find_email(email_name)
       email.register_hook(args)
     end
 
     def find_email(email_name)
-      emails.detect { |email| email.name == email_name.to_sym }
+      emails.detect { |email| email.name == email_name.to_s }
     end
   end
 end

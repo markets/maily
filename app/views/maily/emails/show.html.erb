@@ -1,4 +1,4 @@
-<h1><%= "#{params[:mailer]} > #{params[:method]}" %></h1>
+<h1><%= "#{params[:mailer].humanize} > #{params[:method].humanize}" %></h1>
 
 <p>
   <%= link_to 'Return to list', root_path %> |
@@ -12,8 +12,13 @@
   <%= submit_tag 'Send' %>
 <% end %>
 
-<h2>Subject</h2>
-<%= @email.subject %>
+<h2>Details</h2>
+<ul>
+  <li>Subject: <%= @email.subject %></li>
+  <li>From: <%= @email.from %></li>
+  <li>To: <%= @email.to %></li>
+  <li>Cc: <%= @email.cc %></li>
+  <li>Bcc: <%= @email.bcc %></li>
+</ul>
 
-<h2>Body</h2>
-<%= @email.body %>
+<iframe src="<%= raw_maily_email_path(mailer: params[:mailer], method: params[:method]) %>" frameborder="1" height="100%" width="100%"></iframe>
