@@ -6,10 +6,11 @@ require 'maily/email'
 module Maily
   class << self
 
-    attr_accessor :allowed_environments
+    attr_accessor :allowed_environments, :available_locales
 
     def init!
       self.allowed_environments = [:development]
+      self.available_locales    = I18n.available_locales
       build_mailers
     end
 

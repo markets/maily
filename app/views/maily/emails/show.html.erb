@@ -6,11 +6,17 @@
 </p>
 
 <h2>Send</h2>
-<%= form_tag(deliver_maily_email_path(mailer: params[:mailer], method: params[:method]), method: :post) do %>
+<%= form_tag(deliver_maily_email_path(mailer: params[:mailer], method: params[:method], locale: params[:locale]), method: :post) do %>
   <%= label_tag 'To:' %>
   <%= email_field_tag :to %>
   <%= submit_tag 'Send' %>
 <% end %>
+
+<p>
+  <% Maily.available_locales.each do |locale| %>
+    <%= link_to locale, url_for(params.merge(locale: locale)) %>
+  <% end %>
+</p>
 
 <h2>Details</h2>
 <ul>
@@ -21,4 +27,4 @@
   <li>Bcc: <%= @email.bcc %></li>
 </ul>
 
-<iframe src="<%= raw_maily_email_path(mailer: params[:mailer], method: params[:method]) %>" frameborder="1" height="100%" width="100%"></iframe>
+<iframe src="<%= raw_maily_email_path(mailer: params[:mailer], method: params[:method], locale: params[:locale]) %>" frameborder="1" height="100%" width="100%"></iframe>

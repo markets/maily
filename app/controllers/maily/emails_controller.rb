@@ -1,6 +1,8 @@
 module Maily
   class EmailsController < ApplicationController
 
+    around_filter :perform_with_locale, only: [:show, :raw, :deliver]
+
     def index
       @mailers = Maily::Mailer.all
     end
@@ -38,6 +40,14 @@ module Maily
       @email.deliver
 
       redirect_to maily_email_path(mailer: params[:mailer], method: params[:method])
+    end
+
+    private
+
+    def perform_with_locale
+      I18n.with_locale(params[:locale]) do
+        yield
+      end
     end
   end
 end
