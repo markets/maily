@@ -12,6 +12,7 @@
   <%= submit_tag 'Send' %>
 <% end %>
 
+<h2>Languages</h2>
 <p>
   <% Maily.available_locales.each do |locale| %>
     <%= link_to locale, url_for(params.merge(locale: locale)) %>
@@ -27,4 +28,16 @@
   <li>Bcc: <%= @email.bcc %></li>
 </ul>
 
-<iframe src="<%= raw_maily_email_path(mailer: params[:mailer], method: params[:method], locale: params[:locale]) %>" frameborder="1" height="100%" width="100%"></iframe>
+<p>
+  <%= link_to 'HTML', url_for(params.merge(part: 'html')) if @email.html_part %>
+  <%= link_to 'TEXT', url_for(params.merge(part: 'text')) if @email.text_part %>
+  <% if @email.attachments.present? %>
+    <% @email.attachments.each do |attachment| %>
+      <%= link_to attachment.filename, attachment_maily_email_path(mailer: params[:mailer], method: params[:method], attachment: attachment.filename) %>
+    <% end %>
+  <% end %>
+</p>
+
+<% if @email.html_part || @email.text_part || @email.body.present? %>
+  <iframe src="<%= raw_maily_email_path(mailer: params[:mailer], method: params[:method], locale: params[:locale], part: params[:part]) %>" frameborder="1" height="100%" width="100%"></iframe>
+<% end %>

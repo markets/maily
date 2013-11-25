@@ -6,15 +6,15 @@ require 'maily/email'
 module Maily
   class << self
 
-    attr_accessor :allowed_environments, :available_locales
+    attr_accessor :allowed_environments, :available_locales, :base_controller
 
     def init!
       self.allowed_environments = [:development]
       self.available_locales    = I18n.available_locales
-      build_mailers
+      self.base_controller      = 'ActionController::Base'
     end
 
-    def build_mailers
+    def build_emails
       Dir[Rails.root + 'app/mailers/*.rb'].each do |mailer|
         klass   = File.basename(mailer, '.rb')
         methods = klass.camelize.constantize.send(:instance_methods, false)
@@ -22,7 +22,7 @@ module Maily
       end
     end
 
-    def define_hooks_for(mailer_name)
+    def hooks_for(mailer_name)
       mailer = Maily::Mailer.find(mailer_name.underscore)
       yield(mailer) if block_given?
     end

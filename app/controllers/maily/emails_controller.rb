@@ -1,6 +1,7 @@
 module Maily
   class EmailsController < ApplicationController
 
+    before_filter :load_mailer_and_email, except: [:index, :edit, :update]
     around_filter :perform_with_locale, only: [:show, :raw, :deliver]
 
     def index
@@ -8,15 +9,21 @@ module Maily
     end
 
     def show
-      @mailer = Maily::Mailer.find(params[:mailer])
-      @email  = @mailer.find_email(params[:method]).call
     end
 
     def raw
-      @mailer = Maily::Mailer.find(params[:mailer])
-      @email  = @mailer.find_email(params[:method]).call
+      content = if @email.parts.present?
+        params[:part] == 'text' ? @email.text_part.body : @email.html_part.body
+      else
+        @email.body
+      end
 
-      render text: @email.body, layout: false
+      render text: content, layout: false
+    end
+
+    def attachment
+      attachment = @email.attachments.find { |elem| elem.filename == params[:attachment] }
+      send_data attachment.body, filename: attachment.filename, type: attachment.content_type
     end
 
     def edit
@@ -32,9 +39,6 @@ module Maily
     end
 
     def deliver
-      @mailer = Maily::Mailer.find(params[:mailer])
-      @email  = @mailer.find_email(params[:method]).call
-
       @email.to = params[:to]
 
       @email.deliver
@@ -43,6 +47,11 @@ module Maily
     end
 
     private
+
+    def load_mailer_and_email
+      @mailer = Maily::Mailer.find(params[:mailer])
+      @email = @mailer.find_email(params[:method]).call
+    end
 
     def perform_with_locale
       I18n.with_locale(params[:locale]) do

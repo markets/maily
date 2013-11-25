@@ -4,23 +4,24 @@ module Maily
     cattr_accessor :collection
     attr_accessor :name, :emails
 
-    def initialize(name, emails)
+    def initialize(name, methods)
       self.collection ||= []
       self.name       = name
-      self.emails     = self.class.build_emails(emails, name)
+      self.emails     = self.class.build_emails(methods, name)
       self.collection << self
     end
 
     def self.all
+      Maily.build_emails if collection.nil?
       collection
     end
 
     def self.find(mailer_name)
-      collection.detect { |mailer| mailer.name == mailer_name }
+      all.find { |mailer| mailer.name == mailer_name }
     end
 
-    def self.build_emails(emails, mailer)
-      emails.map do |email|
+    def self.build_emails(methods, mailer)
+      methods.map do |email|
         Maily::Email.new(email, mailer)
       end
     end
@@ -31,7 +32,7 @@ module Maily
     end
 
     def find_email(email_name)
-      emails.detect { |email| email.name == email_name.to_s }
+      emails.find { |email| email.name == email_name.to_s }
     end
   end
 end

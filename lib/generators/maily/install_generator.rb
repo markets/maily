@@ -16,9 +16,27 @@ module Maily
       end
 
       def build_initializer
-        Maily.init!
-
         template 'initializer.rb', 'config/initializers/maily.rb'
+
+        hooks = []
+        fixtures = []
+
+        Maily::Mailer.all.each do |mailer|
+          hooks << "# Maily.hooks_for('#{mailer.name.humanize}') do |mailer|"
+          mailer.emails.each do |email|
+            if email.require_hook?
+              fixtures << email.required_arguments
+              hooks << "#   mailer.register_hook(:#{email.name}, #{email.required_arguments.join(', ')})"
+            end
+          end
+          hooks << "# end\n"
+        end
+
+        inject_into_file "config/initializers/maily.rb", after: "end\n" do
+          "\n" + fixtures.flatten.uniq.map{ |f| f = "# #{f.to_s} = ''" }.join("\n") +
+          "\n" + hooks.join("\n")
+        end
+
       end
     end
   end

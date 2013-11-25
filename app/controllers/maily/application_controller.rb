@@ -1,5 +1,5 @@
 module Maily
-  class ApplicationController < ActionController::Base
+  class ApplicationController < Maily.base_controller.constantize
 
     before_filter :allowed_environment?
 
