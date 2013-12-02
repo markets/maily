@@ -1,14 +1,14 @@
 module Maily
   class ApplicationController < Maily.base_controller.constantize
 
-    before_filter :allowed_environment?
+    before_filter :maily_enabled?
 
     layout 'maily/application'
 
     private
 
-    def allowed_environment?
-      Maily.allowed_env?(Rails.env) || raise("Not allowed environment #{Rails.env}")
+    def maily_enabled?
+      Maily.enabled || raise('Maily: engine disabled!')
     end
   end
 end

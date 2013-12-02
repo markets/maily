@@ -22,7 +22,7 @@ module Maily
         fixtures = []
 
         Maily::Mailer.all.each do |mailer|
-          hooks << "# Maily.hooks_for('#{mailer.name.humanize}') do |mailer|"
+          hooks << "# Maily.hooks_for('#{mailer.name.classify}') do |mailer|"
           mailer.emails.each do |email|
             if email.require_hook?
               fixtures << email.required_arguments

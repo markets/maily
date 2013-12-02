@@ -1,6 +1,7 @@
 module Maily
   class EmailsController < ApplicationController
 
+    before_filter :allowed_action?, only: [:edit, :update, :deliver]
     before_filter :load_mailer_and_email, except: [:index, :edit, :update]
     around_filter :perform_with_locale, only: [:show, :raw, :deliver]
 
@@ -47,6 +48,10 @@ module Maily
     end
 
     private
+
+    def allowed_action?
+      Maily.allowed_action?(action_name) || raise("Maily: action #{action_name} not allowed!")
+    end
 
     def load_mailer_and_email
       @mailer = Maily::Mailer.find(params[:mailer])

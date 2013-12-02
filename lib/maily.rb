@@ -6,12 +6,14 @@ require 'maily/email'
 module Maily
   class << self
 
-    attr_accessor :allowed_environments, :available_locales, :base_controller
+    attr_accessor :enabled, :allow_edition, :allow_delivery, :available_locales, :base_controller
 
     def init!
-      self.allowed_environments = [:development]
-      self.available_locales    = I18n.available_locales
-      self.base_controller      = 'ActionController::Base'
+      self.enabled           = true
+      self.allow_edition     = true
+      self.allow_delivery    = true
+      self.available_locales = I18n.available_locales
+      self.base_controller   = 'ActionController::Base'
     end
 
     def build_emails
@@ -31,8 +33,13 @@ module Maily
       yield(self)
     end
 
-    def allowed_env?(env)
-      allowed_environments.include?(env.to_sym)
+    def allowed_action?(action)
+      case action.to_sym
+      when :edit, :update
+        allow_edition
+      when :deliver
+        allow_delivery
+      end
     end
   end
 end
