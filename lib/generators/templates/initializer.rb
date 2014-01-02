@@ -11,7 +11,7 @@ Maily.init!
   # config.allow_delivery    = Rails.env.production? ? false : true
 
   # I18n.available_locales by default
-  # config.available_locales = [en, :es, :pt, :fr]
+  # config.available_locales = [:en, :es, :pt, :fr]
 
   # 'ActionController::Base' by default
   # config.base_controller   = 'FooController'

@@ -6,7 +6,7 @@
 </p>
 
 <h2>Body</h2>
-<%= form_tag(maily_email_path(mailer: params[:mailer], method: params[:method]), method: :put) do %>
+<%= form_tag(update_maily_email_path(mailer: params[:mailer], method: params[:method]), method: :put) do %>
   <%= text_area_tag :body, @email, cols: 80, rows: 30 %>
   <p><%= submit_tag 'Update' %></p>
 <% end %>

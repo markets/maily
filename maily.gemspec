@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version       = Maily::VERSION
   s.authors       = ["markets"]
   s.email         = ["srmarc.ai@gmail.com"]
-  s.homepage      = "https://github.com/markets/jekyll-timeago"
+  s.homepage      = "https://github.com/markets/maily"
   s.summary       = "Rails Engine to follow up application emails."
   s.description   = "Rails Engine to follow up application emails."
   s.license       = "MIT"
@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.test_files    = s.files.grep(%r{^(test|spec|features)/})
   s.require_paths = ["lib"]
 
-  s.add_dependency "rails", "~> 3.2"
+  s.add_dependency "rails", ">= 3.0.0"
 
   s.add_development_dependency 'debugger'
 end
