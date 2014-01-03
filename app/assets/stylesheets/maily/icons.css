@@ -1,0 +1,187 @@
+@font-face {
+  font-family: 'maily';
+  src:url('icons/maily.eot');
+  src:url('icons/maily.eot?#iefix') format('embedded-opentype'),
+    url('icons/maily.woff') format('woff'),
+    url('icons/maily.ttf') format('truetype'),
+    url('icons/maily.svg#maily') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-maily-"], [class*=" icon-maily-"] {
+  font-family: 'maily';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="icon-maily-"]:before, [class*=" icon-maily-"]:before { margin-right: .4em; }
+
+.icon-maily-home:before {
+  content: "\e600";
+}
+.icon-maily-pencil:before {
+  content: "\e601";
+}
+.icon-maily-images:before {
+  content: "\e602";
+}
+.icon-maily-bullhorn:before {
+  content: "\e603";
+}
+.icon-maily-file:before {
+  content: "\e604";
+}
+.icon-maily-copy:before {
+  content: "\e605";
+}
+.icon-maily-stack:before {
+  content: "\e606";
+}
+.icon-maily-folder-open:before {
+  content: "\e607";
+}
+.icon-maily-cart:before {
+  content: "\e608";
+}
+.icon-maily-credit:before {
+  content: "\e609";
+}
+.icon-maily-support:before {
+  content: "\e60a";
+}
+.icon-maily-phone:before {
+  content: "\e60b";
+}
+.icon-maily-address-book:before {
+  content: "\e60c";
+}
+.icon-maily-location:before {
+  content: "\e60d";
+}
+.icon-maily-bell:before {
+  content: "\e60e";
+}
+.icon-maily-mobile:before {
+  content: "\e60f";
+}
+.icon-maily-tablet:before {
+  content: "\e610";
+}
+.icon-maily-mobile2:before {
+  content: "\e611";
+}
+.icon-maily-screen:before {
+  content: "\e612";
+}
+.icon-maily-laptop:before {
+  content: "\e613";
+}
+.icon-maily-drawer:before {
+  content: "\e614";
+}
+.icon-maily-drawer2:before {
+  content: "\e615";
+}
+.icon-maily-box-remove:before {
+  content: "\e616";
+}
+.icon-maily-box-add:before {
+  content: "\e617";
+}
+.icon-maily-undo:before {
+  content: "\e618";
+}
+.icon-maily-redo:before {
+  content: "\e619";
+}
+.icon-maily-bubbles:before {
+  content: "\e61a";
+}
+.icon-maily-user:before {
+  content: "\e61b";
+}
+.icon-maily-expand:before {
+  content: "\e61c";
+}
+.icon-maily-contract:before {
+  content: "\e61d";
+}
+.icon-maily-settings:before {
+  content: "\e61e";
+}
+.icon-maily-gift:before {
+  content: "\e61f";
+}
+.icon-maily-remove:before {
+  content: "\e620";
+}
+.icon-maily-menu:before {
+  content: "\e621";
+}
+.icon-maily-link:before {
+  content: "\e622";
+}
+.icon-maily-attachment:before {
+  content: "\e623";
+}
+.icon-maily-flag:before {
+  content: "\e624";
+}
+.icon-maily-checkmark:before {
+  content: "\e625";
+}
+.icon-maily-close:before {
+  content: "\e626";
+}
+.icon-maily-minus:before {
+  content: "\e627";
+}
+.icon-maily-plus:before {
+  content: "\e628";
+}
+.icon-maily-arrow-right:before {
+  content: "\e629";
+}
+.icon-maily-arrow-left:before {
+  content: "\e62a";
+}
+.icon-maily-radio-checked:before {
+  content: "\e62b";
+}
+.icon-maily-radio-unchecked:before {
+  content: "\e62c";
+}
+.icon-maily-checkbox-unchecked:before {
+  content: "\e62d";
+}
+.icon-maily-checkbox-checked:before {
+  content: "\e62e";
+}
+.icon-maily-twitter:before {
+  content: "\e62f";
+}
+.icon-maily-facebook:before {
+  content: "\e630";
+}
+.icon-maily-google-plus:before {
+  content: "\e631";
+}
+.icon-maily-github:before {
+  content: "\e632";
+}
+.icon-maily-linkedin:before {
+  content: "\e633";
+}
+.icon-maily-envelope:before {
+  content: "\e634";
+}
+
