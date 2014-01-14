@@ -1,43 +1,77 @@
-<h1><%= "#{params[:mailer].humanize} > #{params[:method].humanize}" %></h1>
-
-<p>
-  <%= link_to 'Return to list', root_path %> |
-  <%= link_to 'Edit', edit_maily_email_path(mailer: params[:mailer], method: params[:method]) %>
-</p>
-
-<h2>Send</h2>
-<%= form_tag(deliver_maily_email_path(mailer: params[:mailer], method: params[:method], locale: params[:locale]), method: :post) do %>
-  <%= label_tag 'To:' %>
-  <%= email_field_tag :to %>
-  <%= submit_tag 'Send' %>
-<% end %>
-
-<h2>Languages</h2>
-<p>
-  <% Maily.available_locales.each do |locale| %>
-    <%= link_to locale, url_for(params.merge(locale: locale)) %>
+<aside class="sidebar">
+  <% @mailers.each do |mailer| %>
+    <section class="nav_list">
+      <h3 class="title nav_title"><%= mailer.name.humanize %></h3>
+      <ul>
+        <% mailer.emails.each do |email| %>
+          <li><%= link_to email.name.humanize, maily_email_path(mailer: mailer.name, method: email.name) %></li> <!-- class:'maily_selected_mail' -->
+        <% end %>
+      </ul>
+    </section>
   <% end %>
-</p>
+</aside>
 
-<h2>Details</h2>
-<ul>
-  <li>Subject: <%= @email.subject %></li>
-  <li>From: <%= @email.from %></li>
-  <li>To: <%= @email.to %></li>
-  <li>Cc: <%= @email.cc %></li>
-  <li>Bcc: <%= @email.bcc %></li>
-</ul>
+<div class="content">
+  <ul class="maily_action_bar">
+    <li>
+      <em class="icon-maily-pencil"></em>
+      <%= link_to 'Edit', edit_maily_email_path(mailer: params[:mailer], method: params[:method]) %>
+    </li>
 
-<p>
-  <%= link_to 'HTML', url_for(params.merge(part: 'html')) if @email.html_part %>
-  <%= link_to 'TEXT', url_for(params.merge(part: 'text')) if @email.text_part %>
-  <% if @email.attachments.present? %>
-    <% @email.attachments.each do |attachment| %>
-      <%= link_to attachment.filename, attachment_maily_email_path(mailer: params[:mailer], method: params[:method], attachment: attachment.filename) %>
+    <li class="maily_languages">
+      <% if Maily.available_locales.length > 1 %>
+        <ul>
+          <li>
+            <em class="icon-maily-earth"></em>
+            Languages:</li>
+            <% Maily.available_locales.each do |locale| %>
+              <li><%= link_to locale, url_for(params.merge(locale: locale)) %></li>
+            <% end %>
+        </ul>
+      <% end %>
+    </li>
+
+    <li class="maily_splitter">|</li>
+    <li>
+      <%= form_tag(deliver_maily_email_path(mailer: params[:mailer], method: params[:method], locale: params[:locale]), method: :post, class: 'maily_send') do %>
+        <ul>
+          <li>Send to:</li>
+          <li><%= email_field_tag :to, nil, class: 'maily_textfield', placeholder: "Enter email" %></li>
+          <li><%= submit_tag 'Send', class: 'maily_button' %></li>
+        </ul>
+      <% end %>
+    </li>
+  </ul>
+
+  <div class="maily_mail_preview">
+    <ul class="maily_mail_details">
+      <li>Subject: <%= @email.subject %></li>
+      <li>From: <%= @email.from %></li>
+      <li>To: <%= @email.to %></li>
+      <li>Cc: <%= @email.cc %></li>
+      <li>Bcc: <%= @email.bcc %></li>
+    </ul>
+
+    <ul class="maily_format_mail">
+      <li><%= link_to 'HTML', url_for(params.merge(part: 'html')), class: 'format_selected' if @email.html_part %></li>
+      <li><%= link_to 'TEXT', url_for(params.merge(part: 'text')) if @email.text_part %></li>
+    </ul>
+
+    <% if @email.html_part || @email.text_part || @email.body.present? %>
+      <iframe class="maily_preview" src="<%= raw_maily_email_path(mailer: params[:mailer], method: params[:method], locale: params[:locale], part: params[:part]) %>" frameborder="1" height="100%" width="100%"></iframe>
     <% end %>
-  <% end %>
-</p>
 
-<% if @email.html_part || @email.text_part || @email.body.present? %>
-  <iframe src="<%= raw_maily_email_path(mailer: params[:mailer], method: params[:method], locale: params[:locale], part: params[:part]) %>" frameborder="1" height="100%" width="100%"></iframe>
-<% end %>
+    <% if @email.attachments.present? %>
+      <ul class="maily_mail_attachments">
+        <li>Attachments:</li>
+        <li>
+          <ul>
+            <% @email.attachments.each do |attachment| %>
+              <li><em class="icon-maily-attachment"></em><%= link_to attachment.filename, attachment_maily_email_path(mailer: params[:mailer], method: params[:method], attachment: attachment.filename) %></li>
+            <% end %>
+          </ul>
+        </li>
+      </ul>
+    <% end %>
+  </div>
+</div>

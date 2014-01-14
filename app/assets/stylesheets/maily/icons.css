@@ -184,4 +184,13 @@
 .icon-maily-envelope:before {
   content: "\e634";
 }
+.icon-maily-clock:before {
+  content: "\e63c";
+}
+.icon-maily-earth:before {
+  content: "\e63d";
+}
+.icon-maily-left:before {
+  content: "\e63e";
+}
 

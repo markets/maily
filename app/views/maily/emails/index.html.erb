@@ -1,12 +1,10 @@
 <aside class="sidebar">
-  <h2 class="title main_title"><em class="icon-maily-drawer2"></em>Emails list</h2>
-
   <% @mailers.each do |mailer| %>
     <section class="nav_list">
       <h3 class="title nav_title"><%= mailer.name.humanize %></h3>
       <ul>
         <% mailer.emails.each do |email| %>
-          <li><%= link_to email.name.humanize, maily_email_path(mailer: mailer.name, method: email.name) %></li>
+          <li><%= link_to email.name.humanize, maily_email_path(mailer: mailer.name, method: email.name) %></li> <!-- class:'maily_selected_mail' -->
         <% end %>
       </ul>
     </section>
@@ -14,6 +12,5 @@
 </aside>
 
 <div class="content">
-  <h2 class="title">Content</h2>
 </div>
 

@@ -10,6 +10,7 @@ module Maily
     end
 
     def show
+      @mailers = Maily::Mailer.all
     end
 
     def raw
