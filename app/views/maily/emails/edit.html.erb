@@ -1,12 +1,34 @@
-<h1><%= "Editing: #{params[:mailer].humanize} > #{params[:method].humanize}" %></h1>
+<aside class="sidebar">
+  <% @mailers.each do |mailer| %>
+    <section class="nav_list">
+      <h3 class="title nav_title"><%= mailer.name.humanize %></h3>
+      <ul>
+        <% mailer.emails.each do |email| %>
+          <li><%= link_to email.name.humanize, maily_email_path(mailer: mailer.name, method: email.name) %></li> <!-- class:'maily_selected_mail' -->
+        <% end %>
+      </ul>
+    </section>
+  <% end %>
+</aside>
 
-<p>
-  <%= link_to 'Return to list', root_path %> |
-  <%= link_to 'Show', maily_email_path(mailer: params[:mailer], method: params[:method]) %>
-</p>
+<div class="content">
+  <%= form_tag(update_maily_email_path(mailer: params[:mailer], method: params[:method]), method: :put) do %>
+    <ul class="maily_action_bar">
+      <li>
+        <em class="icon-maily-eye"></em>
+        <%= link_to 'Show', maily_email_path(mailer: params[:mailer], method: params[:method]) %>
+      </li>
 
-<h2>Body</h2>
-<%= form_tag(update_maily_email_path(mailer: params[:mailer], method: params[:method]), method: :put) do %>
-  <%= text_area_tag :body, @email, cols: 80, rows: 30 %>
-  <p><%= submit_tag 'Update' %></p>
-<% end %>
+      <li class="maily_splitter">|</li>
+
+      <li>
+        <em class="icon-maily-checkmark"></em>
+        <%= submit_tag 'Update', class: 'maily_button' %>
+      </li>
+    </ul>
+
+    <div class="maily_mail_preview">
+      <%= text_area_tag :body, @email, class:'maily_mail_updatearea' %>
+    </div>
+  <% end %>
+</div>

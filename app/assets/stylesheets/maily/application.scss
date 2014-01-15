@@ -4,21 +4,21 @@
 
 /* Default */
 @font-face {
-  font-family: 'Josefin Sans';
-  src: url('fonts/JosefinSans-Light.ttf') format('truetype');
   font-weight: light;
   font-style: normal;
+  font-family: 'Josefin Sans';
+  src: url('fonts/JosefinSans-Light.ttf') format('truetype');
 }
 
 ::-webkit-input-placeholder {
-  font-weight: 300;
-  vertical-align: bottom;
   padding: 0 .2em;
+  vertical-align: bottom;
+  font-weight: 300;
 }
 
-:-moz-placeholder { font-size: 0.8em; }
-::-moz-placeholder { font-size: 0.8em; }
-:-ms-input-placeholder { font-size: 0.8em; }
+:-moz-placeholder { font-size: 0.6em; }
+::-moz-placeholder { font-size: 0.6em; }
+:-ms-input-placeholder { font-size: 0.6em; }
 
 
 $textColor: #444;
@@ -26,16 +26,16 @@ $linkColor: #59abc6;
 
 .clearfix:before,
 .clearfix:after {
-  content: " ";
   display: table;
+  content: " ";
 }
 
 .clearfix:after { clear: both; }
 
 body {
   color: $textColor;
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
   font-size: 1em;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
 
   a {
     color: $linkColor;
@@ -52,9 +52,9 @@ header.header, footer.footer {
   position: fixed;
   left: 0;
   z-index: 99;
-  background-color: rgba(255,255,255, .95);
   padding: .75em;
   width: 100%;
+  background-color: rgba(255,255,255, .95);
 }
 
 /* HEADER */
@@ -64,12 +64,12 @@ header.header {
 
   .logo_link {
     color: $textColor;
-    font: 400 2em/1 'Josefin Sans';
     text-decoration: none;
+    font: 400 2em/1 'Josefin Sans';
 
     em:before {
-      font-family: 'maily';
       font-size: .8em;
+      font-family: 'maily';
     }
   }
 }
@@ -89,21 +89,21 @@ footer.footer {
 
 /* CONTENT */
 .wrap_content {
-  padding: 6em .75em 4em;
   display: inline-block;
-  width: 100%;
   box-sizing: border-box;
+  padding: 6em .75em 4em;
+  width: 100%;
 }
 
 .content {
-  padding-left: 20%;
-  margin-left: 2em;
   margin-right: 2em;
+  margin-left: 2em;
+  padding-left: 20%;
 
   ul.maily_action_bar {
-    list-style: none;
-    padding: 0;
     margin: 0;
+    padding: 0;
+    list-style: none;
     font-size: 1.2em;
 
     em:before {
@@ -112,8 +112,8 @@ footer.footer {
     }
 
     &, & ul {
-      width: 100%;
       display: inline-block;
+      width: 100%;
     }
 
     li, ul li {
@@ -123,9 +123,9 @@ footer.footer {
     }
 
     ul {
-      list-style: none;
-      padding: 0;
       margin: 0;
+      padding: 0;
+      list-style: none;
     }
 
     li.maily_languages {
@@ -155,27 +155,27 @@ footer.footer {
     border-radius: 3px;
 
     .maily_mail_details {
-      padding: 0;
       margin: 0 0 1em 0;
+      padding: 0;
+      color: #666;
       list-style: none;
       font-size: .8em;
-      color: #666;
 
       li { line-height: 1.5em; }
     }
 
     .maily_mail_attachments {
-      font-size: .8em;
-      color: #666;
-      list-style: none;
       padding: 1em 0 0 0;
       border-top: solid 1px #ccc;
+      color: #666;
+      list-style: none;
+      font-size: .8em;
 
       ul {
         display: inline-block;
-        width: 100%;
         margin: 0;
         padding: 0;
+        width: 100%;
         list-style: none;
 
         li {
@@ -194,25 +194,29 @@ footer.footer {
   }
 
   .maily_textfield {
+    height: 1em;
     border: solid 1px #ccc;
-    background: #fff;
     border-radius: 2px;
+    background: #fff;
+    line-height: 1;
   }
 
   .maily_button {
+    box-sizing: border-box;
+    padding: 0;
     border: none;
     background: none;
     color: $linkColor;
   }
 
   .maily_format_mail {
-    width: 6.5em;
-    display: inline-block;
-    list-style: none;
-    padding: 0;
-    margin: -2em 0 0 0;
-    float: right;
     position: relative;
+    display: inline-block;
+    float: right;
+    margin: -2em 0 0 0;
+    padding: 0;
+    width: 6.5em;
+    list-style: none;
 
 
     li {
@@ -224,11 +228,20 @@ footer.footer {
       }
 
       + li {
-        border-left: solid 1px #ccc;
         margin: 0 0 0 .4em;
         padding: 0 0 0 .4em;
+        border-left: solid 1px #ccc;
       }
     }
+  }
+
+  .maily_mail_updatearea {
+    position: relative;
+    overflow: visible;
+    min-height: 450px;
+    width: 100%;
+    height: 100%;
+    border: none;
   }
 }
 
@@ -238,51 +251,51 @@ aside.sidebar {
   width: 20%;
 
   .main_title {
-    font-size: 1.5em;
     margin: 0 0 1em;
+    font-size: 1.5em;
   }
 
   section.nav_list {
     margin: 0 0 1.5em 2.1em;
 
     .nav_title {
-      font-size: 1.2em;
       margin: 0 0 .4em;
       font-weight: 400;
+      font-size: 1.2em;
     }
 
     ul {
-      list-style: none;
       margin: 0;
       padding: 0;
+      list-style: none;
 
       li {
-        list-style: none;
         margin-bottom: .4em;
+        list-style: none;
 
         a {
+          color: $linkColor;
           text-decoration: none;
           font-size: .9em;
-          color: $linkColor;
 
           &.maily_selected_mail {
-            &:before {
-              content: "\e63e";
-              font-family: 'maily';
-              speak: none;
-              font-style: normal;
-              font-weight: normal;
-              font-variant: normal;
-              text-transform: none;
-              line-height: 1;
-              -webkit-font-smoothing: antialiased;
-              -moz-osx-font-smoothing: grayscale;
-              font-size: .6em;
-              font-weight: bolder;
-            }
 
             color: darken($linkColor, 20%);
             font-weight: bold;
+            &:before {
+              content: "\e63e";
+              text-transform: none;
+              font-weight: normal;
+              font-weight: bolder;
+              font-style: normal;
+              font-variant: normal;
+              font-size: .6em;
+              font-family: 'maily';
+              line-height: 1;
+              speak: none;
+              -webkit-font-smoothing: antialiased;
+              -moz-osx-font-smoothing: grayscale;
+            }
           }
 
           &:hover {
