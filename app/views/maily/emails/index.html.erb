@@ -1,10 +1,16 @@
-<h1>Emails list</h1>
-
-<ul>
+<aside class="sidebar">
   <% @mailers.each do |mailer| %>
-  <h2><%= mailer.name.humanize %></h2>
-    <% mailer.emails.each do |email| %>
-      <li><%= link_to email.name.humanize, maily_email_path(mailer: mailer.name, method: email.name) %></li>
-    <% end %>
+    <section class="nav_list">
+      <h3 class="title nav_title"><%= mailer.name.humanize %></h3>
+      <ul>
+        <% mailer.emails.each do |email| %>
+          <li><%= link_to email.name.humanize, maily_email_path(mailer: mailer.name, method: email.name) %></li> <!-- class:'maily_selected_mail' -->
+        <% end %>
+      </ul>
+    </section>
   <% end %>
-</ul>
+</aside>
+
+<div class="content">
+</div>
+

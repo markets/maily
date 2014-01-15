@@ -2,16 +2,24 @@
 <html>
 <head>
   <title>Maily</title>
+  <%= stylesheet_link_tag    "maily/normalize", :media => "all" %>
   <%= stylesheet_link_tag    "maily/application", :media => "all" %>
   <%= javascript_include_tag "maily/application" %>
   <%= csrf_meta_tags %>
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+    <script src="/assets/javascripts/html5shiv.js"></script>
+    <script src="/assets/javascripts/respond.min.js"></script>
+  <![endif]-->
 </head>
 <body>
+  <%= render 'maily/shared/header' %>
 
-<%= yield %>
+  <div class="wrap_content clearfix">
+    <%= render 'maily/shared/sidebar' %>
+    <%= yield %>
+  </div>
 
-<hr/>
-<%= link_to "Maily v#{Maily::VERSION}", 'https://github.com/markets/maily' %>
-
+  <%= render 'maily/shared/footer' %>
 </body>
 </html>

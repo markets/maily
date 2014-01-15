@@ -10,6 +10,7 @@ module Maily
     end
 
     def show
+      @mailers = Maily::Mailer.all
     end
 
     def raw
@@ -28,6 +29,7 @@ module Maily
     end
 
     def edit
+      @mailers = Maily::Mailer.all
       @email = File.read("#{Rails.root}/app/views/#{params[:mailer]}/#{params[:method]}.html.erb")
     end
 
