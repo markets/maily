@@ -32,5 +32,31 @@ module Maily
     def call
       mailer_klass.send(name, *arguments)
     end
+
+    def template_path(part = nil)
+      if part
+        "#{Rails.root}/app/views/#{mailer}/#{name}.#{part}.erb"
+      else
+        find_template
+      end
+    end
+
+    def find_template
+      if File.exist?("#{Rails.root}/app/views/#{mailer}/#{name}.html.erb")
+        "#{Rails.root}/app/views/#{mailer}/#{name}.html.erb"
+      else
+        "#{Rails.root}/app/views/#{mailer}/#{name}.text.erb"
+      end
+    end
+
+    def template(part = nil)
+      File.read(template_path(part))
+    end
+
+    def update_template(new_content, part = nil)
+      File.open(template_path(part), 'w') do |f|
+        f.write(new_content)
+      end
+    end
   end
 end

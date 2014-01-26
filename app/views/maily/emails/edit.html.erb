@@ -1,22 +1,9 @@
-<aside class="sidebar">
-  <% @mailers.each do |mailer| %>
-    <section class="nav_list">
-      <h3 class="title nav_title"><%= mailer.name.humanize %></h3>
-      <ul>
-        <% mailer.emails.each do |email| %>
-          <li><%= link_to email.name.humanize, maily_email_path(mailer: mailer.name, method: email.name) %></li> <!-- class:'maily_selected_mail' -->
-        <% end %>
-      </ul>
-    </section>
-  <% end %>
-</aside>
-
 <div class="content">
-  <%= form_tag(update_maily_email_path(mailer: params[:mailer], method: params[:method]), method: :put) do %>
+  <%= form_tag(update_maily_email_path(mailer: params[:mailer], email: params[:email], part: params[:part]), method: :put) do %>
     <ul class="maily_action_bar">
       <li>
         <em class="icon-maily-eye"></em>
-        <%= link_to 'Show', maily_email_path(mailer: params[:mailer], method: params[:method]) %>
+        <%= link_to 'Show', maily_email_path(mailer: params[:mailer], email: params[:email]) %>
       </li>
 
       <li class="maily_splitter">|</li>
@@ -28,7 +15,7 @@
     </ul>
 
     <div class="maily_mail_preview">
-      <%= text_area_tag :body, @email, class:'maily_mail_updatearea' %>
+      <%= text_area_tag :body, @template, class:'maily_mail_updatearea' %>
     </div>
   <% end %>
 </div>
