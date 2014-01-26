@@ -1,12 +1,13 @@
 module Maily
   class Email
 
-    attr_accessor :name, :mailer, :arguments
+    attr_accessor :name, :mailer, :arguments, :template_path
 
     def initialize(name, mailer)
-      self.name      = name.to_s
-      self.mailer    = mailer
-      self.arguments = nil
+      self.name          = name.to_s
+      self.mailer        = mailer
+      self.arguments     = nil
+      self.template_path = mailer
     end
 
     def require_hook?
@@ -18,7 +19,14 @@ module Maily
     end
 
     def register_hook(*args)
-      self.arguments = args.flatten
+      args = args.flatten
+
+      if args.last.is_a?(Hash) && new_path = args.last.delete(:template_path)
+        self.template_path = new_path
+        args.pop
+      end
+
+      self.arguments = args
     end
 
     def mailer_klass_name
@@ -33,28 +41,28 @@ module Maily
       mailer_klass.send(name, *arguments)
     end
 
-    def template_path(part = nil)
-      if part
-        "#{Rails.root}/app/views/#{mailer}/#{name}.#{part}.erb"
-      else
-        find_template
-      end
+    def base_path(part)
+      "#{Rails.root}/app/views/#{template_path}/#{name}.#{part}.erb"
     end
 
-    def find_template
-      if File.exist?("#{Rails.root}/app/views/#{mailer}/#{name}.html.erb")
-        "#{Rails.root}/app/views/#{mailer}/#{name}.html.erb"
+    def path(part = nil)
+      if part
+        base_path(part)
       else
-        "#{Rails.root}/app/views/#{mailer}/#{name}.text.erb"
+        if File.exist?(path('html'))
+          base_path('html')
+        else
+          base_path('text')
+        end
       end
     end
 
     def template(part = nil)
-      File.read(template_path(part))
+      File.read(path(part))
     end
 
     def update_template(new_content, part = nil)
-      File.open(template_path(part), 'w') do |f|
+      File.open(path(part), 'w') do |f|
         f.write(new_content)
       end
     end
