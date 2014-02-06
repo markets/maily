@@ -12,7 +12,7 @@ module Maily
     end
 
     def self.all
-      Maily.build_emails if collection.nil?
+      Maily.load_emails_and_hooks if collection.nil?
       collection
     end
 

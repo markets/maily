@@ -7,6 +7,7 @@ module Maily
       def install
         generate_routing
         build_initializer
+        build_hooks
       end
 
       private
@@ -17,26 +18,26 @@ module Maily
 
       def build_initializer
         template 'initializer.rb', 'config/initializers/maily.rb'
+      end
 
-        hooks = []
+      def build_hooks
         fixtures = []
+        hooks    = []
 
         Maily::Mailer.all.each do |mailer|
-          hooks << "# Maily.hooks_for('#{mailer.name.classify}') do |mailer|"
+          hooks << "\nMaily.hooks_for('#{mailer.name.classify}') do |mailer|"
           mailer.emails.each do |email|
             if email.require_hook?
               fixtures << email.required_arguments
-              hooks << "#   mailer.register_hook(:#{email.name}, #{email.required_arguments.join(', ')})"
+              hooks << "  mailer.register_hook(:#{email.name}, #{email.required_arguments.join(', ')})"
             end
           end
-          hooks << "# end\n"
+          hooks << "end"
         end
 
-        inject_into_file "config/initializers/maily.rb", after: "end\n" do
-          "\n" + fixtures.flatten.uniq.map{ |f| f = "# #{f.to_s} = ''" }.join("\n") +
-          "\n" + hooks.join("\n")
+        create_file "lib/maily_hooks.rb" do
+          fixtures.flatten.uniq.map{ |f| f = "#{f.to_s} = ''" }.join("\n") + "\n" + hooks.join("\n") + "\n"
         end
-
       end
     end
   end

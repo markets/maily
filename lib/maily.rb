@@ -16,12 +16,17 @@ module Maily
       self.base_controller   = 'ActionController::Base'
     end
 
-    def build_emails
+    def load_emails_and_hooks
+      # Load emails
       Dir[Rails.root + 'app/mailers/*.rb'].each do |mailer|
         klass   = File.basename(mailer, '.rb')
         methods = klass.camelize.constantize.send(:instance_methods, false)
         Maily::Mailer.new(klass, methods)
       end
+
+      # Load hooks
+      hooks_file_path = "#{Rails.root}/lib/maily_hooks.rb"
+      require hooks_file_path if File.exists?(hooks_file_path)
     end
 
     def hooks_for(mailer_name)
@@ -30,6 +35,7 @@ module Maily
     end
 
     def setup
+      init!
       yield(self)
     end
 
