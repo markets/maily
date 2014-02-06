@@ -15,6 +15,8 @@ Maily is Rails Engine to preview, follow up, test and edit the emails of your ap
 * Easy way (hooks) to define data for emails
 * Generator to handle a friendly installation
 
+![](screenshot.png)
+
 ## Installation
 Add this line to you Gemfile:
 
@@ -36,7 +38,7 @@ mount Maily::Engine, at: 'maily'
 
 Adds an initializer to customize some settings:
 
-```
+```ruby
 # config/initializers/maily.rb
 Maily.setup do |config|
   # Enable/disable engine
@@ -61,7 +63,7 @@ And adds a file to define hooks.
 ## Hooks
 Most of emails need to populate data to consume it and do intersting things. Hooks are used to define this data with a little DSL. Example:
 
-```
+```ruby
 # lib/maily_hooks.rb
 user = User.new(email: 'user@example.com')
 comment = Struct.new(:body).new('Lorem ipsum') # stub way
