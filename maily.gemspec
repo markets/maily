@@ -10,8 +10,8 @@ Gem::Specification.new do |s|
   s.authors       = ["markets"]
   s.email         = ["srmarc.ai@gmail.com"]
   s.homepage      = "https://github.com/markets/maily"
-  s.summary       = "Rails Engine to follow up application emails."
-  s.description   = "Rails Engine to follow up application emails."
+  s.summary       = "Rails Engine to preview emails in a browser."
+  s.description   = "Rails Engine to preview emails in a browser."
   s.license       = "MIT"
 
   s.files         = `git ls-files`.split($/)
