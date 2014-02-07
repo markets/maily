@@ -6,14 +6,14 @@ Stop to delivery emails every time you change it!
 Maily is Rails Engine to preview, follow up, test and edit the emails of your applications in a browser. Features:
 
 * Mountable engine
-* Visual preview in the browser
+* Visual preview in the browser (attachments as well)
 * Template edition
 * Email delivery
 * Features configurables per environment
 * Customizable parent controller (define permissions in your own controller)
 * Minimalistic interface (thanks to [@gnatok](https://github.com/gnatok))
-* Easy way (hooks) to define data for emails
-* Generator to handle a friendly installation
+* Easy way (named hooks) to define data for emails
+* Generator to handle a comfortable installation
 
 ![](screenshot.png)
 
