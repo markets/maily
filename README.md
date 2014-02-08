@@ -1,9 +1,12 @@
-Maily
-==============
+# Maily
+
+[![Gem Version](https://badge.fury.io/rb/maily.png)](http://badge.fury.io/rb/maily)
 
 Stop to delivery emails every time you change it!
 
-Maily is Rails Engine to preview, follow up, test and edit the emails of your applications in a browser. Features:
+Maily is a Rails Engine to preview, follow up, test and edit the emails of your applications in the browser.
+
+## Features:
 
 * Mountable engine
 * Visual preview in the browser (attachments as well)
@@ -29,14 +32,21 @@ Run generator:
 ```
 rails g maily:install
 ```
+ 
+This installator makes some tasks for you:
 
-This installator mounts the engine:
+* Mounts the engine (to `/maily` by default) in your routes
+* Adds an initializer (into `config/initializers/maily.rb`) to customize some settings  
+* Adds a file (into `lib/maily_hooks.rb`) to define hooks 
 
+## Initializer
+You should configure Maily via this initializer. You can set these options per environment:
+
+```ruby
+  Maily.enabled = ENV['MAILY_ENABLED']
 ```
-mount Maily::Engine, at: 'maily'
-```
 
-Adds an initializer to customize some settings:
+This is a sample of file with the full list of options:
 
 ```ruby
 # config/initializers/maily.rb
@@ -54,11 +64,9 @@ Maily.setup do |config|
   # config.available_locales = [:en, :es, :pt, :fr]
 
   # Define parent controller. Allow to run engine under a custom controller
-  # config.base_controller = 'FooController'
+  # config.base_controller = 'AdminController'
 end
 ```
-
-And adds a file to define hooks.
 
 ## Hooks
 Most of emails need to populate data to consume it and do intersting things. Hooks are used to define this data with a little DSL. Example:
@@ -79,5 +87,18 @@ Maily.hooks_for('PaymentNotifier') do |mailer|
 end
 ```
 
+Note that you are able to override `template_path` like can be done in Rails. You must pass this option as a hash and last argument:
+
+```ruby
+Maily.hooks_for('YourMailerClass') do |mailer|
+  mailer.register_hook(:your_mail, template_path: 'notifications')
+end
+```
+
+## Notes
+Rails 4.1 introduced a built-in mechanism to preview the application emails. It is in fact a port of [basecamp/mail_view](https://github.com/basecamp/mail_view) gem to the core.
+
+Alternatively, there are some other plugins to get a similar functionality with different approaches. For example, [ryanb/letter_opener](https://github.com/ryanb/letter_opener) or [MailCatcher](https://github.com/sj26/mailcatcher).
+
 ## License
-Copyright (c) 2013 Marc Anguera. Maily is released under the [MIT](MIT-LICENSE) License.
+Copyright (c) 2013-2014 Marc Anguera. Maily is released under the [MIT](MIT-LICENSE) License.
