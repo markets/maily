@@ -32,12 +32,12 @@ Run generator:
 ```
 rails g maily:install
 ```
- 
+
 This installator makes some tasks for you:
 
 * Mounts the engine (to `/maily` by default) in your routes
-* Adds an initializer (into `config/initializers/maily.rb`) to customize some settings  
-* Adds a file (into `lib/maily_hooks.rb`) to define hooks 
+* Adds an initializer (into `config/initializers/maily.rb`) to customize some settings
+* Adds a file (into `lib/maily_hooks.rb`) to define hooks
 
 ## Initializer
 You should configure Maily via this initializer. You can set these options per environment:

@@ -1,7 +1,11 @@
 class Notifier < ActionMailer::Base
-  default from: 'foo@foo.com'
+  default from: 'foo@foo.com', to: 'bar@bar.com'
 
   def welcome
-    mail to: 'foo@foo.com'
+    mail
+  end
+
+  def invitation(email)
+    mail
   end
 end
