@@ -1,6 +1,6 @@
 # Maily
 
-[![Gem Version](https://badge.fury.io/rb/maily.png)](http://badge.fury.io/rb/maily)
+[![Gem Version](https://badge.fury.io/rb/maily.png)](http://badge.fury.io/rb/maily) [![Build Status](https://travis-ci.org/markets/maily.png?branch=master)](https://travis-ci.org/markets/maily)
 
 Stop to delivery emails every time you change it!
 
