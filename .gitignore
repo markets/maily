@@ -1,3 +1,5 @@
 .bundle/
 pkg/
 Gemfile.lock
+spec/dummy/log/*.log
+spec/dummy/tmp/

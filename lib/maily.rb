@@ -36,7 +36,7 @@ module Maily
 
     def setup
       init!
-      yield(self)
+      yield(self) if block_given?
     end
 
     def allowed_action?(action)
