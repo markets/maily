@@ -8,4 +8,8 @@ class Notifier < ActionMailer::Base
   def invitation(email)
     mail
   end
+
+  def recommendation(email)
+    mail template_path: 'notifications'
+  end
 end

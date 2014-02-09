@@ -1,8 +1,13 @@
 require 'spec_helper'
 
-describe "Maily::Mailer" do
+describe Maily::Mailer do
   it "should load mailers" do
     Maily::Mailer.all.size.should == 1
+  end
+
+  it "should build emails" do
+    mailer = Maily::Mailer.find('notifier')
+    mailer.emails.size.should == 3
   end
 
   it "should find mailers by name" do
