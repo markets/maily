@@ -4,11 +4,15 @@ describe Maily::Email do
   let(:mailer) { Maily::Mailer.find('notifier') }
 
   context "with no arguments" do
-    it "should not require hook" do
-      email  = mailer.find_email('welcome')
+    let (:email) { mailer.find_email('welcome') }
 
-      email.required_arguments.should be_blank
-      email.require_hook?.should be_false
+    it "should not require hook" do
+      expect(email.required_arguments).to be_blank
+      expect(email.require_hook?).to be_false
+    end
+
+    it ".call" do
+      expect { email.call }.to_not raise_error
     end
   end
 
@@ -16,18 +20,22 @@ describe Maily::Email do
     let (:email) { mailer.find_email('invitation') }
 
     it "should require hook" do
-      email.required_arguments.should be_present
-      email.require_hook?.should be_true
+      expect(email.required_arguments).to be_present
+      expect(email.require_hook?).to be_true
     end
 
     it "should handle arguments successfully" do
-      email.arguments.size.should == 1
+      expect(email.arguments).to be_present
+      expect(email.arguments.size).to eq(email.required_arguments.size)
+    end
+
+    it ".call" do
       expect { email.call }.to_not raise_error
     end
   end
 
   it "should handle template_path via hook" do
     email = mailer.find_email('recommendation')
-    email.template_path.should == 'notifications'
+    expect(email.template_path).to eq('notifications')
   end
 end
