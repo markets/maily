@@ -44,9 +44,7 @@ body {
   }
 }
 
-.title {
-  margin-top: 0;
-}
+.title { margin-top: 0; }
 
 
 header.header, footer.footer {
@@ -92,6 +90,7 @@ footer.footer {
 .wrap_content {
   display: inline-block;
   box-sizing: border-box;
+  -moz-box-sizing: border-box;
   padding: 6em .75em 4em;
   width: 100%;
 }
@@ -152,6 +151,7 @@ footer.footer {
   .maily_mail_preview {
     height: 100%;
     box-sizing: border-box;
+    -moz-box-sizing: border-box;
     padding: 1em;
     border: solid 1px #ccc;
     border-radius: 3px;
@@ -205,6 +205,7 @@ footer.footer {
 
   .maily_button {
     box-sizing: border-box;
+    -moz-box-sizing: border-box;
     padding: 0;
     border: none;
     background: none;
