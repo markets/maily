@@ -1,6 +1,5 @@
 module Maily
   class Mailer
-
     cattr_accessor :collection
     attr_accessor :name, :emails
 

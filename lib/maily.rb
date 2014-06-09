@@ -5,19 +5,18 @@ require 'maily/email'
 
 module Maily
   class << self
-
     attr_accessor :enabled, :allow_edition, :allow_delivery, :available_locales, :base_controller
 
     def init!
-      self.enabled           = true
-      self.allow_edition     = true
-      self.allow_delivery    = true
+      self.enabled           = Rails.env.production? ? false : true
+      self.allow_edition     = Rails.env.production? ? false : true
+      self.allow_delivery    = Rails.env.production? ? false : true
       self.available_locales = I18n.available_locales
       self.base_controller   = 'ActionController::Base'
     end
 
     def load_emails_and_hooks
-      # Load emails
+      # Load emails from file system
       Dir[Rails.root + 'app/mailers/*.rb'].each do |mailer|
         klass   = File.basename(mailer, '.rb')
         methods = klass.camelize.constantize.send(:instance_methods, false)
@@ -41,8 +40,10 @@ module Maily
 
     def allowed_action?(action)
       case action.to_sym
-      when :edit, :update
+      when :edit,
         allow_edition
+      when :update
+        allow_edition && !Rails.env.production?
       when :deliver
         allow_delivery
       end

@@ -1,6 +1,5 @@
 module Maily
   class Email
-
     attr_accessor :name, :mailer, :arguments, :template_path
 
     def initialize(name, mailer)

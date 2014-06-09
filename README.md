@@ -39,14 +39,14 @@ This installator makes some tasks for you:
 * Adds an initializer (into `config/initializers/maily.rb`) to customize some settings
 * Adds a file (into `lib/maily_hooks.rb`) to define hooks
 
-## Initializer
+## Initialization and configuration
 You should configure Maily via this initializer. You can set these options per environment:
 
 ```ruby
   Maily.enabled = ENV['MAILY_ENABLED']
 ```
 
-This is a sample of file with the full list of options:
+This is a sample of the file with the full list of options:
 
 ```ruby
 # config/initializers/maily.rb
@@ -64,9 +64,15 @@ Maily.setup do |config|
   # config.available_locales = [:en, :es, :pt, :fr]
 
   # Define parent controller. Allow to run engine under a custom controller
-  # config.base_controller = 'AdminController'
+  # config.base_controller = '::AdminController'
 end
 ```
+
+### Templates edition (`allow_edition` option)
+This feature was designed for `development` environment. Since it's just a file edition and running `production` mode, code is not reloaded between requests, Rails doesn't take in account this change (without restarting the server). Also, allow arbitrary ruby code evaluation is potentially dangerous, that's not a good idea for `production`.
+
+So, templates edition is not allowed running `production` mode.
+
 
 ## Hooks
 Most of emails need to populate data to consume it and do intersting things. Hooks are used to define this data with a little DSL. Example:
@@ -95,10 +101,35 @@ Maily.hooks_for('YourMailerClass') do |mailer|
 end
 ```
 
+## Customize Authorization
+By default `Maily` runs under `ActionController::Base`, but you are able to customize that parent controller (`Maily.base_controller` option) in order to achieve (using `before_action`) a kind of access control. For example, set a different base controller:
+
+```ruby
+Maily.setup do |config|
+  ...
+  config.base_controller = '::AdminController'
+  ...
+end
+```
+
+And write your own authorization rules in the defined `base_controller`:
+
+```ruby
+class AdminController < ActionController::Base
+  before_action :maily_authorized?
+
+  private
+
+  def maily_authorized?
+    (current_user && current_user.admin?) || raise('You don't have access to this section!')
+  end
+end
+```
+
 ## Notes
 Rails 4.1 introduced a built-in mechanism to preview the application emails. It is in fact a port of [basecamp/mail_view](https://github.com/basecamp/mail_view) gem to the core.
 
-Alternatively, there are some other plugins to get a similar functionality with different approaches. For example, [ryanb/letter_opener](https://github.com/ryanb/letter_opener) or [MailCatcher](https://github.com/sj26/mailcatcher).
+Alternatively, there are some other plugins to get a similar functionality with different approaches and options. For example, [ryanb/letter_opener](https://github.com/ryanb/letter_opener), [MailCatcher](https://github.com/sj26/mailcatcher) or [Rails Email Preview](https://github.com/glebm/rails_email_preview).
 
 ## License
 Copyright (c) 2013-2014 Marc Anguera. Maily is released under the [MIT](MIT-LICENSE) License.
