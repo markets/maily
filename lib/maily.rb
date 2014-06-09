@@ -40,7 +40,7 @@ module Maily
 
     def allowed_action?(action)
       case action.to_sym
-      when :edit,
+      when :edit
         allow_edition
       when :update
         allow_edition && !Rails.env.production?

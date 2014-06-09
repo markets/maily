@@ -8,7 +8,7 @@ describe Maily::Email do
 
     it "should not require hook" do
       expect(email.required_arguments).to be_blank
-      expect(email.require_hook?).to be_false
+      expect(email.require_hook?).to be false
     end
 
     it ".call" do
@@ -21,7 +21,7 @@ describe Maily::Email do
 
     it "should require hook" do
       expect(email.required_arguments).to be_present
-      expect(email.require_hook?).to be_true
+      expect(email.require_hook?).to be true
     end
 
     it "should handle arguments successfully" do

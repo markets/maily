@@ -81,7 +81,7 @@ Most of emails need to populate data to consume it and do intersting things. Hoo
 # lib/maily_hooks.rb
 user = User.new(email: 'user@example.com')
 comment = Struct.new(:body).new('Lorem ipsum') # stub way
-service = Service.new(price: '100USD')
+service = FactoryGirl.create(:service) # using fixtures with FactoryGirl
 
 Maily.hooks_for('Notifier') do |mailer|
   mailer.register_hook(:welcome, user, template_path: 'users')
@@ -121,7 +121,7 @@ class AdminController < ActionController::Base
   private
 
   def maily_authorized?
-    (current_user && current_user.admin?) || raise('You don't have access to this section!')
+    (current_user && current_user.admin?) || raise("You don't have access to this section!")
   end
 end
 ```
@@ -129,7 +129,7 @@ end
 ## Notes
 Rails 4.1 introduced a built-in mechanism to preview the application emails. It is in fact a port of [basecamp/mail_view](https://github.com/basecamp/mail_view) gem to the core.
 
-Alternatively, there are some other plugins to get a similar functionality with different approaches and options. For example, [ryanb/letter_opener](https://github.com/ryanb/letter_opener), [MailCatcher](https://github.com/sj26/mailcatcher) or [Rails Email Preview](https://github.com/glebm/rails_email_preview).
+Alternatively, there are some other plugins to get a similar functionality with different approaches and options. For example, [ryanb/letter_opener](https://github.com/ryanb/letter_opener), [sj26/mailcatcher](https://github.com/sj26/mailcatcher) or [glebm/rails_email_preview](https://github.com/glebm/rails_email_preview).
 
 ## License
 Copyright (c) 2013-2014 Marc Anguera. Maily is released under the [MIT](MIT-LICENSE) License.

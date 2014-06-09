@@ -1,8 +1,8 @@
 # Dummy App
 
-Dummy application for testing Maily.
+Dummy Rails application for testing `Maily`.
 
-Run test suite:
+Run test suite (from `Maily` root path):
 
 ```
 bundle exec rake
