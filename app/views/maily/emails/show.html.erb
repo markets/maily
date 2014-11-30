@@ -49,6 +49,7 @@
     <% if @email.html_part || @email.text_part || @email.body.present? %>
       <iframe class="maily_preview"  onload='javascript:resizeIframe(this);' src="<%= raw_maily_email_path(mailer: params[:mailer], email: params[:email], locale: params[:locale], part: params[:part]) %>" frameborder="1" width="100%"></iframe>
     <% end %>
+
     <% if @email.attachments.present? %>
       <ul class="maily_mail_attachments">
         <li>Attachments:</li>

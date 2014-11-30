@@ -9,12 +9,16 @@ module Maily
       self.template_path = mailer
     end
 
+    def parameters
+      mailer_klass.instance_method(name).parameters
+    end
+
     def require_hook?
-      mailer_klass.instance_method(name).parameters.any?
+      parameters.any?
     end
 
     def required_arguments
-      mailer_klass.instance_method(name).parameters.map(&:last)
+      parameters.map(&:last)
     end
 
     def register_hook(*args)
