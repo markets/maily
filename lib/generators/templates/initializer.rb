@@ -11,6 +11,9 @@ Maily.setup do |config|
   # I18n.available_locales by default
   # config.available_locales = [:en, :es, :pt, :fr]
 
-  # Run maily under different controller. 'ActionController::Base' by default
-  # config.base_controller = 'AdminController'
+  # Run maily under different controller ('ActionController::Base' by default)
+  # config.base_controller = '::AdminController'
+
+  # Http basic authentication (nil by default)
+  # config.http_authorization = { username: 'admin', password: 'secret' }
 end
