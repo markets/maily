@@ -73,7 +73,7 @@ Maily.setup do |config|
   # Http basic authentication (nil by default)
   # config.http_authorization = { username: 'admin', password: 'secret' }
 end
-``
+```
 
 ### Templates edition (`allow_edition` option)
 
