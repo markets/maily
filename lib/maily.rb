@@ -5,14 +5,16 @@ require 'maily/email'
 
 module Maily
   class << self
-    attr_accessor :enabled, :allow_edition, :allow_delivery, :available_locales, :base_controller
+    attr_accessor :enabled, :allow_edition, :allow_delivery, :available_locales,
+                  :base_controller, :http_authorization
 
     def init!
-      self.enabled           = Rails.env.production? ? false : true
-      self.allow_edition     = Rails.env.production? ? false : true
-      self.allow_delivery    = Rails.env.production? ? false : true
-      self.available_locales = I18n.available_locales
-      self.base_controller   = 'ActionController::Base'
+      self.enabled            = Rails.env.production? ? false : true
+      self.allow_edition      = Rails.env.production? ? false : true
+      self.allow_delivery     = Rails.env.production? ? false : true
+      self.available_locales  = I18n.available_locales
+      self.base_controller    = 'ActionController::Base'
+      self.http_authorization = nil
     end
 
     def load_emails_and_hooks

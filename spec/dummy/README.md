@@ -1,6 +1,6 @@
 # Dummy App
 
-Dummy Rails application for testing `Maily`.
+Dummy Rails application to test `Maily` engine.
 
 Run test suite (from `Maily` root path):
 

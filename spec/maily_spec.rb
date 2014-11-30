@@ -9,6 +9,7 @@ describe Maily do
     expect(Maily.allow_delivery).to be true
     expect(Maily.available_locales).to eq(I18n.available_locales)
     expect(Maily.base_controller).to eq('ActionController::Base')
+    expect(Maily.http_authorization).to be nil
   end
 
   it "should not allow edition if edition is disabled" do
