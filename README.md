@@ -34,7 +34,7 @@ Run generator:
 rails g maily:install
 ```
 
-This installator makes some tasks for you:
+This generator runs some tasks for you:
 
 * Mounts the engine (to `/maily` by default) in your routes
 * Adds an initializer (into `config/initializers/maily.rb`) to customize some settings
@@ -83,7 +83,7 @@ So, templates edition is not allowed running `production` mode.
 
 ## Hooks
 
-Most of emails need to populate data to consume it and do intersting things. Hooks are used to define this data with a little DSL. Example:
+Most of emails need to populate data to consume it and do interesting things. Hooks are used to define this data with a little DSL. Example:
 
 ```ruby
 # lib/maily_hooks.rb
