@@ -27,7 +27,7 @@ module Maily
 
       # Load hooks
       hooks_file_path = "#{Rails.root}/lib/maily_hooks.rb"
-      require hooks_file_path if File.exists?(hooks_file_path)
+      require hooks_file_path if File.exist?(hooks_file_path)
     end
 
     def hooks_for(mailer_name)
