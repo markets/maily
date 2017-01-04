@@ -151,4 +151,4 @@ Alternatively, there are some other plugins to get a similar functionality with 
 
 ## License
 
-Copyright (c) 2013-2015 Marc Anguera. Maily is released under the [MIT](MIT-LICENSE) License.
+Copyright (c) Marc Anguera. Maily is released under the [MIT](MIT-LICENSE) License.

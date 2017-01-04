@@ -1,9 +1,5 @@
-$:.push File.expand_path("../lib", __FILE__)
+require "./lib/maily/version"
 
-# Maintain your gem's version:
-require "maily/version"
-
-# Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
   s.name          = "maily"
   s.version       = Maily::VERSION
@@ -21,5 +17,8 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", ">= 3.0.0"
 
-  s.add_development_dependency "rspec-rails", "~> 3.0.0"
+  s.add_development_dependency "rspec-rails"
+  s.add_development_dependency "appraisal"
+  s.add_development_dependency 'test-unit', '~> 3.0'
+  s.add_development_dependency "byebug" if RUBY_VERSION.to_i >= 2
 end
