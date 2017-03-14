@@ -41,7 +41,13 @@ module Maily
     end
 
     def call
-      mailer_klass.send(name, *arguments)
+      *args = arguments && arguments.map { |arg| arg.respond_to?(:call) ? arg.call : arg }
+
+      if args == [nil]
+        mailer_klass.send(name)
+      else
+        mailer_klass.send(name, *args)
+      end
     end
 
     def base_path(part)

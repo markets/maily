@@ -83,17 +83,18 @@ So, templates edition is not allowed running `production` mode.
 
 ## Hooks
 
-Most of emails need to populate data to consume it and do interesting things. Hooks are used to define this data with a little DSL. Example:
+Most of emails need to populate data to consume it and do interesting things. Hooks are used to define this data with a little DSL and it allows to use lazy data.  Example:
 
 ```ruby
 # lib/maily_hooks.rb
 user = User.new(email: 'user@example.com')
+lazy_user = -> { User.first }
 comment = Struct.new(:body).new('Lorem ipsum') # stub way
 service = FactoryGirl.create(:service) # using fixtures with FactoryGirl
 
 Maily.hooks_for('Notifier') do |mailer|
   mailer.register_hook(:welcome, user, template_path: 'users')
-  mailer.register_hook(:new_comment, user, comment)
+  mailer.register_hook(:new_comment, lazy_user, comment)
 end
 
 Maily.hooks_for('PaymentNotifier') do |mailer|

@@ -24,7 +24,13 @@ describe Maily::Email do
       expect(email.require_hook?).to be true
     end
 
-    it "should handle arguments successfully" do
+    it 'should handle lazy arguments successfully' do
+      expect(email.arguments).to be_present
+      expect(email.arguments.size).to eq(email.required_arguments.size)
+    end
+
+    it 'should handle not lazy arguments successfully' do
+      allow(email).to receive(:email).and_return('foo@foo.com')
       expect(email.arguments).to be_present
       expect(email.arguments.size).to eq(email.required_arguments.size)
     end
