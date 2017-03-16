@@ -21,6 +21,10 @@ module Maily
       parameters.map(&:last)
     end
 
+    def correct_number_of_arguments?
+      required_arguments.size == arguments.size
+    end
+
     def register_hook(*args)
       args = args.flatten
 
