@@ -47,7 +47,7 @@ module Maily
     private
 
     def allowed_action?
-      Maily.allowed_action?(action_name) || raise("Maily: action #{action_name} not allowed!")
+      Maily.allowed_action?(action_name) || redirect_to(root_path, alert: "Maily: action #{action_name} not allowed!")
     end
 
     def load_mailers
