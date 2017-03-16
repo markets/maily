@@ -1,12 +1,13 @@
 module Maily
   class Email
-    attr_accessor :name, :mailer, :arguments, :template_path
+    attr_accessor :name, :mailer, :arguments, :template_path, :description
 
     def initialize(name, mailer)
       self.name          = name.to_s
       self.mailer        = mailer
       self.arguments     = nil
       self.template_path = mailer
+      self.description   = nil
     end
 
     def parameters
@@ -28,8 +29,9 @@ module Maily
     def register_hook(*args)
       args = args.flatten
 
-      if args.last.is_a?(Hash) && new_path = args.last.delete(:template_path)
-        self.template_path = new_path
+      if args.last.is_a?(Hash)
+        self.description = args.last.delete(:description)
+        self.template_path = args.last.delete(:template_path)
         args.pop
       end
 

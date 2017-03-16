@@ -44,4 +44,9 @@ describe Maily::Email do
     email = mailer.find_email('recommendation')
     expect(email.template_path).to eq('notifications')
   end
+
+  it "should handle description via hook" do
+    email = mailer.find_email('recommendation')
+    expect(email.description).to eq('description')
+  end
 end
