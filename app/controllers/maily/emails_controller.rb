@@ -9,6 +9,10 @@ module Maily
     end
 
     def show
+      if !@maily_email.correct_number_of_arguments?
+        alert = "#{@maily_email.required_arguments.size} arguments needed for #{@maily_email.name} email"
+        redirect_to(root_path, alert: alert)
+      end
     end
 
     def raw
@@ -47,7 +51,7 @@ module Maily
     private
 
     def allowed_action?
-      Maily.allowed_action?(action_name) || raise("Maily: action #{action_name} not allowed!")
+      Maily.allowed_action?(action_name) || redirect_to(root_path, alert: "Maily: action #{action_name} not allowed!")
     end
 
     def load_mailers

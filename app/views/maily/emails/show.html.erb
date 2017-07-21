@@ -18,6 +18,14 @@
       <% end %>
     </li>
 
+    <% if @maily_email.description %>
+      <li class="maily_splitter">|</li>
+      <li>
+        <em class="icon-maily-stack"></em>Description:
+        <%= @maily_email.description %>
+      </li>
+    <% end %>
+
     <li class="maily_splitter">|</li>
     <li>
       <%= form_tag(deliver_maily_email_path(mailer: params[:mailer], email: params[:email], locale: params[:locale]), method: :post, class: 'maily_send') do %>
