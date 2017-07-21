@@ -50,9 +50,9 @@ module Maily
       *args = arguments && arguments.map { |arg| arg.respond_to?(:call) ? arg.call : arg }
 
       if args == [nil]
-        mailer_klass.send(name)
+        mailer_klass.public_send(name)
       else
-        mailer_klass.send(name, *args)
+        mailer_klass.public_send(name, *args)
       end
     end
 

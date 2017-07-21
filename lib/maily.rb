@@ -6,7 +6,7 @@ require 'maily/email'
 module Maily
   class << self
     attr_accessor :enabled, :allow_edition, :allow_delivery, :available_locales,
-                  :base_controller, :http_authorization
+                  :base_controller, :http_authorization, :hooks_path
 
     def init!
       self.enabled            = Rails.env.production? ? false : true
@@ -15,18 +15,21 @@ module Maily
       self.available_locales  = I18n.available_locales
       self.base_controller    = 'ActionController::Base'
       self.http_authorization = nil
+      self.hooks_path         = "lib/maily_hooks.rb"
     end
 
     def load_emails_and_hooks
       # Load emails from file system
       Dir[Rails.root + 'app/mailers/*.rb'].each do |mailer|
-        klass   = File.basename(mailer, '.rb')
-        methods = klass.camelize.constantize.send(:instance_methods, false)
+        klass = File.basename(mailer, '.rb').camelize.constantize
+        next unless klass.superclass == ActionMailer::Base
+
+        methods = klass.send(:public_instance_methods, false)
         Maily::Mailer.new(klass, methods)
       end
 
       # Load hooks
-      hooks_file_path = "#{Rails.root}/lib/maily_hooks.rb"
+      hooks_file_path = File.join(Rails.root, hooks_path)
       require hooks_file_path if File.exist?(hooks_file_path)
     end
 
