@@ -21,11 +21,12 @@ module Maily
     def load_emails_and_hooks
       # Load emails from file system
       Dir[Rails.root + 'app/mailers/*.rb'].each do |mailer|
-        klass = File.basename(mailer, '.rb').camelize.constantize
-        next unless klass.superclass == ActionMailer::Base
+        klass_name = File.basename(mailer, '.rb')
+        klass      = klass_name.camelize.constantize
+        next if klass.superclass != ActionMailer::Base
 
         methods = klass.send(:public_instance_methods, false)
-        Maily::Mailer.new(klass, methods)
+        Maily::Mailer.new(klass_name, methods)
       end
 
       # Load hooks
