@@ -13,7 +13,8 @@ describe Maily::EmailsController, type: :controller do
 
   it 'raise error if disabled' do
     Maily.enabled = false
-    expect { get :index }.to raise_error('Maily: engine disabled!')
+    get :index
+    expect(response.status).to eq(404)
   end
 
   it 'responds with 401 if http authorization fails' do

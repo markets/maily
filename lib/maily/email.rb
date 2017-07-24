@@ -1,12 +1,13 @@
 module Maily
   class Email
-    attr_accessor :name, :mailer, :arguments, :template_path
+    attr_accessor :name, :mailer, :arguments, :template_path, :description
 
     def initialize(name, mailer)
       self.name          = name.to_s
       self.mailer        = mailer
       self.arguments     = nil
       self.template_path = mailer
+      self.description   = nil
     end
 
     def parameters
@@ -21,11 +22,16 @@ module Maily
       parameters.map(&:last)
     end
 
+    def correct_number_of_arguments?
+      required_arguments.size == arguments.size
+    end
+
     def register_hook(*args)
       args = args.flatten
 
-      if args.last.is_a?(Hash) && new_path = args.last.delete(:template_path)
-        self.template_path = new_path
+      if args.last.is_a?(Hash)
+        self.description = args.last.delete(:description)
+        self.template_path = args.last.delete(:template_path)
         args.pop
       end
 
@@ -41,7 +47,13 @@ module Maily
     end
 
     def call
-      mailer_klass.send(name, *arguments)
+      *args = arguments && arguments.map { |arg| arg.respond_to?(:call) ? arg.call : arg }
+
+      if args == [nil]
+        mailer_klass.public_send(name)
+      else
+        mailer_klass.public_send(name, *args)
+      end
     end
 
     def base_path(part)

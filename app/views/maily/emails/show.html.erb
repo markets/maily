@@ -1,4 +1,10 @@
 <div class="content">
+  <% if @maily_email.description %>
+    <div>
+      <b>Description </b><%= @maily_email.description %>
+    </div><br>
+  <% end %>
+
   <ul class="maily_action_bar">
     <li>
       <em class="icon-maily-pencil"></em>
@@ -10,7 +16,7 @@
         <ul>
           <li>
             <em class="icon-maily-earth"></em>
-            Languages:</li>
+            Languages</li>
             <% Maily.available_locales.each do |locale| %>
               <li><%= link_to locale.upcase, url_for(params.merge(locale: locale)) %></li>
             <% end %>
@@ -22,7 +28,7 @@
     <li>
       <%= form_tag(deliver_maily_email_path(mailer: params[:mailer], email: params[:email], locale: params[:locale]), method: :post, class: 'maily_send') do %>
         <ul>
-          <li>Send to:</li>
+          <li>Send to</li>
           <li><%= email_field_tag :to, nil, class: 'maily_textfield', placeholder: "Enter email", required: true %></li>
           <li><%= submit_tag 'Send', class: 'maily_button' %></li>
         </ul>

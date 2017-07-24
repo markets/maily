@@ -1,14 +1,18 @@
 module Maily
   class EmailsController < ApplicationController
-    before_filter :allowed_action?, only: [:edit, :update, :deliver]
-    before_filter :load_mailers, only: [:index, :show, :edit]
-    before_filter :load_mailer_and_email, except: [:index]
-    around_filter :perform_with_locale, only: [:show, :raw, :deliver]
+    before_action :allowed_action?, only: [:edit, :update, :deliver]
+    before_action :load_mailers, only: [:index, :show, :edit]
+    before_action :load_mailer_and_email, except: [:index]
+    around_action :perform_with_locale, only: [:show, :raw, :deliver]
 
     def index
     end
 
     def show
+      if !@maily_email.correct_number_of_arguments?
+        alert = "#{@maily_email.required_arguments.size} arguments needed for #{@maily_email.name} email"
+        redirect_to(root_path, alert: alert)
+      end
     end
 
     def raw
@@ -47,7 +51,7 @@ module Maily
     private
 
     def allowed_action?
-      Maily.allowed_action?(action_name) || raise("Maily: action #{action_name} not allowed!")
+      Maily.allowed_action?(action_name) || redirect_to(root_path, alert: "Maily: action #{action_name} not allowed!")
     end
 
     def load_mailers
