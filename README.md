@@ -81,18 +81,18 @@ end
 
 ### Templates edition (`allow_edition` option)
 
-This feature was designed for `development` environment. Since it's just a file edition and running `production` mode, code is not reloaded between requests, Rails doesn't take in account this change (without restarting the server). Also, allow arbitrary ruby code evaluation is potentially dangerous, that's not a good idea for `production`.
+This feature was designed for `development` environment. Since it's just a file edition and running in `production`, code is not reloaded between requests, Rails doesn't take in account this change (without restarting the server). Also, allow arbitrary ruby code evaluation is potentially dangerous, that's not a good idea for `production`.
 
-So, templates edition is not allowed running `production` mode.
+So, template edition is not allowed outside of `development` environment.
 
 ## Hooks
 
-Most of emails need to populate some data to consume it and do interesting things. Hooks are used to define this data with a little DSL. Hooks accept "callable" objects to lazy load most expensive data. Example:
+Most of emails need to populate some data to consume it and do interesting things. Hooks are used to define this data with a little DSL. Hooks accept "callable" objects to lazy load (most expensive) data. Example:
 
 ```ruby
 # lib/maily_hooks.rb
 user = User.new(email: 'user@example.com')
-lazy_user = -> { User.first }
+lazy_user = -> { User.with_comments.first } # callable object, lazy evaluation
 comment = Struct.new(:body).new('Lorem ipsum') # stub way
 service = FactoryGirl.create(:service) # using fixtures with FactoryGirl
 
@@ -116,7 +116,7 @@ end
 
 ### Email description
 
-You can add a description to an email and it will be displayed along with its preview. This is useful in some cases like: someone from another team, for example, a marketing specialist, visiting Maily to review some texts and images; they can easily understand when this email is sent by the system.
+You can add a description to any email and it will be displayed along with its preview. This is useful in some cases like: someone from another team, for example, a marketing specialist, visiting Maily to review some texts and images; they can easily understand when this email is sent by the system.
 
 ```ruby
 Maily.hooks_for('BookingNotifier') do |mailer|
@@ -145,7 +145,7 @@ class AdminController < ActionController::Base
   private
 
   def maily_authorized?
-    (current_user && current_user.admin?) || raise("You don't have access to this section!")
+    current_user.admin? || raise("You don't have access to this section!")
   end
 end
 ```

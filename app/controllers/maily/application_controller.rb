@@ -7,7 +7,7 @@ module Maily
     private
 
     def maily_enabled?
-      Maily.enabled || raise('Maily: engine disabled!')
+      Maily.enabled || head(404, message: "Maily disabled")
     end
 
     def http_authorization
