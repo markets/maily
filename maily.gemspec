@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.email         = ["srmarc.ai@gmail.com"]
   s.homepage      = "https://github.com/markets/maily"
   s.summary       = "Rails Engine to preview emails in the browser."
-  s.description   = "Rails Engine to preview, follow up, test and edit the emails of your applications in the browser"
+  s.description   = "Maily is a Rails Engine to manage, test and navigate through all your email templates of your app, being able to preview them directly in your browser."
   s.license       = "MIT"
 
   s.files         = `git ls-files`.split($/)
