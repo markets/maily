@@ -1,14 +1,11 @@
-/*
- *= require maily/normalize
- *= require maily/icons
-*/
+@import "maily/normalize";
+@import "maily/icons";
 
-/* Default */
 @font-face {
   font-weight: light;
   font-style: normal;
   font-family: 'Josefin Sans';
-  src: url('fonts/JosefinSans-Light.ttf') format('truetype');
+  src: asset-url('maily/fonts/JosefinSans-Light.ttf') format('truetype');
 }
 
 ::-webkit-input-placeholder {
@@ -78,11 +75,11 @@ footer.footer {
   bottom: 0;
   box-shadow: 0 -.0625em .3125em rgba(0,0,0, .15);
   font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-size: .9em;
 
   a {
     color: $linkColor;
     text-decoration: none;
-    font-size: .9em;
   }
 }
 
