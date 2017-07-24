@@ -11,6 +11,11 @@
 
   <div class="wrap_content clearfix">
     <%= render 'maily/shared/sidebar' %>
+
+    <% if flash[:alert].present? %>
+      <p class="alert"><%= flash[:alert] %></p>
+    <% end %>
+
     <%= yield %>
   </div>
 

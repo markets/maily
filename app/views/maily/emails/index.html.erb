@@ -1,6 +1,4 @@
 <div class="content">
-  <% if flash[:alert] %>
-    <p class="alert"><%= flash[:alert] %></p>
-  <% end %>
+  <h2><%= total_emails(@mailers) %> emails found</h2>
+  <p><%= Maily.welcome_message %></p>
 </div>
-

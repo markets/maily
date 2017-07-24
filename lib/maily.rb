@@ -6,7 +6,7 @@ require 'maily/email'
 module Maily
   class << self
     attr_accessor :enabled, :allow_edition, :allow_delivery, :available_locales,
-                  :base_controller, :http_authorization, :hooks_path
+                  :base_controller, :http_authorization, :hooks_path, :welcome_message
 
     def init!
       self.enabled            = Rails.env.production? ? false : true
@@ -16,6 +16,7 @@ module Maily
       self.base_controller    = 'ActionController::Base'
       self.http_authorization = nil
       self.hooks_path         = "lib/maily_hooks.rb"
+      self.welcome_message    = "Use the menu on the left hand side of the screen to navigate through the different email templates."
     end
 
     def load_emails_and_hooks
