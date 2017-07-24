@@ -1,9 +1,9 @@
 module Maily
   class EmailsController < ApplicationController
-    before_filter :allowed_action?, only: [:edit, :update, :deliver]
-    before_filter :load_mailers, only: [:index, :show, :edit]
-    before_filter :load_mailer_and_email, except: [:index]
-    around_filter :perform_with_locale, only: [:show, :raw, :deliver]
+    before_action :allowed_action?, only: [:edit, :update, :deliver]
+    before_action :load_mailers, only: [:index, :show, :edit]
+    before_action :load_mailer_and_email, except: [:index]
+    around_action :perform_with_locale, only: [:show, :raw, :deliver]
 
     def index
     end

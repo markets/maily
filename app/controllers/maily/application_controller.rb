@@ -1,6 +1,6 @@
 module Maily
   class ApplicationController < Maily.base_controller.constantize
-    before_filter :maily_enabled?, :http_authorization
+    before_action :maily_enabled?, :http_authorization
 
     layout 'maily/application'
 
