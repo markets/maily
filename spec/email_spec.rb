@@ -49,4 +49,20 @@ describe Maily::Email do
     email = mailer.find_email('recommendation')
     expect(email.description).to eq('description')
   end
+
+  describe 'correct_number_of_arguments?' do
+    let (:email) { mailer.find_email('invitation') }
+
+    it 'when it lacks of arguments' do
+      allow_any_instance_of(Maily::Email).to receive(:parameters).and_return([])
+
+      expect(email.correct_number_of_arguments?).to be(false)
+    end
+
+    it 'when there is a correct number of arguments' do
+      allow_any_instance_of(Maily::Email).to receive(:parameters).and_return([[:req, 'email'], [:opt, 'optional']])
+
+      expect(email.correct_number_of_arguments?).to be(true)
+    end
+  end
 end

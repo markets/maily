@@ -19,11 +19,18 @@ module Maily
     end
 
     def required_arguments
-      parameters.map(&:last)
+      parameters.select{ |param| param.first == :req }.map(&:last)
+    end
+
+    def optional_arguments
+      parameters.select{ |param| param.first == :opt }.map(&:last)
     end
 
     def correct_number_of_arguments?
-      required_arguments.size == arguments.size
+      from = required_arguments.size
+      to = from + optional_arguments.size
+
+      (from..to).cover?(arguments.size)
     end
 
     def register_hook(*args)

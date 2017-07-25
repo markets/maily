@@ -10,7 +10,13 @@ module Maily
 
     def show
       if !@maily_email.correct_number_of_arguments?
-        alert = "#{@maily_email.required_arguments.size} arguments needed for #{@maily_email.name} email"
+        alert = if @maily_email.optional_arguments.size > 0
+          "#{@maily_email.name} email requires #{@maily_email.required_arguments.size} \
+          to #{@maily_email.required_arguments.size + @maily_email.optional_arguments.size} arguments"
+        else
+          "#{@maily_email.required_arguments.size} arguments needed for #{@maily_email.name} email"
+        end
+
         redirect_to(root_path, alert: alert)
       end
     end
