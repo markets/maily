@@ -5,7 +5,7 @@ class Notifier < ActionMailer::Base
     mail
   end
 
-  def invitation(email)
+  def invitation(email, opt_arg = nil)
     mail
   end
 

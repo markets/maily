@@ -21,6 +21,8 @@ module Maily
       end
 
       def build_hooks
+        Maily.init!
+
         fixtures = []
         hooks    = []
 
