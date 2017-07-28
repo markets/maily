@@ -13,7 +13,7 @@ module Maily
       private
 
       def generate_routing
-        route "mount Maily::Engine, at: 'maily'"
+        route "mount Maily::Engine, at: '/maily'"
       end
 
       def build_initializer

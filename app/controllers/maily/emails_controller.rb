@@ -1,5 +1,5 @@
 module Maily
-  class EmailsController < ApplicationController
+  class EmailsController < Maily::ApplicationController
     before_action :allowed_action?, only: [:edit, :update, :deliver]
     before_action :load_mailers, only: [:index, :show, :edit]
     before_action :load_mailer_and_email, except: [:index]
@@ -28,7 +28,7 @@ module Maily
         @email.body
       end
 
-      render text: content, layout: false
+      render html: content.raw_source, layout: false
     end
 
     def attachment
