@@ -9,15 +9,10 @@ module Maily
     end
 
     def show
-      if !@maily_email.correct_number_of_arguments?
-        alert = if @maily_email.optional_arguments.size > 0
-          "#{@maily_email.name} email requires #{@maily_email.required_arguments.size} \
-          to #{@maily_email.required_arguments.size + @maily_email.optional_arguments.size} arguments"
-        else
-          "#{@maily_email.required_arguments.size} arguments needed for #{@maily_email.name} email"
-        end
+      valid, message = @maily_email.validate_arguments
 
-        redirect_to(root_path, alert: alert)
+      unless valid
+        redirect_to(root_path, alert: message)
       end
     end
 
@@ -33,6 +28,7 @@ module Maily
 
     def attachment
       attachment = @email.attachments.find { |elem| elem.filename == params[:attachment] }
+
       send_data attachment.body, filename: attachment.filename, type: attachment.content_type
     end
 

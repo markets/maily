@@ -26,13 +26,18 @@ module Maily
       parameters.select { |param| param.first == :opt }.map(&:last)
     end
 
-    def correct_number_of_arguments?
-      required = required_arguments.size
-      return true if required.zero?
+    def validate_arguments
+      from = required_arguments.size
+      to = from + optional_arguments.size
+      passed_by_hook = arguments && arguments.size || 0
 
-      optional = required + optional_arguments.size
-
-      (required..optional).cover?(arguments.size)
+      if passed_by_hook < from
+        [false, "#{name} email requires at least #{from} arguments, passed #{passed_by_hook}"]
+      elsif passed_by_hook > to
+        [false, "#{name} email requires at the most #{to} arguments, passed #{passed_by_hook}"]
+      else
+        [true, nil]
+      end
     end
 
     def register_hook(*args)
