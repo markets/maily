@@ -18,7 +18,7 @@
             <em class="icon-maily-earth"></em>
             Languages</li>
             <% Maily.available_locales.each do |locale| %>
-              <li><%= link_to locale.upcase, url_for(params.merge(locale: locale)) %></li>
+              <li><%= link_to locale.upcase, url_for(params.to_unsafe_h.merge(locale: locale)) %></li>
             <% end %>
         </ul>
       <% end %>
@@ -47,8 +47,8 @@
 
     <% if @email.html_part && @email.text_part %>
       <ul class="maily_format_mail">
-        <li><%= link_to 'HTML', url_for(params.merge(part: 'html')), class: part_class('html') %></li>
-        <li><%= link_to 'TEXT', url_for(params.merge(part: 'text')), class: part_class('text') %></li>
+        <li><%= link_to 'HTML', url_for(params.to_unsafe_h.merge(part: 'html')), class: part_class('html') %></li>
+        <li><%= link_to 'TEXT', url_for(params.to_unsafe_h.merge(part: 'text')), class: part_class('text') %></li>
       </ul>
     <% end %>
 
