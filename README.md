@@ -4,6 +4,8 @@
 
 Maily is a Rails Engine to manage, test and navigate through all your email templates of your app, being able to preview them directly in your browser.
 
+Maily automatically picks up all your emails and make them accessible from a kind of dashboard.
+
 ## Features:
 
 * Mountable engine
@@ -11,9 +13,9 @@ Maily is a Rails Engine to manage, test and navigate through all your email temp
 * Template edition (only in development)
 * Email delivery
 * Features configurables per environment
-* Flexible authorization
+* Flexible authorization system
 * Minimalistic and clean interface
-* Easy way (aka `hooks`) to define data for emails
+* Easy way (aka `hooks`) to define and customize data for emails
 * Generator to handle a comfortable installation
 
 ![](screenshot.png)
@@ -130,16 +132,16 @@ Basically, you have 2 ways to restrict the access to `Maily`.
 
 ### Custom base controller
 
-By default `Maily` runs under `ActionController::Base`, but you are able to customize that parent controller (`Maily.base_controller` option) in order to achieve (using `before_action`) a kind of access control system. For example, set a different base controller:
+By default `Maily` runs under `ActionController::Base`, but you are able to customize that parent controller (`Maily.base_controller` option) in order to achieve (using, for example, `before_action` blocks) a kind of access control system. For example, set a different base controller:
 
 ```ruby
-Maily.base_controller = '::AdminController'
+Maily.base_controller = '::SuperAdminController'
 ```
 
-And write your own authorization rules in the defined `base_controller`:
+And then write your own authorization rules in this defined controller:
 
 ```ruby
-class AdminController < ActionController::Base
+class SuperAdminController < ActionController::Base
   before_action :maily_authorized?
 
   private
