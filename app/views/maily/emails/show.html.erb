@@ -43,6 +43,7 @@
       <% if @email.to %><li><b>To</b> <%= @email.to.join(', ') %></li><% end %>
       <% if @email.cc %><li><b>Cc</b> <%= @email.cc.join(', ') %></li><% end %>
       <% if @email.bcc %><li><b>Bcc</b> <%= @email.bcc.join(', ') %></li><% end %>
+      <% if @email.reply_to %><li><b>Reply to</b> <%= @email.reply_to.join(', ') %></li><% end %>
     </ul>
 
     <% if @email.html_part && @email.text_part %>
