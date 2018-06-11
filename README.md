@@ -166,6 +166,14 @@ Rails 4.1 introduced a built-in mechanism to preview the application emails. It 
 
 Alternatively, there are some other plugins to get a similar functionality with different approaches and options. For example, [ryanb/letter_opener](https://github.com/ryanb/letter_opener), [sj26/mailcatcher](https://github.com/sj26/mailcatcher) or [glebm/rails_email_preview](https://github.com/glebm/rails_email_preview).
 
+## Development
+
+Any kind of feedback, bug report, idea or enhancement are really appreciated :tada:
+
+To contribute, just fork the repo, hack on it and send a pull request. Don't forget to add specs for behaviour changes and run the test suite:
+
+    > bundle exec appraisal rake
+
 ## License
 
 Copyright (c) Marc Anguera. Maily is released under the [MIT](MIT-LICENSE) License.
