@@ -1,15 +1,15 @@
 <div class="content">
+  <%= email_description(@maily_email) %>
+
   <%= form_tag(update_maily_email_path(mailer: params[:mailer], email: params[:email], part: params[:part]), method: :put) do %>
     <ul class="maily_action_bar">
       <li>
-        <em class="icon-maily-eye"></em>
         <%= link_to 'Show', maily_email_path(mailer: params[:mailer], email: params[:email]) %>
       </li>
 
       <li class="maily_splitter">|</li>
 
       <li>
-        <em class="icon-maily-checkmark"></em>
         <%= submit_tag 'Update', class: 'maily_button' %>
       </li>
     </ul>

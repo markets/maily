@@ -1,13 +1,8 @@
 <div class="content">
-  <% if @maily_email.description %>
-    <div>
-      <b>Description </b><%= @maily_email.description %>
-    </div><br>
-  <% end %>
+  <%= email_description(@maily_email) %>
 
   <ul class="maily_action_bar">
     <li>
-      <em class="icon-maily-pencil"></em>
       <%= link_to 'Edit', edit_maily_email_path(mailer: params[:mailer], email: params[:email], part: params[:part]) %>
     </li>
 
@@ -15,16 +10,17 @@
       <% if Maily.available_locales.present? %>
         <ul>
           <li>
-            <em class="icon-maily-earth"></em>
-            Languages</li>
-            <% Maily.available_locales.each do |locale| %>
-              <li><%= link_to locale.upcase, url_for(params.to_unsafe_h.merge(locale: locale)) %></li>
-            <% end %>
+            <%= icon 'globe' %> Languages
+          </li>
+          <% Maily.available_locales.each do |locale| %>
+            <li><%= link_to locale.upcase, url_for(params.to_unsafe_h.merge(locale: locale)) %></li>
+          <% end %>
         </ul>
       <% end %>
     </li>
 
     <li class="maily_splitter">|</li>
+
     <li>
       <%= form_tag(deliver_maily_email_path(mailer: params[:mailer], email: params[:email], locale: params[:locale]), method: :post, class: 'maily_send') do %>
         <ul>
@@ -54,7 +50,7 @@
     <% end %>
 
     <% if @email.html_part || @email.text_part || @email.body.present? %>
-      <iframe class="maily_preview"  onload='javascript:resizeIframe(this);' src="<%= raw_maily_email_path(mailer: params[:mailer], email: params[:email], locale: params[:locale], part: params[:part]) %>" frameborder="1" width="100%"></iframe>
+      <iframe class="maily_preview" onload='resizeIframe(this)' src="<%= raw_maily_email_path(mailer: params[:mailer], email: params[:email], locale: params[:locale], part: params[:part]) %>" frameborder="1" width="100%"></iframe>
     <% end %>
 
     <% if @email.attachments.present? %>
@@ -63,7 +59,10 @@
         <li>
           <ul>
             <% @email.attachments.each do |attachment| %>
-              <li><em class="icon-maily-attachment"></em><%= link_to attachment.filename, attachment_maily_email_path(mailer: params[:mailer], email: params[:email], attachment: attachment.filename) %></li>
+              <li>
+                <%= icon 'paperclip' %>
+                <%= link_to attachment.filename, attachment_maily_email_path(mailer: params[:mailer], email: params[:email], attachment: attachment.filename) %>
+              </li>
             <% end %>
           </ul>
         </li>
