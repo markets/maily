@@ -1,7 +1,7 @@
 module Maily
   module EmailsHelper
     def total_emails(mailers)
-      mailers.map { |mailer| mailer.emails.size }.sum
+      mailers.map { |_, mailer| mailer.total_emails }.sum
     end
 
     def email_description(email)

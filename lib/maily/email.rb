@@ -1,13 +1,18 @@
 module Maily
   class Email
-    attr_accessor :name, :mailer, :arguments, :template_path, :description
+    attr_accessor :name, :mailer, :arguments, :template_path, :template_name, :description
 
     def initialize(name, mailer)
-      self.name          = name.to_s
+      self.name          = name
       self.mailer        = mailer
       self.arguments     = nil
-      self.template_path = mailer
+      self.template_path = mailer.name
+      self.template_name = name
       self.description   = nil
+    end
+
+    def mailer_klass
+      mailer.klass
     end
 
     def parameters
@@ -45,19 +50,19 @@ module Maily
 
       if args.last.is_a?(Hash)
         self.description = args.last.delete(:description)
-        self.template_path = args.last.delete(:template_path)
+
+        if tpl_path = args.last.delete(:template_path)
+          self.template_path = tpl_path
+        end
+
+        if tpl_name = args.last.delete(:template_name)
+          self.template_name = tpl_name
+        end
+
         args.pop
       end
 
       self.arguments = args
-    end
-
-    def mailer_klass_name
-      mailer.camelize
-    end
-
-    def mailer_klass
-      mailer_klass_name.constantize
     end
 
     def call
@@ -71,7 +76,7 @@ module Maily
     end
 
     def base_path(part)
-      "#{Rails.root}/app/views/#{template_path}/#{name}.#{part}.erb"
+      "#{Rails.root}/app/views/#{template_path}/#{template_name}.#{part}.erb"
     end
 
     def path(part = nil)
