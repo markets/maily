@@ -1,11 +1,11 @@
 <%= email_description(@maily_email) %>
 
-<ul class="maily_action_bar">
+<ul class="action_bar">
   <li>
     <%= link_to 'Edit', edit_maily_email_path(mailer: params[:mailer], email: params[:email], part: params[:part]) %>
   </li>
 
-  <li class="maily_languages">
+  <li class="languages">
     <% if Maily.available_locales.present? %>
       <ul>
         <li>
@@ -18,21 +18,21 @@
     <% end %>
   </li>
 
-  <li class="maily_splitter">|</li>
+  <li class="splitter">|</li>
 
   <li>
-    <%= form_tag(deliver_maily_email_path(mailer: params[:mailer], email: params[:email], locale: params[:locale]), method: :post, class: 'maily_send') do %>
+    <%= form_tag(deliver_maily_email_path(mailer: params[:mailer], email: params[:email], locale: params[:locale]), method: :post, class: 'mail_deliver') do %>
       <ul>
         <li>Send to</li>
         <li><%= email_field_tag :to, nil, placeholder: "Enter email", required: true %></li>
-        <li><%= submit_tag 'Send', class: 'maily_button' %></li>
+        <li><%= submit_tag 'Send', class: 'button' %></li>
       </ul>
     <% end %>
   </li>
 </ul>
 
-<div class="maily_mail_preview">
-  <ul class="maily_mail_details">
+<div class="mail_preview">
+  <ul class="mail_details">
     <% if @email.subject %><li><b>Subject</b> <%= @email.subject %></li><% end %>
     <% if @email.from %><li><b>From</b> <%= @email.from.join(', ') %></li><% end %>
     <% if @email.to %><li><b>To</b> <%= @email.to.join(', ') %></li><% end %>
@@ -42,18 +42,18 @@
   </ul>
 
   <% if @email.html_part && @email.text_part %>
-    <ul class="maily_format_mail">
+    <ul class="format_mail">
       <li><%= link_to 'HTML', url_for(params.to_unsafe_h.merge(part: 'html')), class: part_class('html') %></li>
       <li><%= link_to 'TEXT', url_for(params.to_unsafe_h.merge(part: 'text')), class: part_class('text') %></li>
     </ul>
   <% end %>
 
   <% if @email.html_part || @email.text_part || @email.body.present? %>
-    <iframe class="maily_preview" onload='resizeIframe(this)' src="<%= raw_maily_email_path(mailer: params[:mailer], email: params[:email], locale: params[:locale], part: params[:part]) %>" frameborder="1" width="100%"></iframe>
+    <iframe class="mail_iframe" onload='resizeIframe(this)' src="<%= raw_maily_email_path(mailer: params[:mailer], email: params[:email], locale: params[:locale], part: params[:part]) %>" frameborder="1" width="100%"></iframe>
   <% end %>
 
   <% if @email.attachments.present? %>
-    <ul class="maily_mail_attachments">
+    <ul class="mail_attachments">
       <li>Attachments:</li>
       <li>
         <ul>

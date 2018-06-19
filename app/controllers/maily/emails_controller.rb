@@ -57,7 +57,7 @@ module Maily
     end
 
     def load_mailers
-      @mailers = Maily::Mailer.all
+      @mailers = Maily::Mailer.all.values
     end
 
     def load_mailer_and_email

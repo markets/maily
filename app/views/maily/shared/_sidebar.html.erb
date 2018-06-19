@@ -1,5 +1,5 @@
 <aside class="sidebar">
-  <% @mailers.values.sort_by(&:name).each do |mailer| %>
+  <% @mailers.sort_by(&:name).each do |mailer| %>
     <section class="nav_list">
       <h3 class="nav_title"><%= "#{mailer.name.humanize} (#{mailer.total_emails})" %></h3>
       <ul>

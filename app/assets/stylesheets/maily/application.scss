@@ -90,7 +90,7 @@ footer.footer {
   margin-left: 2em;
   padding-left: 20%;
 
-  ul.maily_action_bar {
+  ul.action_bar {
     margin: 0 0 5px;
     padding: 0;
     list-style: none;
@@ -113,22 +113,22 @@ footer.footer {
       list-style: none;
     }
 
-    li.maily_languages {
+    li.languages {
       float: right;
     }
   }
 
-  li.maily_splitter {
+  li.splitter {
     width: 1px;
     border-left: 1px $grey solid;
     text-indent: -999999em;
   }
 
-  .maily_description {
+  .mail_description {
     margin-bottom: 2em;
   }
 
-  .maily_send {
+  .mail_deliver {
     ul {
       li {
         float: left;
@@ -137,7 +137,7 @@ footer.footer {
     }
   }
 
-  .maily_mail_preview {
+  .mail_preview {
     height: 100%;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -145,7 +145,7 @@ footer.footer {
     border: solid 1px $grey;
     border-radius: 3px;
 
-    .maily_mail_details {
+    .mail_details {
       margin: 0 0 1em 0;
       padding: 0;
       color: $darkgrey;
@@ -155,7 +155,7 @@ footer.footer {
       li { line-height: 1.5em; }
     }
 
-    .maily_mail_attachments {
+    .mail_attachments {
       padding: 1em 0 0 0;
       border-top: solid 1px $grey;
       color: $darkgrey;
@@ -176,7 +176,7 @@ footer.footer {
       }
     }
 
-    iframe.maily_preview {
+    iframe.mail_iframe {
       padding-top: 1em;
       border: none;
       border-top: solid 1px $grey;
@@ -184,7 +184,7 @@ footer.footer {
     }
   }
 
-  .maily_button {
+  .button {
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     padding: 0;
@@ -196,7 +196,7 @@ footer.footer {
     }
   }
 
-  .maily_format_mail {
+  .format_mail {
     position: relative;
     display: inline-block;
     float: right;
@@ -221,7 +221,7 @@ footer.footer {
     }
   }
 
-  .maily_mail_updatearea {
+  .mail_updatearea {
     position: relative;
     overflow: visible;
     min-height: 450px;
@@ -259,7 +259,7 @@ aside.sidebar {
           text-decoration: none;
           font-size: .9em;
 
-          &.maily_selected_mail {
+          &.selected_mail {
             color: darken($linkColor, 20%);
             font-weight: bold;
 
