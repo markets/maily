@@ -31,17 +31,23 @@ module Maily
       end
     end
 
-    def register_hook(email_name, *args)
-      email = find_email(email_name)
-      email.register_hook(args)
-    end
-
     def find_email(email_name)
       emails[email_name.to_s]
     end
 
     def total_emails
       emails.size
+    end
+
+    def register_hook(email_name, *args)
+      email = find_email(email_name)
+      email && email.register_hook(args)
+    end
+
+    def hide_email(*email_names)
+      email_names.each do |email_name|
+        emails.delete(email_name.to_s)
+      end
     end
   end
 end
