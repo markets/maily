@@ -18,10 +18,21 @@ body {
   a {
     color: $linkColor;
     text-decoration: none;
+    &:hover {
+      color: darken($linkColor, 20%);
+    }
   }
 }
 
-/* Input placeholder */
+/* Inputs */
+input {
+  height: 1.2em;
+  border: solid 1px $grey;
+  border-radius: 2px;
+  background: #fff;
+  line-height: 1;
+}
+
 ::-webkit-input-placeholder {
   padding: 0 .2em;
   vertical-align: bottom;
@@ -63,11 +74,6 @@ footer.footer {
   box-shadow: 0 -.0625em .3125em rgba(0,0,0, .15);
   font-family: "Helvetica Neue", Helvetica, sans-serif;
   font-size: .9em;
-
-  a {
-    color: $linkColor;
-    text-decoration: none;
-  }
 }
 
 /* Main content */
@@ -178,14 +184,6 @@ footer.footer {
     }
   }
 
-  .maily_textfield {
-    height: 1em;
-    border: solid 1px $grey;
-    border-radius: 2px;
-    background: #fff;
-    line-height: 1;
-  }
-
   .maily_button {
     box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -193,6 +191,9 @@ footer.footer {
     border: none;
     background: none;
     color: $linkColor;
+    &:hover {
+      color: darken($linkColor, 20%);
+    }
   }
 
   .maily_format_mail {
@@ -261,6 +262,7 @@ aside.sidebar {
           &.maily_selected_mail {
             color: darken($linkColor, 20%);
             font-weight: bold;
+
             &:before {
               content: "\003E";
               font-weight: bolder;
@@ -268,7 +270,6 @@ aside.sidebar {
               margin-right: 2px;
             }
           }
-
           &:hover {
             color: darken($linkColor, 20%);
           }
@@ -278,13 +279,18 @@ aside.sidebar {
   }
 }
 
-/* Alert message */
+/* Alert messages */
 .alert {
+  border-radius: 3px;
+  padding: 16px;
+}
+.alert-warning {
   color: $red;
   background-color: lighten($red, 40%);
-  padding: 15px;
-  margin-bottom: 20px;
-  display: flex;
+}
+.alert-success {
+  color: #fff;
+  background-color: darken($blue, 20%);
 }
 
 /* Icons */

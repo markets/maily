@@ -39,7 +39,7 @@ module Maily
     def update
       @maily_email.update_template(params[:body], params[:part])
 
-      redirect_to maily_email_path(mailer: params[:mailer], email: params[:email], part: params[:part])
+      redirect_to maily_email_path(mailer: params[:mailer], email: params[:email], part: params[:part]), notice: 'Template updated!'
     end
 
     def deliver
@@ -47,7 +47,7 @@ module Maily
 
       @email.deliver
 
-      redirect_to maily_email_path(mailer: params[:mailer], email: params[:email])
+      redirect_to maily_email_path(mailer: params[:mailer], email: params[:email]), notice: "Email sent to #{params[:to]}!"
     end
 
     private
