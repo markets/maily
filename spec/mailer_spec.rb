@@ -7,7 +7,7 @@ describe Maily::Mailer do
 
   it "should build emails" do
     mailer = Maily::Mailer.find('notifier')
-    expect(mailer.emails.size).to eq(3)
+    expect(mailer.emails.size).to eq(4)
   end
 
   it "should find mailers by name" do
@@ -17,5 +17,10 @@ describe Maily::Mailer do
   it "should find emails by name" do
     mailer = Maily::Mailer.find('notifier')
     expect(mailer.find_email('welcome').name).to eq('welcome')
+  end
+
+  it "allows to hide email" do
+    mailer = Maily::Mailer.find('notifier')
+    expect(mailer.find_email('hidden')).to be nil
   end
 end

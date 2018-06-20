@@ -18,10 +18,21 @@ body {
   a {
     color: $linkColor;
     text-decoration: none;
+    &:hover {
+      color: darken($linkColor, 20%);
+    }
   }
 }
 
-/* Input placeholder */
+/* Inputs */
+input {
+  height: 1.2em;
+  border: solid 1px $grey;
+  border-radius: 2px;
+  background: #fff;
+  line-height: 1;
+}
+
 ::-webkit-input-placeholder {
   padding: 0 .2em;
   vertical-align: bottom;
@@ -36,7 +47,7 @@ header.header, footer.footer {
   position: fixed;
   left: 0;
   z-index: 99;
-  padding: .6em 1em;
+  padding: .5em 1em;
   width: 100%;
   background-color: rgba(255,255,255, .95);
 }
@@ -47,13 +58,12 @@ header.header {
 
   .logo_link {
     color: $textColor;
-    text-decoration: none;
     font: 400 2em/1 'Josefin Sans';
     margin-left: 10px;
-  }
 
-  span {
-    vertical-align: middle;
+    img, span {
+      vertical-align: middle;
+    }
   }
 }
 
@@ -63,11 +73,6 @@ footer.footer {
   box-shadow: 0 -.0625em .3125em rgba(0,0,0, .15);
   font-family: "Helvetica Neue", Helvetica, sans-serif;
   font-size: .9em;
-
-  a {
-    color: $linkColor;
-    text-decoration: none;
-  }
 }
 
 /* Main content */
@@ -84,7 +89,7 @@ footer.footer {
   margin-left: 2em;
   padding-left: 20%;
 
-  ul.maily_action_bar {
+  ul.action_bar {
     margin: 0 0 5px;
     padding: 0;
     list-style: none;
@@ -107,22 +112,22 @@ footer.footer {
       list-style: none;
     }
 
-    li.maily_languages {
+    li.languages {
       float: right;
     }
   }
 
-  li.maily_splitter {
+  li.splitter {
     width: 1px;
     border-left: 1px $grey solid;
     text-indent: -999999em;
   }
 
-  .maily_description {
+  .mail_description {
     margin-bottom: 2em;
   }
 
-  .maily_send {
+  .mail_deliver {
     ul {
       li {
         float: left;
@@ -131,7 +136,7 @@ footer.footer {
     }
   }
 
-  .maily_mail_preview {
+  .mail_preview {
     height: 100%;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -139,7 +144,7 @@ footer.footer {
     border: solid 1px $grey;
     border-radius: 3px;
 
-    .maily_mail_details {
+    .mail_details {
       margin: 0 0 1em 0;
       padding: 0;
       color: $darkgrey;
@@ -149,7 +154,7 @@ footer.footer {
       li { line-height: 1.5em; }
     }
 
-    .maily_mail_attachments {
+    .mail_attachments {
       padding: 1em 0 0 0;
       border-top: solid 1px $grey;
       color: $darkgrey;
@@ -170,7 +175,7 @@ footer.footer {
       }
     }
 
-    iframe.maily_preview {
+    iframe.mail_iframe {
       padding-top: 1em;
       border: none;
       border-top: solid 1px $grey;
@@ -178,24 +183,19 @@ footer.footer {
     }
   }
 
-  .maily_textfield {
-    height: 1em;
-    border: solid 1px $grey;
-    border-radius: 2px;
-    background: #fff;
-    line-height: 1;
-  }
-
-  .maily_button {
+  .button {
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     padding: 0;
     border: none;
     background: none;
     color: $linkColor;
+    &:hover {
+      color: darken($linkColor, 20%);
+    }
   }
 
-  .maily_format_mail {
+  .format_mail {
     position: relative;
     display: inline-block;
     float: right;
@@ -220,7 +220,7 @@ footer.footer {
     }
   }
 
-  .maily_mail_updatearea {
+  .mail_updatearea {
     position: relative;
     overflow: visible;
     min-height: 450px;
@@ -258,9 +258,10 @@ aside.sidebar {
           text-decoration: none;
           font-size: .9em;
 
-          &.maily_selected_mail {
+          &.selected_mail {
             color: darken($linkColor, 20%);
             font-weight: bold;
+
             &:before {
               content: "\003E";
               font-weight: bolder;
@@ -268,7 +269,6 @@ aside.sidebar {
               margin-right: 2px;
             }
           }
-
           &:hover {
             color: darken($linkColor, 20%);
           }
@@ -278,13 +278,19 @@ aside.sidebar {
   }
 }
 
-/* Alert message */
+/* Alert messages */
 .alert {
+  border-radius: 3px;
+  padding: 16px;
+  margin-bottom: 1.1em;
+}
+.alert-warning {
   color: $red;
   background-color: lighten($red, 40%);
-  padding: 15px;
-  margin-bottom: 20px;
-  display: flex;
+}
+.alert-success {
+  color: #fff;
+  background-color: darken($blue, 20%);
 }
 
 /* Icons */

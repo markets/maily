@@ -39,7 +39,7 @@ module Maily
     def update
       @maily_email.update_template(params[:body], params[:part])
 
-      redirect_to maily_email_path(mailer: params[:mailer], email: params[:email], part: params[:part])
+      redirect_to maily_email_path(mailer: params[:mailer], email: params[:email], part: params[:part]), notice: 'Template updated!'
     end
 
     def deliver
@@ -47,23 +47,28 @@ module Maily
 
       @email.deliver
 
-      redirect_to maily_email_path(mailer: params[:mailer], email: params[:email])
+      redirect_to maily_email_path(mailer: params[:mailer], email: params[:email]), notice: "Email sent to <b>#{params[:to]}</b>!"
     end
 
     private
 
     def allowed_action?
-      Maily.allowed_action?(action_name) || redirect_to(root_path, alert: "Maily: action #{action_name} not allowed!")
+      Maily.allowed_action?(action_name) || redirect_to(root_path, alert: "Action <b>#{action_name}</b> not allowed!")
     end
 
     def load_mailers
-      @mailers = Maily::Mailer.all
+      @mailers = Maily::Mailer.all.values
     end
 
     def load_mailer_and_email
       mailer = Maily::Mailer.find(params[:mailer])
       @maily_email = mailer.find_email(params[:email])
-      @email = @maily_email.call
+
+      if @maily_email
+        @email = @maily_email.call
+      else
+        redirect_to(root_path, alert: "Email not found!")
+      end
     end
 
     def perform_with_locale

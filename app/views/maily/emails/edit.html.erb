@@ -1,21 +1,19 @@
-<div class="content">
-  <%= email_description(@maily_email) %>
+<%= email_description(@maily_email) %>
 
-  <%= form_tag(update_maily_email_path(mailer: params[:mailer], email: params[:email], part: params[:part]), method: :put) do %>
-    <ul class="maily_action_bar">
-      <li>
-        <%= link_to 'Show', maily_email_path(mailer: params[:mailer], email: params[:email]) %>
-      </li>
+<%= form_tag(update_maily_email_path(mailer: params[:mailer], email: params[:email], part: params[:part]), method: :put) do %>
+  <ul class="action_bar">
+    <li>
+      <%= link_to 'Show', maily_email_path(mailer: params[:mailer], email: params[:email]) %>
+    </li>
 
-      <li class="maily_splitter">|</li>
+    <li class="splitter">|</li>
 
-      <li>
-        <%= submit_tag 'Update', class: 'maily_button' %>
-      </li>
-    </ul>
+    <li>
+      <%= submit_tag 'Update', class: 'button' %>
+    </li>
+  </ul>
 
-    <div class="maily_mail_preview">
-      <%= text_area_tag :body, @template, class:'maily_mail_updatearea' %>
-    </div>
-  <% end %>
-</div>
+  <div class="mail_preview">
+    <%= text_area_tag :body, @template, class: 'mail_updatearea' %>
+  </div>
+<% end %>

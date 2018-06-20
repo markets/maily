@@ -23,9 +23,7 @@ module Maily
       # Load emails from file system
       Dir[Rails.root + 'app/mailers/*.rb'].each do |mailer|
         klass_name = File.basename(mailer, '.rb')
-        klass = klass_name.camelize.constantize
-        methods = klass.send(:public_instance_methods, false)
-        Maily::Mailer.new(klass_name, methods)
+        Maily::Mailer.new(klass_name)
       end
 
       # Load hooks
