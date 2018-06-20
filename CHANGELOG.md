@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.7.0]
+
+- Allow to hide emails (#11)
+- Allow to override `template_name`
+- New project logo
+- Internal classes refactor
+- Front-end cleanup and simplification (remove font icons, update normalize.css, CSS/HTML refactor, better page titles, better flash messages)
+- Drop Ruby 2.1 (EOL) from CI
+- CI against Rails 5.2
+
 ## [0.6.3]
 
 - Add support for `reply_to`
@@ -65,6 +75,7 @@ All notable changes to this project will be documented in this file.
 
 - First real usable release :tada:
 
+[0.7.0]: https://github.com/markets/maily/compare/v0.6.3...v0.7.0
 [0.6.3]: https://github.com/markets/maily/compare/v0.6.2...v0.6.3
 [0.6.2]: https://github.com/markets/maily/compare/v0.6.1...v0.6.2
 [0.6.1]: https://github.com/markets/maily/compare/v0.6.0...v0.6.1
