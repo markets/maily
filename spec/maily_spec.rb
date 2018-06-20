@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Maily do
-  it "should set up with defaults if no block provided" do
+  it "should initialize with some defaults if no block is provided" do
     Maily.setup
 
     expect(Maily.enabled).to be true

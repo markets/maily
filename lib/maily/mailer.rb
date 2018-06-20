@@ -23,14 +23,6 @@ module Maily
       all[mailer_name]
     end
 
-    def parse_emails
-      _emails = klass.send(:public_instance_methods, false)
-
-      _emails.map(&:to_s).each do |email|
-        self.emails[email] = Maily::Email.new(email, self)
-      end
-    end
-
     def find_email(email_name)
       emails[email_name.to_s]
     end
@@ -47,6 +39,16 @@ module Maily
     def hide_email(*email_names)
       email_names.each do |email_name|
         emails.delete(email_name.to_s)
+      end
+    end
+
+    private
+
+    def parse_emails
+      _emails = klass.send(:public_instance_methods, false)
+
+      _emails.map(&:to_s).each do |email|
+        self.emails[email] = Maily::Email.new(email, self)
       end
     end
   end

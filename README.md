@@ -108,11 +108,12 @@ Maily.hooks_for('PaymentNotifier') do |mailer|
 end
 ```
 
-Note that you are able to override `template_path` like can be done in Rails. You must pass this option as a hash and last argument:
+Note that you are able to override the `template_path` and the `template_name` like can be done in Rails. You must pass these options as a hash and last argument:
 
 ```ruby
 Maily.hooks_for('YourMailerClass') do |mailer|
-  mailer.register_hook(:your_mail, template_path: 'notifications')
+  mailer.register_hook(:a_random_email, template_path: 'notifications')
+  mailer.register_hook(:another_email, template_name: 'email_base')
 end
 ```
 
@@ -123,6 +124,16 @@ You can add a description to any email and it will be displayed along with its p
 ```ruby
 Maily.hooks_for('BookingNotifier') do |mailer|
   mailer.register_hook(:accepted, description: "This email is sent when a reservation has been accepted by the system." )
+end
+```
+
+### Hide emails
+
+You are also able to hide emails:
+
+```ruby
+Maily.hooks_for('Notifier') do |mailer|
+  mailer.hide_email(:sensible_email, :secret_email)
 end
 ```
 

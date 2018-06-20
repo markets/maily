@@ -12,4 +12,12 @@ class Notifier < ActionMailer::Base
   def recommendation(email)
     mail template_path: 'notifications'
   end
+
+  def custom_template_name
+    mail template_name: 'invitation'
+  end
+
+  def hidden
+    mail
+  end
 end
