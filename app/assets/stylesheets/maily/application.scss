@@ -47,7 +47,7 @@ header.header, footer.footer {
   position: fixed;
   left: 0;
   z-index: 99;
-  padding: .6em 1em;
+  padding: .5em 1em;
   width: 100%;
   background-color: rgba(255,255,255, .95);
 }
@@ -58,13 +58,12 @@ header.header {
 
   .logo_link {
     color: $textColor;
-    text-decoration: none;
     font: 400 2em/1 'Josefin Sans';
     margin-left: 10px;
-  }
 
-  span {
-    vertical-align: middle;
+    img, span {
+      vertical-align: middle;
+    }
   }
 }
 
@@ -283,6 +282,7 @@ aside.sidebar {
 .alert {
   border-radius: 3px;
   padding: 16px;
+  margin-bottom: 1.1em;
 }
 .alert-warning {
   color: $red;

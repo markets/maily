@@ -13,13 +13,7 @@
     <%= render 'maily/shared/sidebar' %>
 
     <div class="content">
-      <% if flash[:alert].present? %>
-        <p class="alert alert-warning"><%= flash[:alert].html_safe %></p>
-      <% end %>
-
-      <% if flash[:notice].present? %>
-        <p class="alert alert-success"><%= flash[:notice].html_safe %></p>
-      <% end %>
+      <%= render 'maily/shared/flash_messages' %>
 
       <%= yield %>
     </div>
