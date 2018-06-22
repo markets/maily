@@ -5,10 +5,11 @@ module Maily
       source_root File.expand_path("../../templates", __FILE__)
 
       def install
-        puts 'Installing Maily ...'
+        puts "==> Installing Maily components ..."
         generate_routing
-        build_initializer
+        copy_initializer
         build_hooks
+        puts "Ready! You can now access Maily at /maily"
       end
 
       private
@@ -17,7 +18,7 @@ module Maily
         route "mount Maily::Engine, at: '/maily'"
       end
 
-      def build_initializer
+      def copy_initializer
         template 'initializer.rb', 'config/initializers/maily.rb'
       end
 
