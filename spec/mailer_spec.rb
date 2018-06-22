@@ -8,7 +8,7 @@ describe Maily::Mailer do
   it "should build emails" do
     mailer = Maily::Mailer.find('notifier')
 
-    expect(mailer.emails.size).to eq(4)
+    expect(mailer.emails.size).to eq(6)
   end
 
   it "should find mailers by name" do

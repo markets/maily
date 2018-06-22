@@ -76,18 +76,17 @@ module Maily
     end
 
     def base_path(part)
-      "#{Rails.root}/app/views/#{template_path}/#{template_name}.#{part}.erb"
+      Dir["#{Rails.root}/app/views/#{template_path}/#{template_name}.#{part}.*"].first
     end
 
     def path(part = nil)
-      if part
-        base_path(part)
+      return base_path(part) if part
+
+      html_part = base_path('html')
+      if html_part && File.exist?(html_part)
+        html_part
       else
-        if File.exist?(path('html'))
-          base_path('html')
-        else
-          base_path('text')
-        end
+        base_path('text')
       end
     end
 

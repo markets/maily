@@ -20,4 +20,12 @@ class Notifier < ActionMailer::Base
   def hidden
     mail
   end
+
+  def multipart
+    mail
+  end
+
+  def with_slim_template
+    mail
+  end
 end

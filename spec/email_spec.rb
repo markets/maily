@@ -59,7 +59,7 @@ describe Maily::Email do
     expect(email.description).to eq('description')
   end
 
-  describe 'validate_arguments' do
+  describe '#validate_arguments' do
     it 'emails with no arguments required' do
       email = mailer.find_email('welcome')
       expect(email.validate_arguments).to eq [true, nil]
@@ -74,6 +74,22 @@ describe Maily::Email do
 
       email = mailer.find_email('recommendation')
       expect(email.validate_arguments[1]).to eq("recommendation email requires at least 1 arguments, passed 0")
+    end
+  end
+
+  describe '#path' do
+    it 'with a multipart email defaults to html' do
+      email = mailer.find_email('multipart')
+
+      expect(email.path).to include('multipart.html.erb')
+      expect(email.path('text')).to include('multipart.text.erb')
+      expect(email.path('foo')).to eq nil
+    end
+
+    it 'with other template engines (e.g. Slim)' do
+      email = mailer.find_email('with_slim_template')
+
+      expect(email.path).to include('with_slim_template.html.slim')
     end
   end
 end
