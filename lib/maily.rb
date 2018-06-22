@@ -34,6 +34,8 @@ module Maily
 
     def hooks_for(mailer_name)
       mailer = Maily::Mailer.find(mailer_name.underscore)
+      return unless mailer
+
       yield(mailer) if block_given?
     end
 

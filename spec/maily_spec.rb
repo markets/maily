@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Maily do
-  it "should initialize with some defaults if no block is provided" do
+  it "#setup should initialize with some defaults if no block is provided" do
     Maily.setup
 
     expect(Maily.enabled).to be true
@@ -12,16 +12,18 @@ describe Maily do
     expect(Maily.http_authorization).to be nil
   end
 
-  it "should not allow edition if edition is disabled" do
-    Maily.allow_edition = false
+  describe '#allowed_action?' do
+    it "should not allow edition if edition is disabled" do
+      Maily.allow_edition = false
 
-    expect(Maily.allowed_action?(:edit)).to be false
-    expect(Maily.allowed_action?(:update)).to be false
-  end
+      expect(Maily.allowed_action?(:edit)).to be false
+      expect(Maily.allowed_action?(:update)).to be false
+    end
 
-  it "should not allow delivery if delivery is disabled" do
-    Maily.allow_delivery = false
+    it "should not allow delivery if delivery is disabled" do
+      Maily.allow_delivery = false
 
-    expect(Maily.allowed_action?(:deliver)).to be false
+      expect(Maily.allowed_action?(:deliver)).to be false
+    end
   end
 end
