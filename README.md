@@ -1,6 +1,8 @@
 # Maily
 
-[![Gem Version](https://badge.fury.io/rb/maily.svg)](http://badge.fury.io/rb/maily) [![Build Status](https://travis-ci.org/markets/maily.svg?branch=master)](https://travis-ci.org/markets/maily)
+[![Gem Version](https://badge.fury.io/rb/maily.svg)](http://badge.fury.io/rb/maily)
+[![Build Status](https://travis-ci.org/markets/maily.svg?branch=master)](https://travis-ci.org/markets/maily)
+[![Maintainability](https://api.codeclimate.com/v1/badges/fff01b2137fd73070b14/maintainability)](https://codeclimate.com/github/markets/maily/maintainability)
 
 Maily is a Rails Engine to manage, test and navigate through all your email templates of your app, being able to preview them directly in your browser.
 

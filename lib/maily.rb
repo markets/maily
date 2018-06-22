@@ -1,7 +1,8 @@
-require 'maily/engine'
 require 'maily/version'
+require 'maily/engine'
 require 'maily/mailer'
 require 'maily/email'
+require 'maily/generator'
 
 module Maily
   class << self
@@ -33,6 +34,8 @@ module Maily
 
     def hooks_for(mailer_name)
       mailer = Maily::Mailer.find(mailer_name.underscore)
+      return unless mailer
+
       yield(mailer) if block_given?
     end
 
