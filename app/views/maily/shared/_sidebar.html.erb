@@ -1,9 +1,9 @@
 <aside class="sidebar">
-  <% @mailers.sort_by(&:name).each do |mailer| %>
+  <% @mailers.each do |mailer| %>
     <section class="nav_list">
       <h3 class="nav_title"><%= "#{mailer.name.humanize} (#{mailer.total_emails})" %></h3>
       <ul>
-        <% mailer.emails.values.sort_by(&:name).each do |email| %>
+        <% mailer.emails_list.each do |email| %>
           <li><%= link_to email.name.humanize, maily_email_path(mailer: mailer.name, email: email.name), class: sidebar_class(mailer, email) %></li>
         <% end %>
       </ul>

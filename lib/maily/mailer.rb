@@ -19,12 +19,20 @@ module Maily
       collection
     end
 
+    def self.list
+      all.values.sort_by(&:name)
+    end
+
     def self.find(mailer_name)
       all[mailer_name]
     end
 
     def find_email(email_name)
       emails[email_name.to_s]
+    end
+
+    def emails_list
+      emails.values.sort_by(&:name)
     end
 
     def total_emails

@@ -1,7 +1,8 @@
-require 'maily/engine'
 require 'maily/version'
+require 'maily/engine'
 require 'maily/mailer'
 require 'maily/email'
+require 'maily/generator'
 
 module Maily
   class << self
