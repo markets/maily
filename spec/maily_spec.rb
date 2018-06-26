@@ -7,7 +7,7 @@ describe Maily do
     expect(Maily.enabled).to be true
     expect(Maily.allow_edition).to be true
     expect(Maily.allow_delivery).to be true
-    expect(Maily.available_locales).to eq(I18n.available_locales)
+    expect(Maily.available_locales).to eq([:en, :es, :pt, :fr])
     expect(Maily.base_controller).to eq('ActionController::Base')
     expect(Maily.http_authorization).to be nil
   end

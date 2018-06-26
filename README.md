@@ -66,7 +66,7 @@ Maily.setup do |config|
   # Allow deliveries
   # config.allow_delivery = Rails.env.production? ? false : true
 
-  # I18n.available_locales by default
+  # Your application available_locales (or I18n.available_locales) by default
   # config.available_locales = [:en, :es, :pt, :fr]
 
   # Run maily under different controller ('ActionController::Base' by default)

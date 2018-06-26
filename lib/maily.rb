@@ -13,7 +13,7 @@ module Maily
       self.enabled            = Rails.env.production? ? false : true
       self.allow_edition      = Rails.env.production? ? false : true
       self.allow_delivery     = Rails.env.production? ? false : true
-      self.available_locales  = I18n.available_locales
+      self.available_locales  = Rails.application.config.i18n.available_locales || I18n.available_locales
       self.base_controller    = 'ActionController::Base'
       self.http_authorization = nil
       self.hooks_path         = "lib/maily_hooks.rb"
