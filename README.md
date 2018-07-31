@@ -26,14 +26,14 @@ Maily automatically picks up all your emails and make them accessible from a kin
 
 Add this line to you Gemfile:
 
-```
+```ruby
 gem 'maily'
 ```
 
 Run generator:
 
 ```
-rails g maily:install
+> rails g maily:install
 ```
 
 This generator runs some tasks for you:
@@ -44,7 +44,7 @@ This generator runs some tasks for you:
 
 ## Initialization and configuration
 
-You should configure Maily via the initializer. You can set these options per environment:
+You should configure Maily via an initializer. You can set different values per environment:
 
 ```ruby
 Maily.enabled = ENV['MAILY_ENABLED']
@@ -85,13 +85,13 @@ end
 
 ### Templates edition (`allow_edition` option)
 
-This feature was designed for `development` environment. Since it's just a file edition and running in `production`, code is not reloaded between requests, Rails doesn't take in account this change (without restarting the server). Also, allow arbitrary ruby code evaluation is potentially dangerous, that's not a good idea for `production`.
+This feature was designed for the `development` environment. Since it's based on just a file edition, and while running in `production` mode, code is not reloaded between requests, Rails doesn't take into account your changes (without restarting the server). Actually, allowing arbitrary Ruby code evaluation is potentially dangerous, and that's not a good idea in `production`.
 
-So, template edition is not allowed outside of `development` environment.
+So, template edition is not allowed outside of the `development` environment.
 
 ## Hooks
 
-Most of emails need to populate some data to consume it and do interesting things. Hooks are used to define this data with a little DSL. Hooks accept "callable" objects to lazy load (most expensive) data. Example:
+Most of emails need to populate some data to consume it and do interesting things. Hooks are used to define this data via a little DSL. Hooks also accept "callable" objects to *lazy* load variables/data, so each email will evaluate its hooks on demand. Example:
 
 ```ruby
 # lib/maily_hooks.rb
@@ -141,7 +141,7 @@ end
 
 ## Authorization
 
-Basically, you have 2 ways to restrict the access to `Maily`.
+Basically, you have 2 ways to restrict access to the `Maily` section. You can even combine both.
 
 ### Custom base controller
 
@@ -175,15 +175,15 @@ Maily.http_authorization = { username: 'admin', password: 'secret' }
 
 ## Notes
 
-Rails 4.1 introduced a built-in mechanism to preview the application emails. It is in fact a port of [basecamp/mail_view](https://github.com/basecamp/mail_view) gem to the core.
+Rails 4.1 introduced a built-in mechanism to preview the application emails. It is in fact, a port of [basecamp/mail_view](https://github.com/basecamp/mail_view) gem to the core.
 
-Alternatively, there are some other plugins to get a similar functionality with different approaches and options. For example, [ryanb/letter_opener](https://github.com/ryanb/letter_opener), [sj26/mailcatcher](https://github.com/sj26/mailcatcher) or [glebm/rails_email_preview](https://github.com/glebm/rails_email_preview).
+Alternatively, there are some other plugins to get a similar functionality, but with different approaches and options. For example, [ryanb/letter_opener](https://github.com/ryanb/letter_opener), [sj26/mailcatcher](https://github.com/sj26/mailcatcher) or [glebm/rails_email_preview](https://github.com/glebm/rails_email_preview).
 
 ## Development
 
 Any kind of feedback, bug report, idea or enhancement are really appreciated :tada:
 
-To contribute, just fork the repo, hack on it and send a pull request. Don't forget to add specs for behaviour changes and run the test suite:
+To contribute, just fork the repo, hack on it and send a pull request. Don't forget to add tests for behaviour changes and run the test suite:
 
     > bundle exec appraisal rake
 
