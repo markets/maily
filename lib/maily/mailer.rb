@@ -40,7 +40,7 @@ module Maily
     end
 
     def register_hook(email_name, *args)
-      email = find_email(email_name)
+      email = find_email(email_name) || add_email(email_name)
       email && email.register_hook(args)
     end
 
@@ -55,9 +55,14 @@ module Maily
     def parse_emails
       _emails = klass.send(:public_instance_methods, false)
 
-      _emails.map(&:to_s).each do |email|
-        self.emails[email] = Maily::Email.new(email, self)
+      _emails.each do |email|
+        add_email(email)
       end
+    end
+
+    def add_email(email_name)
+      email = Maily::Email.new(email_name.to_s, self)
+      self.emails[email.name] = email
     end
   end
 end
