@@ -1,6 +1,4 @@
-class Notifier < ActionMailer::Base
-  default from: 'foo@foo.com', to: 'bar@bar.com'
-
+class Notifier < ApplicationMailer
   def welcome
     mail
   end
