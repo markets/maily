@@ -1,14 +1,27 @@
 module Maily
   class Email
-    attr_accessor :name, :mailer, :arguments, :template_path, :template_name, :description
+    attr_accessor :name, :mailer, :arguments, :template_path, :template_name, :description, :version
 
-    def initialize(name, mailer)
+    def initialize(name, mailer, version)
       self.name          = name
       self.mailer        = mailer
       self.arguments     = nil
       self.template_path = mailer.name
       self.template_name = name
       self.description   = nil
+      self.version       = version
+    end
+
+    def self.key_for(name, version)
+      [name, version].compact.join('_').parameterize.underscore
+    end
+
+    def name_with_version
+      [name, version].compact.join(' : ')
+    end
+
+    def key
+      self.class.key_for(name, version)
     end
 
     def mailer_klass

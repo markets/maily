@@ -11,7 +11,7 @@ module Maily
     end
 
     def sidebar_class(mailer, email)
-      'selected_mail' if mailer.name == params[:mailer] && email.name == params[:email]
+      'selected_mail' if mailer.name == params[:mailer] && email.key == params[:email]
     end
 
     def icon(name)
