@@ -2,11 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.8.1]
+
+- Serve fonts from Google Fonts API
+
 ## [0.8.0]
 
 - Inherited emails support (#28)
-- `Maily.available_locales` defaults to Rails
-available_locales `config.i18n.available_locales` (#27)
+- `Maily.available_locales` defaults to Rails available_locales `config.i18n.available_locales` (#27)
 
 ## [0.7.2]
 
@@ -91,6 +94,7 @@ available_locales `config.i18n.available_locales` (#27)
 
 - First real usable release :tada:
 
+[0.8.1]: https://github.com/markets/maily/compare/v0.8.0...v0.8.1
 [0.8.0]: https://github.com/markets/maily/compare/v0.7.2...v0.8.0
 [0.7.2]: https://github.com/markets/maily/compare/v0.7.1...v0.7.2
 [0.7.1]: https://github.com/markets/maily/compare/v0.7.0...v0.7.1
