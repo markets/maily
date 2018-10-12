@@ -8,7 +8,6 @@ module Maily
       maily/application.js
       maily/logo.png
       maily/icons/*.svg
-      maily/fonts/*.ttf
     )
   end
 end

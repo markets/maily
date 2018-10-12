@@ -1,12 +1,6 @@
-@import "maily/variables";
+@import url("https://fonts.googleapis.com/css?family=Josefin+Sans:light");
 
-/* Title font */
-@font-face {
-  font-weight: light;
-  font-style: normal;
-  font-family: 'Josefin Sans';
-  src: asset-url('maily/fonts/JosefinSans-Light.ttf') format('truetype');
-}
+@import "maily/variables";
 
 /* Body */
 body {
@@ -88,7 +82,7 @@ footer.footer {
 
 .content {
   margin-right: 2em;
-  margin-left: 2em;
+  margin-left: 1em;
   padding-left: 20%;
 
   ul.action_bar {
@@ -239,7 +233,7 @@ aside.sidebar {
   width: 20%;
 
   section.nav_list {
-    margin: 0 0 1.5em 2.1em;
+    margin: 0 0 1.5em 1.5em;
 
     .nav_title {
       margin: 0 0 .4em;
