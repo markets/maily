@@ -4,7 +4,7 @@ describe Maily::Mailer do
   let(:mailer) { Maily::Mailer.find('notifier') }
 
   it "should load mailers" do
-    expect(Maily::Mailer.all.keys).to eq(['application_mailer', 'notifier'])
+    expect(Maily::Mailer.all.keys).to include('application_mailer', 'notifier')
   end
 
   it "should build emails" do
