@@ -23,7 +23,7 @@ module Maily
         @email.body
       end
 
-      render html: content.raw_source, layout: false
+      render html: content.raw_source.html_safe, layout: false
     end
 
     def attachment
