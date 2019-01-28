@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.9.0]
+
+- Allow to register external mailers, for example, from a gem
+- CI Rubies: add 2.6 and drop 2.2 (EOL)
+
 ## [0.8.2]
 
 - Fix incompatibility with last gem `mail` (v2.7.1) release (#32)
@@ -98,6 +103,7 @@ All notable changes to this project will be documented in this file.
 
 - First real usable release :tada:
 
+[0.9.0]: https://github.com/markets/maily/compare/v0.8.2...v0.9.0
 [0.8.2]: https://github.com/markets/maily/compare/v0.8.1...v0.8.2
 [0.8.1]: https://github.com/markets/maily/compare/v0.8.0...v0.8.1
 [0.8.0]: https://github.com/markets/maily/compare/v0.7.2...v0.8.0
