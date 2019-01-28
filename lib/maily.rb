@@ -33,8 +33,8 @@ module Maily
     end
 
     def hooks_for(mailer_name)
-      mailer = Maily::Mailer.find(mailer_name.underscore)
-      return unless mailer
+      mailer_name = mailer_name.underscore
+      mailer = Maily::Mailer.find(mailer_name) || Maily::Mailer.new(mailer_name)
 
       yield(mailer) if block_given?
     end
