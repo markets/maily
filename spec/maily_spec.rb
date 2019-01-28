@@ -26,4 +26,17 @@ describe Maily do
       expect(Maily.allowed_action?(:deliver)).to be false
     end
   end
+
+  describe '#hooks_for' do
+    it "allows to register external hooks" do
+      class ExternalMailer < ActionMailer::Base
+        def external_email
+        end
+      end
+
+      Maily.hooks_for('ExternalMailer')
+
+      expect(Maily::Mailer.find('external_mailer').emails.count).to eq 1
+    end
+  end
 end

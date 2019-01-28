@@ -1,6 +1,6 @@
 # Maily
 
-[![Gem Version](https://badge.fury.io/rb/maily.svg)](http://badge.fury.io/rb/maily)
+[![Gem](https://img.shields.io/gem/v/maily.svg?style=flat-square)](https://rubygems.org/gems/maily)
 [![Build Status](https://travis-ci.org/markets/maily.svg?branch=master)](https://travis-ci.org/markets/maily)
 [![Maintainability](https://api.codeclimate.com/v1/badges/fff01b2137fd73070b14/maintainability)](https://codeclimate.com/github/markets/maily/maintainability)
 
@@ -136,6 +136,20 @@ You are also able to hide emails:
 ```ruby
 Maily.hooks_for('Notifier') do |mailer|
   mailer.hide_email(:sensible_email, :secret_email)
+end
+```
+
+### External emails
+
+If you want to register and display in the UI, emails from external sources, like for example a gem, you can do it by adding a hook. Example:
+
+```ruby
+Maily.hooks_for('Devise::Mailer') do |mailer|
+  mailer.hide_email(:unlock_instructions)
+
+  mailer.register_hook(:reset_password_instructions, user, 'random_token')
+  mailer.register_hook(:confirmation_instructions, user, 'random_token')
+  mailer.register_hook(:password_change, user)
 end
 ```
 
