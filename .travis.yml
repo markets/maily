@@ -2,8 +2,8 @@ language: ruby
 cache: bundler
 rvm:
   - ruby-head
-  - 2.6.0
-  - 2.5.3
+  - 2.6.2
+  - 2.5.5
   - 2.4.5
   - 2.3.8
 gemfile:
@@ -13,5 +13,10 @@ gemfile:
   - gemfiles/rails_5.0.gemfile
   - gemfiles/rails_4.2.gemfile
 matrix:
+  exclude:
+    - rvm: 2.4.5
+      gemfile: gemfiles/rails_6.0.gemfile
+    - rvm: 2.3.8
+      gemfile: gemfiles/rails_6.0.gemfile
   allow_failures:
     - rvm: ruby-head
