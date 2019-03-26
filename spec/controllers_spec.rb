@@ -1,7 +1,9 @@
 require 'spec_helper'
 
 describe Maily::EmailsController, type: :controller do
-  # Rails 4 <-> 5 compatibility
+  render_views
+
+  # Rails 4 compatibility
   def compatible_get(action, **params)
     if ::Rails::VERSION::STRING > '5'
       get action, params: params
