@@ -64,10 +64,16 @@ describe Maily::EmailsController, type: :controller do
   end
 
   describe 'GET #raw' do
-    it 'renders the template' do
+    it 'renders the template (HTML part)' do
       compatible_get :raw, mailer: 'notifier', email: 'invitation'
 
       expect(response.body).to match("<h1>Invitation</h1>")
+    end
+
+    it 'renders the template (TEXT part)' do
+      compatible_get :raw, mailer: 'notifier', email: 'only_text'
+
+      expect(response.body).to match("<p>Text part\n<br />with break lines</p>")
     end
   end
 end
