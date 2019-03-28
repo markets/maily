@@ -1,2 +1,6 @@
 <h2><%= total_emails(@mailers) %> emails found</h2>
-<p><%= Maily.welcome_message %></p>
+<p>Use the menu on the left hand side of the screen to navigate through the different email templates.</p>
+
+<div class="welcome_message">
+  <%= Maily.welcome_message.to_s.html_safe %>
+</div>

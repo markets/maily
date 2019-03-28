@@ -17,7 +17,7 @@ module Maily
       self.base_controller    = 'ActionController::Base'
       self.http_authorization = nil
       self.hooks_path         = "lib/maily_hooks.rb"
-      self.welcome_message    = "Use the menu on the left hand side of the screen to navigate through the different email templates."
+      self.welcome_message    = nil
     end
 
     def load_emails_and_hooks
