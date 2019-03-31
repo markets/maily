@@ -10,6 +10,7 @@ describe Maily do
     expect(Maily.available_locales).to eq([:en, :es, :pt, :fr])
     expect(Maily.base_controller).to eq('ActionController::Base')
     expect(Maily.http_authorization).to be nil
+    expect(Maily.welcome_message).to be nil
   end
 
   describe '#allowed_action?' do

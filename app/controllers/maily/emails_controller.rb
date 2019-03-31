@@ -17,13 +17,16 @@ module Maily
     end
 
     def raw
-      content = if @email.parts.present?
+      content = if @email.multipart?
         params[:part] == 'text' ? @email.text_part.body : @email.html_part.body
       else
         @email.body
       end
 
-      render html: content.raw_source.html_safe, layout: false
+      content = content.raw_source
+      content = view_context.simple_format(content) if @email.sub_type == 'plain' || params[:part] == 'text'
+
+      render html: content.html_safe, layout: false
     end
 
     def attachment

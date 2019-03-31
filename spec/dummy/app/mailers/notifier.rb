@@ -23,6 +23,10 @@ class Notifier < ApplicationMailer
     mail
   end
 
+  def only_text
+    mail
+  end
+
   def with_slim_template
     mail
   end

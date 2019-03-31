@@ -8,7 +8,7 @@ describe Maily::Mailer do
   end
 
   it "should build emails" do
-    expect(mailer.emails.size).to eq(7)
+    expect(mailer.emails.size).to eq(8)
   end
 
   it "should find mailers by name" do
