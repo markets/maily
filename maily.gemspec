@@ -10,8 +10,7 @@ Gem::Specification.new do |s|
   s.description   = "Maily is a Rails Engine to manage, test and navigate through all your email templates of your app, being able to preview them directly in your browser."
   s.license       = "MIT"
 
-  s.files         = `git ls-files`.split($/)
-  s.executables   = s.files.grep(%r{^bin/}) { |f| File.basename(f) }
+  s.files         = Dir["{app,config,lib}/**/*"] + %w[README.md CHANGELOG.md MIT-LICENSE]
   s.test_files    = s.files.grep(%r{^(test|spec|features)/})
   s.require_paths = ["lib"]
 
