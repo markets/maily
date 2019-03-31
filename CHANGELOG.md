@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.9.1]
+
+- Properly display text parts by respecting break lines
+- CI: official Rails 6 support
+- Reduce gem size by including only necessary files
+
 ## [0.9.0]
 
 - Allow to register external mailers, for example, from a gem
@@ -103,6 +109,7 @@ All notable changes to this project will be documented in this file.
 
 - First real usable release :tada:
 
+[0.9.1]: https://github.com/markets/maily/compare/v0.9.0...v0.9.1
 [0.9.0]: https://github.com/markets/maily/compare/v0.8.2...v0.9.0
 [0.8.2]: https://github.com/markets/maily/compare/v0.8.1...v0.8.2
 [0.8.1]: https://github.com/markets/maily/compare/v0.8.0...v0.8.1
