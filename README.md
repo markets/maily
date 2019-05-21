@@ -30,7 +30,7 @@ Maily automatically picks up all your emails and make them accessible from a kin
 
 ## Installation
 
-Add this line to your `Gemfile`:
+Add this line to your `Gemfile` and then run `bundle install`:
 
 ```ruby
 gem 'maily'

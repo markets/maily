@@ -236,6 +236,8 @@ footer.footer {
 aside.sidebar {
   float: left;
   width: 20%;
+  max-height: 90vh;
+  overflow-y: scroll;
 
   section.nav_list {
     margin: 0 0 1.5em 1.5em;
@@ -301,11 +303,3 @@ img.icon {
   font-size: .9em;
   vertical-align: bottom;
 }
-
-/* Utils */
-.clearfix:before,
-.clearfix:after {
-  display: table;
-  content: " ";
-}
-.clearfix:after { clear: both; }
