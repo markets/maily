@@ -1,11 +1,12 @@
 module Maily
   class Email
-    attr_accessor :name, :mailer, :arguments, :template_path, :template_name, :description
+    attr_accessor :name, :mailer, :arguments, :template_path, :template_name, :description, :with_params
 
     def initialize(name, mailer)
       self.name          = name
       self.mailer        = mailer
       self.arguments     = nil
+      self.with_params   = nil
       self.template_path = mailer.name
       self.template_name = name
       self.description   = nil
@@ -13,6 +14,15 @@ module Maily
 
     def mailer_klass
       mailer.klass
+    end
+
+    def parametered_mailer_klass
+      if Rails::VERSION::MAJOR >= 5 && Rails::VERSION::MINOR >= 1
+        params = with_params && with_params.transform_values { |param| param.respond_to?(:call) ? param.call : param }
+        mailer_klass.with(params)
+      else
+        mailer_klass
+      end
     end
 
     def parameters
@@ -59,6 +69,8 @@ module Maily
           self.template_name = tpl_name
         end
 
+        self.with_params = args.last.delete(:with_params)
+
         args.pop
       end
 
@@ -69,9 +81,9 @@ module Maily
       *args = arguments && arguments.map { |arg| arg.respond_to?(:call) ? arg.call : arg }
 
       if args == [nil]
-        mailer_klass.public_send(name)
+        parametered_mailer_klass.public_send(name)
       else
-        mailer_klass.public_send(name, *args)
+        parametered_mailer_klass.public_send(name, *args)
       end
     end
 

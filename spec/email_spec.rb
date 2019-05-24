@@ -41,6 +41,27 @@ describe Maily::Email do
     end
   end
 
+  context "with params" do
+    let (:email) { mailer.find_email('new_message') }
+
+    it "should not require hook" do
+      expect(email.required_arguments).to be_blank
+      expect(email.require_hook?).to be false
+    end
+
+    it 'should handle lazy params successfully' do
+      expect(email.with_params).to be_present
+      expect { email.call }.to_not raise_error
+    end
+
+    it 'should handle not lazy arguments successfully' do
+      allow(email).to receive(:message).and_return('Hello!')
+
+      expect(email.with_params).to be_present
+      expect { email.call }.to_not raise_error
+    end
+  end
+
   it "should handle template_path via hook" do
     email = mailer.find_email('recommendation')
 
