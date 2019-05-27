@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Maily do
+RSpec.describe Maily do
   it "#setup should initialize with some defaults if no block is provided" do
     Maily.setup
 

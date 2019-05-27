@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Maily::EmailsController, type: :controller do
+RSpec.describe Maily::EmailsController, type: :controller do
   render_views
 
   # Rails 4 compatibility

@@ -7,6 +7,7 @@ require 'maily'
 RSpec.configure do |config|
   config.mock_with :rspec
   config.order = 'random'
+  config.disable_monkey_patching!
 end
 
 # Rails 4.2 call `initialize` inside `recycle!`. However Ruby 2.6 doesn't allow calling `initialize` twice.

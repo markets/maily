@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Maily::Generator do
+RSpec.describe Maily::Generator do
   it '.run generates valid fixtures and hooks for current application' do
     expect(Maily::Generator.run).to eq <<-HOOKS.strip_heredoc
       email = ''

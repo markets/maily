@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Maily::Email do
+RSpec.describe Maily::Email do
   let(:mailer) { Maily::Mailer.find('notifier') }
 
   context "with no arguments" do

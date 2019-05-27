@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Maily::Mailer do
+RSpec.describe Maily::Mailer do
   let(:mailer) { Maily::Mailer.find('notifier') }
 
   it "should load mailers" do
