@@ -7,6 +7,11 @@ class Notifier < ApplicationMailer
     mail
   end
 
+  def new_message
+    @message = params[:message]
+    mail
+  end
+
   def recommendation(email)
     mail template_path: 'notifications'
   end

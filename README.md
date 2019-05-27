@@ -145,6 +145,18 @@ Maily.hooks_for('Notifier') do |mailer|
 end
 ```
 
+### Use `params`
+
+Support for [`ActionMailer::Parameterized`](https://api.rubyonrails.org/classes/ActionMailer/Parameterized.html) is possible via `with_params` hash:
+
+```ruby
+message = -> { 'Hello!' }
+
+Maily.hooks_for('Notifier') do |mailer|
+  mailer.register_hook(:new_message, with_params: { message: message })
+end
+```
+
 ### External emails
 
 If you want to register and display in the UI, emails from external sources, like for example a gem, you can do it by adding a hook. Example:
