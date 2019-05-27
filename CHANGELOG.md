@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.10.0]
+
+- Support `ActionMailer::Parameterized` (#39)
+- UI tweaks
+
 ## [0.9.1]
 
 - Properly display text parts by respecting break lines
@@ -109,6 +114,7 @@ All notable changes to this project will be documented in this file.
 
 - First real usable release :tada:
 
+[0.10.0]: https://github.com/markets/maily/compare/v0.9.1...v0.10.0
 [0.9.1]: https://github.com/markets/maily/compare/v0.9.0...v0.9.1
 [0.9.0]: https://github.com/markets/maily/compare/v0.8.2...v0.9.0
 [0.8.2]: https://github.com/markets/maily/compare/v0.8.1...v0.8.2
