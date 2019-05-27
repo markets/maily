@@ -16,7 +16,7 @@ module Maily
       mailer.klass
     end
 
-    def parametered_mailer_klass
+    def parameterized_mailer_klass
       if Rails::VERSION::MAJOR >= 5 && Rails::VERSION::MINOR >= 1
         params = with_params && with_params.transform_values { |param| param.respond_to?(:call) ? param.call : param }
         mailer_klass.with(params)
@@ -81,9 +81,9 @@ module Maily
       *args = arguments && arguments.map { |arg| arg.respond_to?(:call) ? arg.call : arg }
 
       if args == [nil]
-        parametered_mailer_klass.public_send(name)
+        parameterized_mailer_klass.public_send(name)
       else
-        parametered_mailer_klass.public_send(name, *args)
+        parameterized_mailer_klass.public_send(name, *args)
       end
     end
 
