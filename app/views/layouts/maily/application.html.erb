@@ -2,8 +2,9 @@
 <html>
 <head>
   <title><%= title %></title>
-  <%= stylesheet_link_tag "maily/application", media: "all" %>
   <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag "maily/application", media: "all" %>
+  <%= render 'maily/shared/javascript' %>
 </head>
 <body>
   <%= render 'maily/shared/header' %>
