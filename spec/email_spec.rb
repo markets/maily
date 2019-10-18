@@ -34,6 +34,13 @@ RSpec.describe Maily::Email do
       expect(email.arguments.size).to eq(email.required_arguments.size)
     end
 
+    it 'should handle array type arguments' do
+      email = mailer.find_email('notify')
+
+      expect(email.arguments.first).to be_an(Array)
+      expect(email.arguments.size).to eq(email.required_arguments.size)
+    end
+
     it ".call" do
       expect { email.call }.to_not raise_error
     end
