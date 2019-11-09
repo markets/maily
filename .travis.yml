@@ -2,10 +2,9 @@ language: ruby
 cache: bundler
 rvm:
   - ruby-head
-  - 2.6.2
-  - 2.5.5
-  - 2.4.5
-  - 2.3.8
+  - 2.6.5
+  - 2.5.7
+  - 2.4.9
 gemfile:
   - gemfiles/rails_6.0.gemfile
   - gemfiles/rails_5.2.gemfile
@@ -19,9 +18,7 @@ before_install:
   - rvm @global do yes | gem install bundler -v '< 2'
 matrix:
   exclude:
-    - rvm: 2.4.5
-      gemfile: gemfiles/rails_6.0.gemfile
-    - rvm: 2.3.8
+    - rvm: 2.4.9
       gemfile: gemfiles/rails_6.0.gemfile
   allow_failures:
     - rvm: ruby-head
