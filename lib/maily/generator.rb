@@ -23,7 +23,13 @@ module Maily
         end
       end
 
-      fixtures = fixtures.flatten.uniq.map { |f| "#{f.to_s} = ''" }.join("\n")
+      fixtures = fixtures.flatten.uniq.map do |fixture|
+        argument = fixture.to_s
+        value = argument.pluralize == argument ? '[]' : "''"
+
+        [argument, value].join(' = ')
+      end.join("\n")
+
       hooks    = hooks.join("\n")
 
       fixtures + "\n" + hooks + "\n"

@@ -41,7 +41,7 @@ module Maily
 
     def register_hook(email_name, *args)
       email = find_email(email_name) || add_email(email_name)
-      email && email.register_hook(args)
+      email && email.register_hook(*args)
     end
 
     def hide_email(*email_names)

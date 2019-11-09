@@ -12,6 +12,10 @@ class Notifier < ApplicationMailer
     mail
   end
 
+  def notify(emails)
+    mail
+  end
+
   def recommendation(email)
     mail template_path: 'notifications'
   end
