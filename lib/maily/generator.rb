@@ -30,9 +30,7 @@ module Maily
         [argument, value].join(' = ')
       end.join("\n")
 
-      hooks    = hooks.join("\n")
-
-      fixtures + "\n" + hooks + "\n"
+      fixtures + "\n" + hooks.join("\n") + "\n"
     end
   end
 end
