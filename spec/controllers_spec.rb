@@ -73,5 +73,11 @@ RSpec.describe Maily::EmailsController, type: :controller do
 
       expect(response.body).to match("<p>Text part\n<br />with break lines</p>")
     end
+
+    it 'renders inline attachments' do
+      compatible_get :raw, mailer: 'notifier', email: 'with_inline_attachments'
+
+      expect(response.body).to match("data:image/jpeg;base64")
+    end
   end
 end
