@@ -25,6 +25,7 @@ module Maily
 
       content = content.raw_source
       content = view_context.simple_format(content) if @email.sub_type == 'plain' || params[:part] == 'text'
+      content = prepare_inline_attachments(@email, content)
 
       render html: content.html_safe, layout: false
     end
@@ -78,6 +79,20 @@ module Maily
       I18n.with_locale(params[:locale]) do
         yield
       end
+    end
+
+    def prepare_inline_attachments(email, content)
+      content.gsub(/src=(?:"cid:[^"]+"|'cid:[^']+')/i) do |match|
+        if part = find_part(email, match[9..-2])
+          %[src="data:#{part.mime_type};base64,#{Base64.encode64(part.body.raw_source)}"]
+        else
+          match
+        end
+      end
+    end
+
+    def find_part(email, cid)
+      email.all_parts.find { |p| p.attachment? && p.cid == cid }
     end
   end
 end

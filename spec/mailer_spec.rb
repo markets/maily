@@ -6,7 +6,7 @@ RSpec.describe Maily::Mailer do
   end
 
   it "should build emails" do
-    expect(mailer.emails.size).to eq(10)
+    expect(mailer.emails.size).to eq(11)
   end
 
   it "should find mailers by name" do

@@ -39,4 +39,9 @@ class Notifier < ApplicationMailer
   def with_slim_template
     mail
   end
+
+  def with_inline_attachments
+    attachments.inline['image.jpg'] = File.read(Rails.root.join("public/favicon.ico"))
+    mail
+  end
 end
