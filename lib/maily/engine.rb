@@ -6,7 +6,8 @@ module Maily
     config.assets.precompile << %w(
       maily/application.css
       maily/logo.png
-      maily/icons/*.svg
+      maily/icons/globe.svg
+      maily/icons/paperclip.svg
     )
   end
 end
