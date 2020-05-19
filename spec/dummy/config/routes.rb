@@ -1,3 +1,3 @@
 Dummy::Application.routes.draw do
-  root "application#home"
+  root "welcome#index"
 end
