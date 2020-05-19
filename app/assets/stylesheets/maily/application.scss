@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css?family=Josefin+Sans:light");
-
 @import "maily/variables";
 
 /* Body */
@@ -23,19 +21,17 @@ input {
   font-family: inherit;
   height: 1.2em;
   border: solid 1px $grey;
-  border-radius: 2px;
+  border-radius: 6px;
   background: #fff;
   line-height: 1;
+  padding-left: 0.5em;
 }
 
-::-webkit-input-placeholder {
-  padding: 0 .2em;
-  vertical-align: bottom;
+::-webkit-input-placeholder, ::-moz-placeholder {
   font-weight: 300;
+  font-size: 0.8em;
+  color: red;
 }
-:-moz-placeholder { font-size: 0.6em; }
-::-moz-placeholder { font-size: 0.6em; }
-:-ms-input-placeholder { font-size: 0.6em; }
 
 /* Header */
 header.header, footer.footer {
@@ -47,18 +43,22 @@ header.header, footer.footer {
 }
 
 header.header {
-  padding: 1em;
+  padding: 0.6em;
   top: 0;
   box-shadow: 0 .0625em .3125em rgba(0,0,0, .15);
 
   .logo_link {
-    color: $textColor;
-    font: 400 2em/1 'Josefin Sans';
-    margin-left: 10px;
+    margin-left: 1em;
 
-    img, span {
-      vertical-align: text-bottom;
+    img {
+      height: 45px;
     }
+  }
+
+  .back_to_app {
+    float: right;
+    margin-right: 2em;
+    margin-top: 1em;
   }
 }
 
@@ -67,7 +67,7 @@ footer.footer {
   padding: 0 1em;
   bottom: 0;
   box-shadow: 0 -.0625em .3125em rgba(0,0,0, .15);
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-family: inherit;
   font-size: .9em;
 }
 
@@ -110,6 +110,8 @@ footer.footer {
 
     li.languages {
       float: right;
+
+      a { font-size: 0.9em; }
     }
   }
 
@@ -175,7 +177,7 @@ footer.footer {
       padding-top: 1em;
       border: none;
       border-top: solid 1px $grey;
-      border-radius: 2px;
+      border-radius: 3px;
       min-height: 100px;
     }
   }
@@ -186,6 +188,7 @@ footer.footer {
   }
 
   .button {
+    cursor: pointer;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     padding: 0;
@@ -262,19 +265,9 @@ aside.sidebar {
           text-decoration: none;
           font-size: .9em;
 
-          &.selected_mail {
+          &:hover, &.selected_mail {
             color: darken($linkColor, 20%);
             font-weight: bold;
-
-            &:before {
-              content: "\003E";
-              font-weight: bolder;
-              font-size: 1.2em;
-              margin-right: 2px;
-            }
-          }
-          &:hover {
-            color: darken($linkColor, 20%);
           }
         }
       }
@@ -287,12 +280,6 @@ aside.sidebar {
   border-radius: 3px;
   padding: 16px;
   margin-bottom: 1.1em;
-}
-.alert-warning {
-  color: $red;
-  background-color: lighten($red, 40%);
-}
-.alert-success {
   color: #fff;
   background-color: darken($blue, 20%);
 }

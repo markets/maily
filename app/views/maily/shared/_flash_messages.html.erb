@@ -1,7 +1,7 @@
 <% if flash[:alert].present? %>
-  <div class="alert alert-warning"><%= flash[:alert].html_safe %></div>
+  <div class="alert"><%= flash[:alert].html_safe %></div>
 <% end %>
 
 <% if flash[:notice].present? %>
-  <div class="alert alert-success"><%= flash[:notice].html_safe %></div>
+  <div class="alert"><%= flash[:notice].html_safe %></div>
 <% end %>
