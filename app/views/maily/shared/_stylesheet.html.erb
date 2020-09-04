@@ -1,0 +1,273 @@
+<% blue = "#59abc6" %>
+<% grey = "#ccc" %>
+<% white = "#fff" %>
+<% bluegrey = "#2f738a" %>
+<% darkgrey = "#666" %>
+<% textColor = "#333" %>
+<% linkColor = blue %>
+<% hoverColor = bluegrey %>
+
+<style>
+  /* Body */
+  body {
+    color: <%= textColor %>;
+    font-size: 1em;
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+  }
+  body a {
+    color: <%= linkColor %>;
+    text-decoration: none;
+  }
+  body a:hover {
+    color: <%= hoverColor %>;
+  }
+
+  /* Inputs */
+  input {
+    font-size: 100%;
+    font-family: inherit;
+    height: 1.2em;
+    border: solid 1px <%= grey %>;
+    border-radius: 6px;
+    background: <%= white %>;
+    line-height: 1;
+    padding-left: 0.5em;
+  }
+
+  ::-webkit-input-placeholder, ::-moz-placeholder {
+    font-weight: 300;
+    font-size: 0.8em;
+    color: <%= darkgrey %>;
+  }
+
+  /* Header */
+  header.header, footer.footer {
+    position: fixed;
+    left: 0;
+    z-index: 99;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+  }
+
+  header.header {
+    padding: 0.6em;
+    top: 0;
+    box-shadow: 0 0.0625em 0.3125em rgba(0, 0, 0, 0.15);
+  }
+  header.header .logo_link {
+    margin-left: 1em;
+  }
+  header.header .logo_link img {
+    height: 45px;
+  }
+  header.header .logo_link span {
+    font-size: 2em;
+  }
+  header.header .back_to_app {
+    float: right;
+    margin-right: 2em;
+    margin-top: 1em;
+  }
+
+  /* Footer */
+  footer.footer {
+    padding: 0 1em;
+    bottom: 0;
+    box-shadow: 0 -0.0625em 0.3125em rgba(0, 0, 0, 0.15);
+    font-family: inherit;
+    font-size: 0.9em;
+  }
+
+  /* Main content */
+  .wrap_content {
+    display: inline-block;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    padding: 6em 0.75em 4em;
+    width: 100%;
+  }
+
+  .content {
+    margin-right: 2em;
+    margin-left: 1em;
+    padding-left: 20%;
+  }
+  .content ul.action_bar {
+    margin: 0 0 5px;
+    padding: 0;
+    list-style: none;
+    font-size: 1.2em;
+  }
+  .content ul.action_bar, .content ul.action_bar ul {
+    display: inline-block;
+    width: 100%;
+  }
+  .content ul.action_bar li, .content ul.action_bar ul li {
+    float: left;
+    margin-right: 0.5em;
+  }
+  .content ul.action_bar li:last-child, .content ul.action_bar ul li:last-child {
+    margin-right: 0;
+  }
+  .content ul.action_bar ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .content ul.action_bar li.languages {
+    float: right;
+  }
+  .content ul.action_bar li.languages a {
+    font-size: 0.9em;
+  }
+  .content li.splitter {
+    width: 1px;
+    border-left: 1px <%= grey %> solid;
+    text-indent: -999999em;
+  }
+  .content .mail_description {
+    margin-bottom: 2em;
+  }
+  .content .mail_deliver ul li {
+    float: left;
+    margin-right: 0.4em;
+  }
+  .content .mail_preview {
+    height: 100%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    padding: 1em;
+    border: solid 1px <%= grey %>;
+    border-radius: 3px;
+  }
+  .content .mail_preview .mail_details {
+    margin: 0 0 1em 0;
+    padding: 0;
+    color: <%= darkgrey %>;
+    list-style: none;
+    font-size: 0.8em;
+  }
+  .content .mail_preview .mail_details li {
+    line-height: 1.5em;
+  }
+  .content .mail_preview .mail_attachments {
+    padding: 1em 0 0 0;
+    border-top: solid 1px <%= grey %>;
+    color: <%= darkgrey %>;
+    list-style: none;
+    font-size: 0.8em;
+  }
+  .content .mail_preview .mail_attachments ul {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    list-style: none;
+  }
+  .content .mail_preview .mail_attachments ul li {
+    float: left;
+    margin: 1em 1em 0 0;
+  }
+  .content .mail_preview iframe.mail_iframe {
+    padding-top: 1em;
+    border: none;
+    border-top: solid 1px <%= grey %>;
+    border-radius: 3px;
+    min-height: 100px;
+  }
+  .content .welcome_message {
+    margin-top: 3em;
+    max-width: 80%;
+  }
+  .content .button {
+    cursor: pointer;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    padding: 0;
+    border: none;
+    background: none;
+    color: <%= linkColor %>;
+  }
+  .content .button:hover {
+    color: <%= hoverColor %>;
+  }
+  .content .format_mail {
+    position: relative;
+    display: inline-block;
+    float: right;
+    margin: -2em 0 0 0;
+    padding: 0;
+    width: 6.5em;
+    list-style: none;
+  }
+  .content .format_mail li {
+    float: left;
+  }
+  .content .format_mail li a.format_selected {
+    color: <%= hoverColor %>;
+    font-weight: bold;
+  }
+  .content .format_mail li + li {
+    margin: 0 0 0 0.4em;
+    padding: 0 0 0 0.4em;
+    border-left: solid 1px <%= grey %>;
+  }
+  .content .mail_updatearea {
+    position: relative;
+    overflow: visible;
+    min-height: 450px;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  /* Sidebar */
+  aside.sidebar {
+    float: left;
+    width: 20%;
+    max-height: 90vh;
+    overflow-y: scroll;
+  }
+  aside.sidebar section.nav_list {
+    margin: 0 0 1.5em 1.5em;
+  }
+  aside.sidebar section.nav_list .nav_title {
+    margin: 0 0 0.4em;
+    font-weight: 400;
+    font-size: 1.2em;
+  }
+  aside.sidebar section.nav_list ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  aside.sidebar section.nav_list ul li {
+    margin-bottom: 0.4em;
+    list-style: none;
+  }
+  aside.sidebar section.nav_list ul li a {
+    color: <%= linkColor %>;
+    text-decoration: none;
+    font-size: 0.9em;
+  }
+  aside.sidebar section.nav_list ul li a:hover, aside.sidebar section.nav_list ul li a.selected_mail {
+    color: <%= hoverColor %>;
+    font-weight: bold;
+  }
+
+  /* Alert messages */
+  .alert {
+    border-radius: 3px;
+    padding: 16px;
+    margin-bottom: 1.1em;
+    color: <%= white %>;
+    background-color: <%= bluegrey %>;
+  }
+
+  /* Icons */
+  img.icon {
+    width: 20px;
+    font-size: 0.9em;
+    vertical-align: bottom;
+  }
+</style>
