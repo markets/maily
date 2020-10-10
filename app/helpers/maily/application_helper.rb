@@ -15,11 +15,11 @@ module Maily
     end
 
     def logo
-      content_tag(:img, '', src: file_to_base64('maily/logo.png', 'image/png'))
+      image_tag(file_to_base64('maily/logo.png', 'image/png'))
     end
 
     def icon(name)
-      content_tag(:img, '', src: file_to_base64("maily/icons/#{name}.svg", 'image/svg+xml'), class: :icon)
+      image_tag(file_to_base64("maily/icons/#{name}.svg", 'image/svg+xml'), class: :icon)
     end
 
     private

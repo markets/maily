@@ -1,11 +1,12 @@
-<% blue = "#59abc6" %>
-<% grey = "#ccc" %>
-<% white = "#fff" %>
-<% bluegrey = "#2f738a" %>
-<% darkgrey = "#666" %>
-<% textColor = "#333" %>
-<% linkColor = blue %>
-<% hoverColor = bluegrey %>
+<%
+  blue       = "#59abc6"
+  grey       = "#cccccc"
+  bluegrey   = "#2f738a"
+  darkgrey   = "#666666"
+  textColor  = "#333333"
+  linkColor  = blue
+  hoverColor = bluegrey
+%>
 
 <style>
   /* Body */
@@ -14,11 +15,25 @@
     font-size: 1em;
     font-family: "Helvetica Neue", Helvetica, sans-serif;
   }
-  body a {
+
+  /* Links & Buttons */
+  a {
     color: <%= linkColor %>;
     text-decoration: none;
   }
-  body a:hover {
+  a:hover {
+    color: <%= hoverColor %>;
+  }
+  .button {
+    cursor: pointer;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    padding: 0;
+    border: none;
+    background: none;
+    color: <%= linkColor %>;
+  }
+  .button:hover {
     color: <%= hoverColor %>;
   }
 
@@ -29,7 +44,7 @@
     height: 1.2em;
     border: solid 1px <%= grey %>;
     border-radius: 6px;
-    background: <%= white %>;
+    background: "#ffffff";
     line-height: 1;
     padding-left: 0.5em;
   }
@@ -48,7 +63,6 @@
     width: 100%;
     background-color: rgba(255, 255, 255, 0.95);
   }
-
   header.header {
     padding: 0.6em;
     top: 0;
@@ -59,9 +73,6 @@
   }
   header.header .logo_link img {
     height: 45px;
-  }
-  header.header .logo_link span {
-    font-size: 2em;
   }
   header.header .back_to_app {
     float: right;
@@ -86,53 +97,52 @@
     padding: 6em 0.75em 4em;
     width: 100%;
   }
-
   .content {
     margin-right: 2em;
     margin-left: 1em;
     padding-left: 20%;
   }
-  .content ul.action_bar {
+  ul.action_bar {
     margin: 0 0 5px;
     padding: 0;
     list-style: none;
     font-size: 1.2em;
   }
-  .content ul.action_bar, .content ul.action_bar ul {
+  ul.action_bar, ul.action_bar ul {
     display: inline-block;
     width: 100%;
   }
-  .content ul.action_bar li, .content ul.action_bar ul li {
+  ul.action_bar li, ul.action_bar ul li {
     float: left;
     margin-right: 0.5em;
   }
-  .content ul.action_bar li:last-child, .content ul.action_bar ul li:last-child {
+  ul.action_bar li:last-child, ul.action_bar ul li:last-child {
     margin-right: 0;
   }
-  .content ul.action_bar ul {
+  ul.action_bar ul {
     margin: 0;
     padding: 0;
     list-style: none;
   }
-  .content ul.action_bar li.languages {
+  ul.action_bar li.languages {
     float: right;
   }
-  .content ul.action_bar li.languages a {
+  ul.action_bar li.languages a {
     font-size: 0.9em;
   }
-  .content li.splitter {
+  li.splitter {
     width: 1px;
     border-left: 1px <%= grey %> solid;
     text-indent: -999999em;
   }
-  .content .mail_description {
+  .mail_description {
     margin-bottom: 2em;
   }
-  .content .mail_deliver ul li {
+  .mail_deliver ul li {
     float: left;
     margin-right: 0.4em;
   }
-  .content .mail_preview {
+  .mail_preview {
     height: 100%;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -140,58 +150,46 @@
     border: solid 1px <%= grey %>;
     border-radius: 3px;
   }
-  .content .mail_preview .mail_details {
+  .mail_preview .mail_details {
     margin: 0 0 1em 0;
     padding: 0;
     color: <%= darkgrey %>;
     list-style: none;
     font-size: 0.8em;
   }
-  .content .mail_preview .mail_details li {
+  .mail_preview .mail_details li {
     line-height: 1.5em;
   }
-  .content .mail_preview .mail_attachments {
+  .mail_preview .mail_attachments {
     padding: 1em 0 0 0;
     border-top: solid 1px <%= grey %>;
     color: <%= darkgrey %>;
     list-style: none;
     font-size: 0.8em;
   }
-  .content .mail_preview .mail_attachments ul {
+  .mail_preview .mail_attachments ul {
     display: inline-block;
     margin: 0;
     padding: 0;
     width: 100%;
     list-style: none;
   }
-  .content .mail_preview .mail_attachments ul li {
+  .mail_preview .mail_attachments ul li {
     float: left;
     margin: 1em 1em 0 0;
   }
-  .content .mail_preview iframe.mail_iframe {
+  .mail_preview iframe.mail_iframe {
     padding-top: 1em;
     border: none;
     border-top: solid 1px <%= grey %>;
     border-radius: 3px;
     min-height: 100px;
   }
-  .content .welcome_message {
+  .welcome_message {
     margin-top: 3em;
     max-width: 80%;
   }
-  .content .button {
-    cursor: pointer;
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    padding: 0;
-    border: none;
-    background: none;
-    color: <%= linkColor %>;
-  }
-  .content .button:hover {
-    color: <%= hoverColor %>;
-  }
-  .content .format_mail {
+  .format_mail {
     position: relative;
     display: inline-block;
     float: right;
@@ -200,19 +198,19 @@
     width: 6.5em;
     list-style: none;
   }
-  .content .format_mail li {
+  .format_mail li {
     float: left;
   }
-  .content .format_mail li a.format_selected {
+  .format_mail li a.format_selected {
     color: <%= hoverColor %>;
     font-weight: bold;
   }
-  .content .format_mail li + li {
+  .format_mail li + li {
     margin: 0 0 0 0.4em;
     padding: 0 0 0 0.4em;
     border-left: solid 1px <%= grey %>;
   }
-  .content .mail_updatearea {
+  .mail_updatearea {
     position: relative;
     overflow: visible;
     min-height: 450px;
@@ -260,7 +258,7 @@
     border-radius: 3px;
     padding: 16px;
     margin-bottom: 1.1em;
-    color: <%= white %>;
+    color: "#ffffff";
     background-color: <%= bluegrey %>;
   }
 
