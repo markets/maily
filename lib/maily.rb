@@ -10,9 +10,9 @@ module Maily
                   :base_controller, :http_authorization, :hooks_path, :welcome_message
 
     def init!
-      self.enabled            = Rails.env.production? ? false : true
-      self.allow_edition      = Rails.env.production? ? false : true
-      self.allow_delivery     = Rails.env.production? ? false : true
+      self.enabled            = !Rails.env.production?
+      self.allow_edition      = !Rails.env.production?
+      self.allow_delivery     = !Rails.env.production?
       self.available_locales  = Rails.application.config.i18n.available_locales || I18n.available_locales
       self.base_controller    = 'ActionController::Base'
       self.http_authorization = nil

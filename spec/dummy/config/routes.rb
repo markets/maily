@@ -1,3 +1,5 @@
 Dummy::Application.routes.draw do
-  root "welcome#index"
+  mount Maily::Engine, at: '/maily'
+
+  root to: redirect('/maily')
 end

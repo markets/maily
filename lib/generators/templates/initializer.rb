@@ -1,12 +1,12 @@
 Maily.setup do |config|
   # On/off engine
-  # config.enabled = Rails.env.production? ? false : true
+  # config.enabled = !Rails.env.production?
 
   # Allow templates edition
-  # config.allow_edition = Rails.env.production? ? false : true
+  # config.allow_edition = !Rails.env.production?
 
   # Allow deliveries
-  # config.allow_delivery = Rails.env.production? ? false : true
+  # config.allow_delivery = !Rails.env.production?
 
   # Your application available_locales (or I18n.available_locales) by default
   # config.available_locales = [:en, :es, :pt, :fr]
