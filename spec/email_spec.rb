@@ -2,7 +2,7 @@ RSpec.describe Maily::Email do
   let(:mailer) { Maily::Mailer.find('notifier') }
 
   context "with no arguments" do
-    let (:email) { mailer.find_email('welcome') }
+    let (:email) { mailer.find_email('no_arguments') }
 
     it "should not require hook" do
       expect(email.required_arguments).to be_blank
@@ -15,7 +15,7 @@ RSpec.describe Maily::Email do
   end
 
   context "with arguments" do
-    let (:email) { mailer.find_email('invitation') }
+    let (:email) { mailer.find_email('with_arguments') }
 
     it "should require hook" do
       expect(email.required_arguments).to be_present
@@ -35,7 +35,7 @@ RSpec.describe Maily::Email do
     end
 
     it 'should handle array type arguments' do
-      email = mailer.find_email('notify')
+      email = mailer.find_email('with_array_arguments')
 
       expect(email.arguments.first).to be_an(Array)
       expect(email.arguments.size).to eq(email.required_arguments.size)
@@ -47,7 +47,7 @@ RSpec.describe Maily::Email do
   end
 
   context "with params" do
-    let (:email) { mailer.find_email('new_message') }
+    let (:email) { mailer.find_email('with_params') }
 
     it "should not require hook" do
       expect(email.required_arguments).to be_blank
@@ -68,7 +68,7 @@ RSpec.describe Maily::Email do
   end
 
   it "should handle template_path via hook" do
-    email = mailer.find_email('recommendation')
+    email = mailer.find_email('custom_template_path')
 
     expect(email.template_path).to eq('notifications')
   end
@@ -76,30 +76,30 @@ RSpec.describe Maily::Email do
   it "should handle template_name via hook" do
     email = mailer.find_email('custom_template_name')
 
-    expect(email.template_name).to eq('invitation')
+    expect(email.template_name).to eq('custom_template')
   end
 
   it "should handle description via hook" do
-    email = mailer.find_email('recommendation')
+    email = mailer.find_email('custom_template_path')
 
     expect(email.description).to eq('description')
   end
 
   describe '#validate_arguments' do
     it 'emails with no arguments required' do
-      email = mailer.find_email('welcome')
+      email = mailer.find_email('no_arguments')
       expect(email.validate_arguments).to eq [true, nil]
 
       email.arguments = ["asd"]
-      expect(email.validate_arguments[1]).to  eq("welcome email requires at the most 0 arguments, passed 1")
+      expect(email.validate_arguments[1]).to match(/email requires at the most 0 arguments, passed 1/)
     end
 
     it 'emails with arguments required' do
-      email = mailer.find_email('invitation')
+      email = mailer.find_email('with_arguments')
       expect(email.validate_arguments).to eq [true, nil]
 
-      email = mailer.find_email('recommendation')
-      expect(email.validate_arguments[1]).to eq("recommendation email requires at least 1 arguments, passed 0")
+      email = mailer.find_email('custom_template_path')
+      expect(email.validate_arguments[1]).to match(/email requires at least 1 arguments, passed 0/)
     end
   end
 

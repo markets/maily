@@ -14,11 +14,11 @@ RSpec.describe Maily::Mailer do
   end
 
   it "should find emails by name" do
-    expect(mailer.find_email('welcome').name).to eq('welcome')
+    expect(mailer.find_email('no_arguments').name).to eq('no_arguments')
   end
 
   it "allow to add inherited emails via a hook" do
-    expect(mailer.find_email('generic_welcome').name).to eq('generic_welcome')
+    expect(mailer.find_email('from_other_class').name).to eq('from_other_class')
   end
 
   it "allows to hide email" do

@@ -54,9 +54,9 @@ RSpec.describe Maily::EmailsController, type: :controller do
 
   describe 'GET #raw' do
     it 'renders the template (HTML part)' do
-      get :raw, params: { mailer: 'notifier', email: 'invitation' }
+      get :raw, params: { mailer: 'notifier', email: 'with_arguments' }
 
-      expect(response.body).to match("<h1>Invitation</h1>")
+      expect(response.body).to match("<h1>With arguments</h1>")
     end
 
     it 'renders the template (TEXT part)' do

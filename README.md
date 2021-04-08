@@ -208,7 +208,7 @@ Maily.http_authorization = { username: 'admin', password: 'secret' }
 
 Rails 4.1 introduced a built-in mechanism to preview the application emails. It is in fact, a port of [basecamp/mail_view](https://github.com/basecamp/mail_view) gem to the core.
 
-Alternatively, there are more gems out there to get a similar functionality, but with different approaches and features. Like for example, [ryanb/letter_opener](https://github.com/ryanb/letter_opener), [sj26/mailcatcher](https://github.com/sj26/mailcatcher) or [glebm/rails_email_preview](https://github.com/glebm/rails_email_preview).
+Alternatively, there are more gems out there to get a similar functionality, but with different approaches and features. Like for example: [ryanb/letter_opener](https://github.com/ryanb/letter_opener), [sj26/mailcatcher](https://github.com/sj26/mailcatcher) or [glebm/rails_email_preview](https://github.com/glebm/rails_email_preview).
 
 ## Development
 
