@@ -1,6 +1,6 @@
 module Maily
   class Email
-    attr_accessor :name, :mailer, :arguments, :template_path, :template_name, :description, :with_params
+    attr_accessor :name, :mailer, :arguments, :template_path, :template_name, :description, :with_params, :version
 
     def initialize(name, mailer)
       self.name          = name
@@ -10,6 +10,7 @@ module Maily
       self.template_path = mailer.name
       self.template_name = name
       self.description   = nil
+      self.version       = nil
     end
 
     def mailer_klass
@@ -69,6 +70,8 @@ module Maily
 
         self.with_params = args.last.delete(:with_params)
 
+        self.version = Maily::Email.formatted_version(args.last.delete(:version))
+
         args.pop
       end
 
@@ -107,6 +110,25 @@ module Maily
     def update_template(new_content, part = nil)
       File.open(path(part), 'w') do |f|
         f.write(new_content)
+      end
+    end
+
+    def versions
+      return [] if self.version.present?
+
+      regexp = Regexp.new("#{self.name}:.")
+      self.mailer.emails.select do |email_key, _email|
+        email_key.match(regexp)
+      end
+    end
+
+    class << self
+      def name_with_version(name, version)
+        [name, version].compact.join(':')
+      end
+
+      def formatted_version(version)
+        version.try(:parameterize).try(:underscore)
       end
     end
   end

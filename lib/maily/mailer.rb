@@ -27,8 +27,9 @@ module Maily
       all[mailer_name]
     end
 
-    def find_email(email_name)
-      emails[email_name.to_s]
+    def find_email(email_name, version = nil)
+      key = Maily::Email.name_with_version(email_name, version)
+      emails[key]
     end
 
     def emails_list
@@ -40,7 +41,8 @@ module Maily
     end
 
     def register_hook(email_name, *args)
-      email = find_email(email_name) || add_email(email_name)
+      version = get_version(*args)
+      email = find_email(email_name, version) || add_email(email_name, version)
       email && email.register_hook(*args)
     end
 
@@ -60,9 +62,16 @@ module Maily
       end
     end
 
-    def add_email(email_name)
+    def add_email(email_name, version = nil)
       email = Maily::Email.new(email_name.to_s, self)
-      self.emails[email.name] = email
+      key   = Maily::Email.name_with_version(email_name, version)
+      self.emails[key] = email
+    end
+
+    def get_version(*args)
+      return unless args.last.is_a?(Hash)
+
+      Maily::Email.formatted_version(args.last[:version])
     end
   end
 end
