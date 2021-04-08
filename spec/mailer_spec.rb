@@ -17,6 +17,14 @@ RSpec.describe Maily::Mailer do
     expect(mailer.find_email('welcome').name).to eq('welcome')
   end
 
+  it "should find emails by name and version" do
+    email_name = 'generic_welcome'
+    version    = Maily::Email.formatted_version('Custom version')
+    email      = mailer.find_email(email_name, version)
+    expect(email.name).to eq(email_name)
+    expect(email.version).to eq(version)
+  end
+
   it "allow to add inherited emails via a hook" do
     expect(mailer.find_email('generic_welcome').name).to eq('generic_welcome')
   end
