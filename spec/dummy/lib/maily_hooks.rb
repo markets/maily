@@ -10,7 +10,6 @@ Maily.hooks_for('Notifier') do |mailer|
   mailer.register_hook(:custom_template_name, template_name: 'invitation')
   mailer.register_hook(:generic_welcome)
   mailer.register_hook(:generic_welcome, version: 'Custom version')
-  mailer.register_hook(:generic_welcome, version: 'Second custom version')
 
   mailer.hide_email(:hidden)
 end
