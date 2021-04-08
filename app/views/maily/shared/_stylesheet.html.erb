@@ -135,8 +135,7 @@
     -moz-box-sizing: border-box;
     border: solid 1px #cccccc;
     border-radius: 3px;
-    margin: 0;
-    margin-top: 2%;
+    margin: 2% 0;
   }
   ul.version_list {
     font-size: 1em;
@@ -265,7 +264,10 @@
     text-decoration: none;
     font-size: 0.9em;
   }
-  aside.sidebar section.nav_list ul li a:hover, aside.sidebar section.nav_list ul li a.selected_mail {
+  aside.sidebar section.nav_list ul li a:hover,
+  aside.sidebar section.nav_list ul li a.selected_mail,
+  .version_list__wrapper ul.version_list li a.selected_mail,
+  .version_list__wrapper ul.version_list li a:hover {
     color: <%= hoverColor %>;
     font-weight: bold;
   }

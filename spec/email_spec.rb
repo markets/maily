@@ -122,7 +122,7 @@ RSpec.describe Maily::Email do
   context 'class methods' do
     describe '#name_with_version' do
       it 'without version' do
-        expect(Maily::Email.name_with_version('welcome', nil)).to eq('welcome')
+        expect(Maily::Email.name_with_version('welcome', nil)).to eq("welcome:#{Maily::Email::DEFAULT_VERSION}")
       end
 
       it 'with version' do
@@ -132,7 +132,7 @@ RSpec.describe Maily::Email do
 
     describe '#formatted_version' do
       it 'without version' do
-        expect(Maily::Email.formatted_version(nil)).to be_nil
+        expect(Maily::Email.formatted_version(nil)).to eq(Maily::Email.formatted_version(Maily::Email::DEFAULT_VERSION))
       end
 
       it 'with version' do

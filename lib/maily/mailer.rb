@@ -48,7 +48,8 @@ module Maily
 
     def hide_email(*email_names)
       email_names.each do |email_name|
-        emails.delete(email_name.to_s)
+        _email_name = Maily::Email.name_with_version(email_name.to_s)
+        emails.delete(_email_name)
       end
     end
 

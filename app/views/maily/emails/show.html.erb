@@ -1,11 +1,6 @@
 <%= email_description(@maily_email) %>
 
 <ul class="action_bar">
-  <% if @maily_email.version.present? %>
-    <li><%= link_to "Original email", maily_email_path(mailer: params[:mailer], email: params[:email]) %></li>
-    <li class="splitter">|</li>
-  <% end %>
-
   <li>
     <%= link_to 'Edit', edit_maily_email_path(mailer: params[:mailer], email: params[:email], version: params[:version], part: params[:part]) %>
   </li>
@@ -35,6 +30,17 @@
     <% end %>
   </li>
 </ul>
+
+<% if @maily_email.versions.count > 1 %>
+  <fieldset class="version_list__wrapper">
+    <legend>Versions</legend>
+    <ul class="version_list">
+      <% @maily_email.versions.each do |_version_key, version_email| %>
+        <li><%= link_to version_email.version.humanize, maily_email_path(mailer: params[:mailer], email: params[:email], version: version_email.version), class: version_list_class(version_email) %></li>
+      <% end %>
+    </ul>
+  </fieldset>
+<% end %>
 
 <div class="mail_preview">
   <ul class="mail_details">
@@ -73,14 +79,3 @@
     </ul>
   <% end %>
 </div>
-
-<% if @maily_email.versions.any? %>
-  <fieldset class="version_list__wrapper">
-    <legend>Versions</legend>
-    <ul class="version_list">
-      <% @maily_email.versions.each do |_version_key, version_email| %>
-        <li><%= link_to version_email.version.humanize, maily_email_path(mailer: params[:mailer], email: params[:email], version: version_email.version) %></li>
-      <% end %>
-    </ul>
-  </fieldset>
-<% end %>
