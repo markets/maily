@@ -44,4 +44,9 @@ class Notifier < ApplicationMailer
     attachments.inline['image.jpg'] = File.read(Rails.root.join("public/favicon.ico"))
     mail
   end
+
+  def version(account)
+    @account = account
+    mail
+  end
 end
