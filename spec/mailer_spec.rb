@@ -6,7 +6,7 @@ RSpec.describe Maily::Mailer do
   end
 
   it "should build emails" do
-    expect(mailer.emails.size).to eq(12)
+    expect(mailer.emails.size).to eq(13)
   end
 
   it "should find mailers by name" do
@@ -18,8 +18,8 @@ RSpec.describe Maily::Mailer do
   end
 
   it "should find emails by name and version" do
-    email_name = 'from_other_class'
-    version    = Maily::Email.formatted_version('Custom version')
+    email_name = 'version'
+    version    = Maily::Email.formatted_version('Gold account')
     email      = mailer.find_email(email_name, version)
     expect(email.name).to eq(email_name)
     expect(email.version).to eq(version)
