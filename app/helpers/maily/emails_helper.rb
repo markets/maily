@@ -23,5 +23,9 @@ module Maily
         memo
       end
     end
+
+    def maily_params(mailer: nil, email: nil, version: nil)
+      { mailer: mailer || params[:mailer], email: email || params[:email], version: version || params[:version] }
+    end
   end
 end
