@@ -1,7 +1,20 @@
 module Maily
   class Email
     DEFAULT_VERSION = 'default'.freeze
+
     attr_accessor :name, :mailer, :arguments, :template_path, :template_name, :description, :with_params, :version
+
+    class << self
+      def name_with_version(name, version = nil)
+        _version = formatted_version(version)
+        [name, _version].join(':')
+      end
+
+      def formatted_version(version)
+        _version = version.presence || DEFAULT_VERSION
+        _version.try(:parameterize).try(:underscore)
+      end
+    end
 
     def initialize(name, mailer)
       self.name          = name
@@ -11,7 +24,6 @@ module Maily
       self.template_path = mailer.name
       self.template_name = name
       self.description   = nil
-      self.version       = Maily::Email.formatted_version(DEFAULT_VERSION)
     end
 
     def mailer_klass
@@ -119,18 +131,6 @@ module Maily
 
     def has_versions?
       versions.count > 1
-    end
-
-    class << self
-      def name_with_version(name, version = nil)
-        _version = formatted_version(version)
-        [name, _version].join(':')
-      end
-
-      def formatted_version(version)
-        _version = version.presence || DEFAULT_VERSION
-        _version.try(:parameterize).try(:underscore)
-      end
     end
   end
 end
