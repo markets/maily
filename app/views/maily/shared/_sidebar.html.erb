@@ -7,7 +7,7 @@
           <li>
             <%= link_to maily_email_path(mailer: mailer.name, email: email.name, version: email.version), class: sidebar_class(mailer, email) do %>
               <%= email.name.humanize %>
-              <% if email.versions.count > 1 %>
+              <% if email.has_versions? %>
                 <%= "(#{email.versions.count} #{'version'.pluralize(email.versions.count)})" %>
               <% end %>
             <% end %>

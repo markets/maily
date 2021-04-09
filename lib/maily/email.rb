@@ -117,6 +117,10 @@ module Maily
       end
     end
 
+    def has_versions?
+      versions.count > 1
+    end
+
     class << self
       def name_with_version(name, version = nil)
         _version = formatted_version(version)

@@ -31,7 +31,7 @@
   </li>
 </ul>
 
-<% if @maily_email.versions.count > 1 %>
+<% if @maily_email.has_versions? %>
   <fieldset class="version_list__wrapper">
     <legend>Versions</legend>
     <ul class="version_list">
