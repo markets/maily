@@ -19,12 +19,8 @@ module Maily
     end
 
     def parameterized_mailer_klass
-      if Rails.version >= '5.1'
-        params = with_params && with_params.transform_values { |param| param.respond_to?(:call) ? param.call : param }
-        mailer_klass.with(params)
-      else
-        mailer_klass
-      end
+      params = with_params && with_params.transform_values { |param| param.respond_to?(:call) ? param.call : param }
+      mailer_klass.with(params)
     end
 
     def parameters

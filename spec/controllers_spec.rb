@@ -1,15 +1,6 @@
 RSpec.describe Maily::EmailsController, type: :controller do
   render_views
 
-  # Rails 4 compatibility
-  def compatible_get(action, **params)
-    if ::Rails::VERSION::STRING > '5'
-      get action, params: params
-    else
-      get action, params
-    end
-  end
-
   routes { Maily::Engine.routes }
 
   before(:each) do
@@ -47,14 +38,14 @@ RSpec.describe Maily::EmailsController, type: :controller do
 
   describe 'non-existent emails' do
     it 'email not in the system -> 302' do
-      compatible_get :show, mailer: 'notifier', email: 'non_existent_email'
+      get :show, params: { mailer: 'notifier', email: 'non_existent_email' }
 
       expect(response.status).to eq(302)
       expect(flash.alert).to eq("Email not found!")
     end
 
     it 'hidden emails -> 302' do
-      compatible_get :show, mailer: 'notifier', email: 'hidden'
+      get :show, params: { mailer: 'notifier', email: 'hidden' }
 
       expect(response.status).to eq(302)
       expect(flash.alert).to eq("Email not found!")
@@ -63,19 +54,19 @@ RSpec.describe Maily::EmailsController, type: :controller do
 
   describe 'GET #raw' do
     it 'renders the template (HTML part)' do
-      compatible_get :raw, mailer: 'notifier', email: 'invitation'
+      get :raw, params: { mailer: 'notifier', email: 'with_arguments' }
 
-      expect(response.body).to match("<h1>Invitation</h1>")
+      expect(response.body).to match("<h1>With arguments</h1>")
     end
 
     it 'renders the template (TEXT part)' do
-      compatible_get :raw, mailer: 'notifier', email: 'only_text'
+      get :raw, params: { mailer: 'notifier', email: 'only_text' }
 
       expect(response.body).to match("<p>Text part\n<br />with break lines</p>")
     end
 
     it 'renders inline attachments' do
-      compatible_get :raw, mailer: 'notifier', email: 'with_inline_attachments'
+      get :raw, params: { mailer: 'notifier', email: 'with_inline_attachments' }
 
       expect(response.body).to match("data:image/jpeg;base64")
     end

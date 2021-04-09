@@ -1,27 +1,27 @@
 class Notifier < ApplicationMailer
-  def welcome
+  def no_arguments
     mail
   end
 
-  def invitation(email, opt_arg = nil)
+  def with_arguments(email, opt_arg = nil)
     mail
   end
 
-  def new_message
+  def with_array_arguments(emails)
+    mail
+  end
+
+  def with_params
     @message = params[:message]
     mail
   end
 
-  def notify(emails)
-    mail
-  end
-
-  def recommendation(email)
+  def custom_template_path(email)
     mail template_path: 'notifications'
   end
 
   def custom_template_name
-    mail template_name: 'invitation'
+    mail template_name: 'custom_template'
   end
 
   def hidden

@@ -50,27 +50,19 @@ This generator runs some tasks for you:
 
 ## Initialization and configuration
 
-You should configure Maily via an initializer. You can set different values per environment:
-
-```ruby
-Maily.enabled = ENV['MAILY_ENABLED']
-
-Maily.enabled = Rails.env.production? ? false : true
-```
-
-Initializer sample (full options list):
+You should use the `setup` method to configure and customize `Maily` settings:
 
  ```ruby
 # config/initializers/maily.rb
 Maily.setup do |config|
   # On/off engine
-  # config.enabled = Rails.env.production? ? false : true
+  # config.enabled = !Rails.env.production?
 
   # Allow templates edition
-  # config.allow_edition = Rails.env.production? ? false : true
+  # config.allow_edition = !Rails.env.production?
 
   # Allow deliveries
-  # config.allow_delivery = Rails.env.production? ? false : true
+  # config.allow_delivery = !Rails.env.production?
 
   # Your application available_locales (or I18n.available_locales) by default
   # config.available_locales = [:en, :es, :pt, :fr]
@@ -87,6 +79,13 @@ Maily.setup do |config|
   # Customize welcome message
   # config.welcome_message = "Welcome to our email testing platform. If you have any problem, please contact support team at support@example.com."
 end
+```
+
+You can use the following format too:
+
+```ruby
+Maily.enabled = ENV['MAILY_ENABLED']
+Maily.allow_edition = false
 ```
 
 ### Templates edition (`allow_edition` option)
@@ -209,7 +208,7 @@ Maily.http_authorization = { username: 'admin', password: 'secret' }
 
 Rails 4.1 introduced a built-in mechanism to preview the application emails. It is in fact, a port of [basecamp/mail_view](https://github.com/basecamp/mail_view) gem to the core.
 
-Alternatively, there are some other plugins to get a similar functionality, but with different approaches and options. For example, [ryanb/letter_opener](https://github.com/ryanb/letter_opener), [sj26/mailcatcher](https://github.com/sj26/mailcatcher) or [glebm/rails_email_preview](https://github.com/glebm/rails_email_preview).
+Alternatively, there are more gems out there to get a similar functionality, but with different approaches and features. Like for example: [ryanb/letter_opener](https://github.com/ryanb/letter_opener), [sj26/mailcatcher](https://github.com/sj26/mailcatcher) or [glebm/rails_email_preview](https://github.com/glebm/rails_email_preview).
 
 ## Development
 
@@ -217,7 +216,30 @@ Any kind of feedback, bug report, idea or enhancement are really appreciated :ta
 
 To contribute, just fork the repo, hack on it and send a pull request. Don't forget to add tests for behaviour changes and run the test suite:
 
-    > bundle exec appraisal rake
+```
+$ bundle exec rake
+```
+
+Run the test suite against all supported versions:
+
+```
+$ bundle exec appraisal install
+$ bundle exec appraisal rake
+```
+
+Run specs against specific version:
+
+```
+$ bundle exec appraisal rails-6.0 rake
+```
+
+### Demo
+
+Start a sample Rails app ([source code](spec/dummy)) with `Maily` integrated:
+
+```
+$ bundle exec rake web # PORT=4000 (default: 3000)
+```
 
 ## License
 
