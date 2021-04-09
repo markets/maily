@@ -156,6 +156,20 @@ Maily.hooks_for('Notifier') do |mailer|
 end
 ```
 
+### Email versions
+
+You can add versions for special emails. This is useful in some cases where template content depends on the parameters you provide, for instance, a welcome message for trial accounts and gold accounts.
+
+```ruby
+free_trial_account = -> { Account.free_trial.first }
+gold_account = -> { Account.gold.first }
+
+Maily.hooks_for('Notifier') do |mailer|
+  mailer.register_hook(:welcome, free_trial_account, version: 'Free trial account')
+  mailer.register_hook(:welcome, gold_account, version: 'Gold account')
+end
+```
+
 ### External emails
 
 If you want to register and display in the UI, emails from external sources, like for example a gem, you can do it by adding a hook. Example:
