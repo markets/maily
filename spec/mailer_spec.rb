@@ -18,7 +18,7 @@ RSpec.describe Maily::Mailer do
   end
 
   it "should find emails by name and version" do
-    email_name = 'generic_welcome'
+    email_name = 'from_other_class'
     version    = Maily::Email.formatted_version('Custom version')
     email      = mailer.find_email(email_name, version)
     expect(email.name).to eq(email_name)
