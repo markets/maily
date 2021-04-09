@@ -64,9 +64,10 @@ module Maily
     end
 
     def add_email(email_name, version = nil)
+      hide_email(email_name) if version
       email = Maily::Email.new(email_name.to_s, self)
       key   = Maily::Email.name_with_version(email_name, version)
-      self.emails[key] = email
+      emails[key] = email
     end
 
     def get_version(*args)
