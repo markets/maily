@@ -4,12 +4,14 @@ module Maily
 
     layout 'maily/application'
 
-    def maily_params(mailer: nil, email: nil, version: nil)
-      {
-        mailer: mailer || params[:mailer],
-        email: email || params[:email],
-        version: version || params[:version]
-      }
+    def maily_params
+      _params = {}
+
+      [:mailer, :email, :version, :part, :locale, :version].each do |key|
+        _params[key] = params[key] if params[key].present?
+      end
+
+      _params
     end
     helper_method :maily_params
 
