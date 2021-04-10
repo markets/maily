@@ -19,17 +19,17 @@ module Maily
     end
 
     def logo
-      image_tag(file_to_base64('maily/logo.png', 'image/png'))
+      image_tag(file_to_base64('logo.png', 'image/png'))
     end
 
     def icon(name)
-      image_tag(file_to_base64("maily/icons/#{name}.svg", 'image/svg+xml'), class: :icon)
+      image_tag(file_to_base64("icons/#{name}.svg", 'image/svg+xml'), class: :icon)
     end
 
     private
 
     def file_to_base64(path, mime_type)
-      file = Maily::Engine.root.join('app/assets/images').join(path)
+      file = Maily::Engine.root.join('app/assets/images/maily').join(path)
       base64_contents = Base64.strict_encode64(file.read)
 
       "data:#{mime_type};base64,#{base64_contents}"

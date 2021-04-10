@@ -80,7 +80,7 @@ RSpec.describe Maily::Email do
   end
 
   it "should handle description via hook" do
-    email = mailer.find_email('custom_template_path')
+    email = mailer.find_email('with_description')
 
     expect(email.description).to eq('description')
   end

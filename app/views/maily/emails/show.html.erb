@@ -2,7 +2,7 @@
 
 <ul class="action_bar">
   <li>
-    <%= link_to 'Edit', edit_maily_email_path(maily_params.merge(part: params[:part])) %>
+    <%= link_to 'Edit', edit_maily_email_path(maily_params) %>
   </li>
 
   <li class="languages">
@@ -21,7 +21,7 @@
   <li class="splitter">|</li>
 
   <li>
-    <%= form_tag(deliver_maily_email_path(maily_params.merge(locale: params[:locale])), method: :post, class: 'mail_deliver') do %>
+    <%= form_tag(deliver_maily_email_path(maily_params), method: :post, class: 'mail_deliver') do %>
       <ul>
         <li>Send to</li>
         <li><%= email_field_tag :to, nil, placeholder: "Enter email", required: true %></li>
@@ -36,7 +36,7 @@
     <legend>Versions</legend>
     <ul class="version_list">
       <% @maily_email.versions.each do |_version_key, version_email| %>
-        <li><%= link_to version_email.version.humanize, maily_email_path(maily_params(version: version_email.version)), class: version_list_class(version_email) %></li>
+        <li><%= link_to version_email.version.humanize, maily_email_path(maily_params.merge(version: version_email.version)), class: version_list_class(version_email) %></li>
       <% end %>
     </ul>
   </fieldset>
@@ -60,7 +60,7 @@
   <% end %>
 
   <% if @email.html_part || @email.text_part || @email.body.present? %>
-    <iframe class="mail_iframe" onload='resizeIframe(this)' src="<%= raw_maily_email_path(maily_params.merge({locale: params[:locale], part: params[:part]})) %>" frameborder="1" width="100%"></iframe>
+    <iframe class="mail_iframe" onload='resizeIframe(this)' src="<%= raw_maily_email_path(maily_params) %>" frameborder="1" width="100%"></iframe>
   <% end %>
 
   <% if @email.has_attachments? %>

@@ -1,7 +1,5 @@
 module Maily
   class EmailsController < Maily::ApplicationController
-    include Maily::EmailsHelper
-
     before_action :allowed_action?, only: [:edit, :update, :deliver]
     before_action :load_mailers, only: [:index, :show, :edit]
     before_action :load_mailer_and_email, except: [:index]
@@ -45,7 +43,7 @@ module Maily
     def update
       @maily_email.update_template(params[:body], params[:part])
 
-      redirect_to maily_email_path(maily_params.merge(part: params[:part])), notice: 'Template updated!'
+      redirect_to maily_email_path(maily_params), notice: 'Template updated!'
     end
 
     def deliver

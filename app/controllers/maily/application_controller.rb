@@ -4,6 +4,17 @@ module Maily
 
     layout 'maily/application'
 
+    def maily_params
+      _params = {}
+
+      [:mailer, :email, :version, :part, :locale, :version].each do |key|
+        _params[key] = params[key] if params[key].present?
+      end
+
+      _params
+    end
+    helper_method :maily_params
+
     private
 
     def maily_enabled?

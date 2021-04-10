@@ -1,28 +1,29 @@
 <%
-  blue       = "#59abc6"
-  grey       = "#cccccc"
-  bluegrey   = "#2f738a"
-  darkgrey   = "#666666"
-  textColor  = "#333333"
-  linkColor  = blue
-  hoverColor = bluegrey
+  blue          = "#59abc6"
+  grey          = "#cccccc"
+  dark_blue     = "#2f738a"
+  dark_grey     = "#666666"
+  text_color    = "#333333"
+  link_color    = blue
+  hover_color   = dark_blue
+  border_radius = "3px"
 %>
 
 <style>
   /* Body */
   body {
-    color: <%= textColor %>;
+    color: <%= text_color %>;
     font-size: 1em;
     font-family: "Helvetica Neue", Helvetica, sans-serif;
   }
 
   /* Links & Buttons */
   a {
-    color: <%= linkColor %>;
+    color: <%= link_color %>;
     text-decoration: none;
   }
   a:hover {
-    color: <%= hoverColor %>;
+    color: <%= hover_color %>;
   }
   .button {
     cursor: pointer;
@@ -31,10 +32,10 @@
     padding: 0;
     border: none;
     background: none;
-    color: <%= linkColor %>;
+    color: <%= link_color %>;
   }
   .button:hover {
-    color: <%= hoverColor %>;
+    color: <%= hover_color %>;
   }
 
   /* Inputs */
@@ -43,16 +44,16 @@
     font-family: inherit;
     height: 1.2em;
     border: solid 1px <%= grey %>;
-    border-radius: 6px;
-    background: "#ffffff";
+    border-radius: <%= border_radius %>;
+    background: #ffffff
     line-height: 1;
     padding-left: 0.5em;
   }
 
   ::-webkit-input-placeholder, ::-moz-placeholder {
     font-weight: 300;
-    font-size: 0.8em;
-    color: <%= darkgrey %>;
+    font-size: 0.9em;
+    color: <%= dark_grey %>;
   }
 
   /* Header */
@@ -134,17 +135,12 @@
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     border: solid 1px #cccccc;
-    border-radius: 3px;
+    border-radius: <%= border_radius %>;
     margin: 2% 0;
   }
   ul.version_list {
     font-size: 1em;
-    line-height: 1.6em;
-  }
-  ul.version_list, ul.version_list ul {
-    display: block;
-    width: 100%;
-    list-style: none;
+    line-height: 1.5em;
   }
   li.splitter {
     width: 1px;
@@ -164,24 +160,24 @@
     -moz-box-sizing: border-box;
     padding: 1em;
     border: solid 1px <%= grey %>;
-    border-radius: 3px;
+    border-radius: <%= border_radius %>;
   }
   .mail_preview .mail_details {
     margin: 0 0 1em 0;
     padding: 0;
-    color: <%= darkgrey %>;
+    color: <%= dark_grey %>;
     list-style: none;
-    font-size: 0.8em;
+    font-size: 0.9em;
   }
   .mail_preview .mail_details li {
-    line-height: 1.5em;
+    line-height: 1em;
   }
   .mail_preview .mail_attachments {
     padding: 1em 0 0 0;
     border-top: solid 1px <%= grey %>;
-    color: <%= darkgrey %>;
+    color: <%= dark_grey %>;
     list-style: none;
-    font-size: 0.8em;
+    font-size: 0.9em;
   }
   .mail_preview .mail_attachments ul {
     display: inline-block;
@@ -198,7 +194,7 @@
     padding-top: 1em;
     border: none;
     border-top: solid 1px <%= grey %>;
-    border-radius: 3px;
+    border-radius: <%= border_radius %>;
     min-height: 100px;
   }
   .welcome_message {
@@ -218,7 +214,7 @@
     float: left;
   }
   .format_mail li a.format_selected {
-    color: <%= hoverColor %>;
+    color: <%= hover_color %>;
     font-weight: bold;
   }
   .format_mail li + li {
@@ -242,43 +238,40 @@
     max-height: 90vh;
     overflow-y: scroll;
   }
-  aside.sidebar section.nav_list {
-    margin: 0 0 1.5em 1.5em;
+  section.nav_list {
+    margin: 0 0 1em 0em;
   }
-  aside.sidebar section.nav_list .nav_title {
+  section.nav_list .nav_title {
     margin: 0 0 0.4em;
     font-weight: 400;
     font-size: 1.2em;
   }
-  aside.sidebar section.nav_list ul {
+  section.nav_list ul {
     margin: 0;
     padding: 0;
     list-style: none;
   }
-  aside.sidebar section.nav_list ul li {
+  section.nav_list ul li {
     margin-bottom: 0.4em;
     list-style: none;
   }
-  aside.sidebar section.nav_list ul li a {
-    color: <%= linkColor %>;
+  section.nav_list a {
     text-decoration: none;
     font-size: 0.9em;
   }
-  aside.sidebar section.nav_list ul li a:hover,
-  aside.sidebar section.nav_list ul li a.selected_mail,
-  .version_list_wrapper ul.version_list li a.selected_mail,
-  .version_list_wrapper ul.version_list li a:hover {
-    color: <%= hoverColor %>;
+  section.nav_list a.selected_mail, section.nav_list a:hover,
+  .version_list a.selected_mail, .version_list a:hover {
+    color: <%= hover_color %>;
     font-weight: bold;
   }
 
   /* Alert messages */
   .alert {
-    border-radius: 3px;
+    border-radius: <%= border_radius %>;
     padding: 16px;
     margin-bottom: 1.1em;
-    color: "#ffffff";
-    background-color: <%= bluegrey %>;
+    color: #ffffff;
+    background-color: <%= dark_blue %>;
   }
 
   /* Icons */

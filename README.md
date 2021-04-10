@@ -54,6 +54,7 @@ You should use the `setup` method to configure and customize `Maily` settings:
 
  ```ruby
 # config/initializers/maily.rb
+
 Maily.setup do |config|
   # On/off engine
   # config.enabled = !Rails.env.production?
@@ -100,6 +101,7 @@ Most of emails need to populate some data to consume it and do interesting thing
 
 ```ruby
 # lib/maily_hooks.rb
+
 user = User.new(email: 'user@example.com')
 lazy_user = -> { User.with_comments.first } # callable object, lazy evaluation
 comment = Struct.new(:body).new('Lorem ipsum') # stub way
@@ -231,20 +233,20 @@ Any kind of feedback, bug report, idea or enhancement are really appreciated :ta
 To contribute, just fork the repo, hack on it and send a pull request. Don't forget to add tests for behaviour changes and run the test suite:
 
 ```
-$ bundle exec rake
+> bundle exec rake
 ```
 
 Run the test suite against all supported versions:
 
 ```
-$ bundle exec appraisal install
-$ bundle exec appraisal rake
+> bundle exec appraisal install
+> bundle exec appraisal rake
 ```
 
 Run specs against specific version:
 
 ```
-$ bundle exec appraisal rails-6.0 rake
+> bundle exec appraisal rails-6.0 rake
 ```
 
 ### Demo
@@ -252,7 +254,7 @@ $ bundle exec appraisal rails-6.0 rake
 Start a sample Rails app ([source code](spec/dummy)) with `Maily` integrated:
 
 ```
-$ bundle exec rake web # PORT=4000 (default: 3000)
+> bundle exec rake web # PORT=4000 (default: 3000)
 ```
 
 ## License
