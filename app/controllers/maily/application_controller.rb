@@ -4,6 +4,15 @@ module Maily
 
     layout 'maily/application'
 
+    def maily_params(mailer: nil, email: nil, version: nil)
+      {
+        mailer: mailer || params[:mailer],
+        email: email || params[:email],
+        version: version || params[:version]
+      }
+    end
+    helper_method :maily_params
+
     private
 
     def maily_enabled?

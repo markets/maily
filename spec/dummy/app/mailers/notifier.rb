@@ -11,6 +11,10 @@ class Notifier < ApplicationMailer
     mail
   end
 
+  def with_description
+    mail
+  end
+
   def with_params
     @message = params[:message]
     mail

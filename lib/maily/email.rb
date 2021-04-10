@@ -12,7 +12,7 @@ module Maily
 
       def formatted_version(version)
         _version = version.presence || DEFAULT_VERSION
-        _version.try(:parameterize).try(:underscore)
+        _version&.parameterize&.underscore
       end
     end
 
@@ -68,6 +68,8 @@ module Maily
     def register_hook(*args)
       if args.last.is_a?(Hash)
         self.description = args.last.delete(:description)
+        self.with_params = args.last.delete(:with_params)
+        self.version = Maily::Email.formatted_version(args.last.delete(:version))
 
         if tpl_path = args.last.delete(:template_path)
           self.template_path = tpl_path
@@ -76,10 +78,6 @@ module Maily
         if tpl_name = args.last.delete(:template_name)
           self.template_name = tpl_name
         end
-
-        self.with_params = args.last.delete(:with_params)
-
-        self.version = Maily::Email.formatted_version(args.last.delete(:version))
 
         args.pop
       end
@@ -124,8 +122,9 @@ module Maily
 
     def versions
       regexp = Regexp.new("^#{self.name}:")
-      self.mailer.emails.select do |email_key, _email|
-        email_key.match(regexp)
+
+      mailer.emails.select do |email_key, _email|
+        email_key.match?(regexp)
       end
     end
 

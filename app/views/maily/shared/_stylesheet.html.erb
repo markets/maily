@@ -1,11 +1,11 @@
 <%
   blue       = "#59abc6"
   grey       = "#cccccc"
-  bluegrey   = "#2f738a"
+  darkblue   = "#2f738a"
   darkgrey   = "#666666"
   textColor  = "#333333"
   linkColor  = blue
-  hoverColor = bluegrey
+  hoverColor = darkblue
 %>
 
 <style>
@@ -44,14 +44,14 @@
     height: 1.2em;
     border: solid 1px <%= grey %>;
     border-radius: 6px;
-    background: "#ffffff";
+    background: #ffffff
     line-height: 1;
     padding-left: 0.5em;
   }
 
   ::-webkit-input-placeholder, ::-moz-placeholder {
     font-weight: 300;
-    font-size: 0.8em;
+    font-size: 0.9em;
     color: <%= darkgrey %>;
   }
 
@@ -139,12 +139,7 @@
   }
   ul.version_list {
     font-size: 1em;
-    line-height: 1.6em;
-  }
-  ul.version_list, ul.version_list ul {
-    display: block;
-    width: 100%;
-    list-style: none;
+    line-height: 1.5em;
   }
   li.splitter {
     width: 1px;
@@ -171,17 +166,17 @@
     padding: 0;
     color: <%= darkgrey %>;
     list-style: none;
-    font-size: 0.8em;
+    font-size: 0.9em;
   }
   .mail_preview .mail_details li {
-    line-height: 1.5em;
+    line-height: 1em;
   }
   .mail_preview .mail_attachments {
     padding: 1em 0 0 0;
     border-top: solid 1px <%= grey %>;
     color: <%= darkgrey %>;
     list-style: none;
-    font-size: 0.8em;
+    font-size: 0.9em;
   }
   .mail_preview .mail_attachments ul {
     display: inline-block;
@@ -242,32 +237,29 @@
     max-height: 90vh;
     overflow-y: scroll;
   }
-  aside.sidebar section.nav_list {
-    margin: 0 0 1.5em 1.5em;
+  section.nav_list {
+    margin: 0 0 1em 0em;
   }
-  aside.sidebar section.nav_list .nav_title {
+  section.nav_list .nav_title {
     margin: 0 0 0.4em;
     font-weight: 400;
     font-size: 1.2em;
   }
-  aside.sidebar section.nav_list ul {
+  section.nav_list ul {
     margin: 0;
     padding: 0;
     list-style: none;
   }
-  aside.sidebar section.nav_list ul li {
+  section.nav_list ul li {
     margin-bottom: 0.4em;
     list-style: none;
   }
-  aside.sidebar section.nav_list ul li a {
-    color: <%= linkColor %>;
+  section.nav_list a {
     text-decoration: none;
     font-size: 0.9em;
   }
-  aside.sidebar section.nav_list ul li a:hover,
-  aside.sidebar section.nav_list ul li a.selected_mail,
-  .version_list_wrapper ul.version_list li a.selected_mail,
-  .version_list_wrapper ul.version_list li a:hover {
+  section.nav_list a.selected_mail, section.nav_list a:hover,
+  .version_list a.selected_mail, .version_list a:hover {
     color: <%= hoverColor %>;
     font-weight: bold;
   }
@@ -277,8 +269,8 @@
     border-radius: 3px;
     padding: 16px;
     margin-bottom: 1.1em;
-    color: "#ffffff";
-    background-color: <%= bluegrey %>;
+    color: #ffffff;
+    background-color: <%= darkblue %>;
   }
 
   /* Icons */

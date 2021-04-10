@@ -1,7 +1,5 @@
 module Maily
   class EmailsController < Maily::ApplicationController
-    include Maily::EmailsHelper
-
     before_action :allowed_action?, only: [:edit, :update, :deliver]
     before_action :load_mailers, only: [:index, :show, :edit]
     before_action :load_mailer_and_email, except: [:index]
