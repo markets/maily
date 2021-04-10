@@ -3,8 +3,15 @@
     <section class="nav_list">
       <h3 class="nav_title"><%= "#{mailer.name.humanize} (#{mailer.total_emails})" %></h3>
       <ul>
-        <% mailer.emails_list.each do |email| %>
-          <li><%= link_to email.name.humanize, maily_email_path(mailer: mailer.name, email: email.name), class: sidebar_class(mailer, email) %></li>
+        <% uniq_emails(mailer.emails_list).each do |email| %>
+          <li>
+            <%= link_to maily_email_path(mailer: mailer.name, email: email.name, version: email.version), class: sidebar_class(mailer, email) do %>
+              <%= email.name.humanize %>
+              <% if email.has_versions? %>
+                <%= "(#{email.versions.count} #{'version'.pluralize(email.versions.count)})" %>
+              <% end %>
+            <% end %>
+          </li>
         <% end %>
       </ul>
     </section>

@@ -2,7 +2,7 @@
 
 <ul class="action_bar">
   <li>
-    <%= link_to 'Edit', edit_maily_email_path(mailer: params[:mailer], email: params[:email], part: params[:part]) %>
+    <%= link_to 'Edit', edit_maily_email_path(maily_params.merge(part: params[:part])) %>
   </li>
 
   <li class="languages">
@@ -21,7 +21,7 @@
   <li class="splitter">|</li>
 
   <li>
-    <%= form_tag(deliver_maily_email_path(mailer: params[:mailer], email: params[:email], locale: params[:locale]), method: :post, class: 'mail_deliver') do %>
+    <%= form_tag(deliver_maily_email_path(maily_params.merge(locale: params[:locale])), method: :post, class: 'mail_deliver') do %>
       <ul>
         <li>Send to</li>
         <li><%= email_field_tag :to, nil, placeholder: "Enter email", required: true %></li>
@@ -30,6 +30,17 @@
     <% end %>
   </li>
 </ul>
+
+<% if @maily_email.has_versions? %>
+  <fieldset class="version_list_wrapper">
+    <legend>Versions</legend>
+    <ul class="version_list">
+      <% @maily_email.versions.each do |_version_key, version_email| %>
+        <li><%= link_to version_email.version.humanize, maily_email_path(maily_params(version: version_email.version)), class: version_list_class(version_email) %></li>
+      <% end %>
+    </ul>
+  </fieldset>
+<% end %>
 
 <div class="mail_preview">
   <ul class="mail_details">
@@ -49,7 +60,7 @@
   <% end %>
 
   <% if @email.html_part || @email.text_part || @email.body.present? %>
-    <iframe class="mail_iframe" onload='resizeIframe(this)' src="<%= raw_maily_email_path(mailer: params[:mailer], email: params[:email], locale: params[:locale], part: params[:part]) %>" frameborder="1" width="100%"></iframe>
+    <iframe class="mail_iframe" onload='resizeIframe(this)' src="<%= raw_maily_email_path(maily_params.merge({locale: params[:locale], part: params[:part]})) %>" frameborder="1" width="100%"></iframe>
   <% end %>
 
   <% if @email.has_attachments? %>
@@ -60,7 +71,7 @@
           <% @email.attachments.each do |attachment| %>
             <li>
               <%= icon 'paperclip' %>
-              <%= link_to attachment.filename, attachment_maily_email_path(mailer: params[:mailer], email: params[:email], attachment: attachment.filename) %>
+              <%= link_to attachment.filename, attachment_maily_email_path(maily_params.merge(attachment: attachment.filename)) %>
             </li>
           <% end %>
         </ul>

@@ -118,4 +118,26 @@ RSpec.describe Maily::Email do
       expect(email.path).to include('with_slim_template.html.slim')
     end
   end
+
+  context 'class methods' do
+    describe '#name_with_version' do
+      it 'without version' do
+        expect(Maily::Email.name_with_version('welcome', nil)).to eq("welcome:#{Maily::Email::DEFAULT_VERSION}")
+      end
+
+      it 'with version' do
+        expect(Maily::Email.name_with_version('welcome', 'first_version')).to eq('welcome:first_version')
+      end
+    end
+
+    describe '#formatted_version' do
+      it 'without version' do
+        expect(Maily::Email.formatted_version(nil)).to eq(Maily::Email.formatted_version(Maily::Email::DEFAULT_VERSION))
+      end
+
+      it 'with version' do
+        expect(Maily::Email.formatted_version('First Version')).to eq('first_version')
+      end
+    end
+  end
 end

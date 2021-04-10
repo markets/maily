@@ -1,6 +1,20 @@
 module Maily
   class Email
-    attr_accessor :name, :mailer, :arguments, :template_path, :template_name, :description, :with_params
+    DEFAULT_VERSION = 'default'.freeze
+
+    attr_accessor :name, :mailer, :arguments, :template_path, :template_name, :description, :with_params, :version
+
+    class << self
+      def name_with_version(name, version = nil)
+        _version = formatted_version(version)
+        [name, _version].join(':')
+      end
+
+      def formatted_version(version)
+        _version = version.presence || DEFAULT_VERSION
+        _version.try(:parameterize).try(:underscore)
+      end
+    end
 
     def initialize(name, mailer)
       self.name          = name
@@ -65,6 +79,8 @@ module Maily
 
         self.with_params = args.last.delete(:with_params)
 
+        self.version = Maily::Email.formatted_version(args.last.delete(:version))
+
         args.pop
       end
 
@@ -104,6 +120,17 @@ module Maily
       File.open(path(part), 'w') do |f|
         f.write(new_content)
       end
+    end
+
+    def versions
+      regexp = Regexp.new("^#{self.name}:")
+      self.mailer.emails.select do |email_key, _email|
+        email_key.match(regexp)
+      end
+    end
+
+    def has_versions?
+      versions.count > 1
     end
   end
 end

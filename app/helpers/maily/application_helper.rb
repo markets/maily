@@ -14,6 +14,10 @@ module Maily
       'selected_mail' if mailer.name == params[:mailer] && email.name == params[:email]
     end
 
+    def version_list_class(email)
+      'selected_mail' if email.name == params[:email] && email.version == params[:version]
+    end
+
     def logo
       image_tag(file_to_base64('maily/logo.png', 'image/png'))
     end

@@ -1,9 +1,9 @@
 <%= email_description(@maily_email) %>
 
-<%= form_tag(update_maily_email_path(mailer: params[:mailer], email: params[:email], part: params[:part]), method: :put) do %>
+<%= form_tag(update_maily_email_path(maily_params.merge(part: params[:part])), method: :put) do %>
   <ul class="action_bar">
     <li>
-      <%= link_to 'Show', maily_email_path(mailer: params[:mailer], email: params[:email]) %>
+      <%= link_to 'Show', maily_email_path(maily_params) %>
     </li>
 
     <li class="splitter">|</li>

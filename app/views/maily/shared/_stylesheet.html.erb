@@ -102,7 +102,7 @@
     margin-left: 1em;
     padding-left: 20%;
   }
-  ul.action_bar {
+  ul.action_bar, ul.version_list {
     margin: 0 0 5px;
     padding: 0;
     list-style: none;
@@ -129,6 +129,22 @@
   }
   ul.action_bar li.languages a {
     font-size: 0.9em;
+  }
+  .version_list_wrapper {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    border: solid 1px #cccccc;
+    border-radius: 3px;
+    margin: 2% 0;
+  }
+  ul.version_list {
+    font-size: 1em;
+    line-height: 1.6em;
+  }
+  ul.version_list, ul.version_list ul {
+    display: block;
+    width: 100%;
+    list-style: none;
   }
   li.splitter {
     width: 1px;
@@ -248,7 +264,10 @@
     text-decoration: none;
     font-size: 0.9em;
   }
-  aside.sidebar section.nav_list ul li a:hover, aside.sidebar section.nav_list ul li a.selected_mail {
+  aside.sidebar section.nav_list ul li a:hover,
+  aside.sidebar section.nav_list ul li a.selected_mail,
+  .version_list_wrapper ul.version_list li a.selected_mail,
+  .version_list_wrapper ul.version_list li a:hover {
     color: <%= hoverColor %>;
     font-weight: bold;
   }

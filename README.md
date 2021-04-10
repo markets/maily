@@ -124,6 +124,20 @@ Maily.hooks_for('YourMailerClass') do |mailer|
 end
 ```
 
+### Email versions
+
+You can add versions for special emails. This is useful in some cases where template content depends on the parameters you provide, for instance, a welcome message for trial accounts and gold accounts.
+
+```ruby
+free_trial_account = -> { Account.free_trial.first }
+gold_account = -> { Account.gold.first }
+
+Maily.hooks_for('Notifier') do |mailer|
+  mailer.register_hook(:welcome, free_trial_account, version: 'Free trial account')
+  mailer.register_hook(:welcome, gold_account, version: 'Gold account')
+end
+```
+
 ### Email description
 
 You can add a description to any email and it will be displayed along with its preview. This is useful in some cases like: someone from another team, for example, a marketing specialist, visiting Maily to review some texts and images; they can easily understand when this email is sent by the system.
