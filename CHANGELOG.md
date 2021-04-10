@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.0]
+
+- Email versions (#49)
+- Drop official support for EOL Rails versions: 5.1, 5.0 and 4.2
+- Drop official support for EOL Rubies: 2.4
+
 ## [1.0.0]
 
 - Avoid the dependency on Sprockets (#48)
@@ -143,6 +149,7 @@ All notable changes to this project will be documented in this file.
 
 - First real usable release :tada:
 
+[2.0.0]: https://github.com/markets/maily/compare/v1.0.0...v2.0.0
 [1.0.0]: https://github.com/markets/maily/compare/v0.12.3...v1.0.0
 [0.12.3]: https://github.com/markets/maily/compare/v0.12.2...v0.12.3
 [0.12.2]: https://github.com/markets/maily/compare/v0.12.1...v0.12.2
