@@ -20,10 +20,10 @@ Maily automatically picks up all your emails and make them accessible from a kin
 * Visual preview in the browser (attachments as well)
 * Template edition (only in development)
 * Email delivery
-* Features configurables per environment
+* Easy way (aka `Hooks`) to define and customize data for emails
+* Email versions
 * Flexible authorization system
 * Minimalistic and clean interface
-* Easy way (aka `hooks`) to define and customize data for emails
 * Generator to handle a comfortable installation
 
 ![](support/images/screenshot.png)
