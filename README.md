@@ -4,7 +4,7 @@
   </p>
   <p align="center">
     <a href="https://rubygems.org/gems/maily"><img src="https://img.shields.io/gem/v/maily.svg?style=flat-square"></a>
-    <a href="https://travis-ci.org/markets/maily"><img src="https://travis-ci.org/markets/maily.svg?branch=master"></a>
+    <a href="https://travis-ci.com/markets/maily"><img src="https://travis-ci.com/markets/maily.svg?branch=master"></a>
     <a href="https://codeclimate.com/github/markets/maily/maintainability"><img src="https://api.codeclimate.com/v1/badges/fff01b2137fd73070b14/maintainability"></a>
     <a href="https://github.com/markets/maily/blob/master/MIT-LICENSE"><img alt="GitHub" src="https://img.shields.io/github/license/markets/maily.svg?style=flat-square"></a>
   </p>
