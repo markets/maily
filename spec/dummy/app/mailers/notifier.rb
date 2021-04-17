@@ -3,6 +3,10 @@ class Notifier < ApplicationMailer
     mail
   end
 
+  def missing_arguments(email)
+    mail
+  end
+
   def with_arguments(email, opt_arg = nil)
     mail
   end
@@ -20,7 +24,7 @@ class Notifier < ApplicationMailer
     mail
   end
 
-  def custom_template_path(email)
+  def custom_template_path
     mail template_path: 'notifications'
   end
 

@@ -1,6 +1,7 @@
 <aside class="sidebar">
   <% @mailers.each do |mailer| %>
     <% next if mailer.total_emails.zero? %>
+
     <section class="nav_list">
       <h3 class="nav_title"><%= "#{mailer.name.humanize} (#{mailer.total_emails})" %></h3>
       <ul>

@@ -6,7 +6,7 @@ RSpec.describe Maily::Generator do
       emails = []
 
       Maily.hooks_for('Notifier') do |mailer|
-        mailer.register_hook(:custom_template_path, email)
+        mailer.register_hook(:missing_arguments, email)
         mailer.register_hook(:version, account)
         mailer.register_hook(:version, account)
         mailer.register_hook(:with_arguments, email)

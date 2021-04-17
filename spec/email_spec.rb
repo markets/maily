@@ -98,7 +98,7 @@ RSpec.describe Maily::Email do
       email = mailer.find_email('with_arguments')
       expect(email.validate_arguments).to eq [true, nil]
 
-      email = mailer.find_email('custom_template_path')
+      email = mailer.find_email('missing_arguments')
       expect(email.validate_arguments[1]).to match(/email requires at least 1 arguments, passed 0/)
     end
   end
