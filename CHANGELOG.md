@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.1]
+
+- Don't show empty mailer classes in sidebar (#51)
+
 ## [2.0.0]
 
 - Email versions (#49)
@@ -149,6 +153,7 @@ All notable changes to this project will be documented in this file.
 
 - First real usable release :tada:
 
+[2.0.1]: https://github.com/markets/maily/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/markets/maily/compare/v1.0.0...v2.0.0
 [1.0.0]: https://github.com/markets/maily/compare/v0.12.3...v1.0.0
 [0.12.3]: https://github.com/markets/maily/compare/v0.12.2...v0.12.3
