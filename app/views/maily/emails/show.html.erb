@@ -18,17 +18,19 @@
     <% end %>
   </li>
 
-  <li class="splitter">|</li>
+  <% if Maily.allow_delivery %>
+    <li class="splitter">|</li>
 
-  <li>
-    <%= form_tag(deliver_maily_email_path(maily_params), method: :post, class: 'mail_deliver') do %>
-      <ul>
-        <li>Send to</li>
-        <li><%= email_field_tag :to, nil, placeholder: "Enter email", required: true %></li>
-        <li><%= submit_tag 'Send', class: 'button' %></li>
-      </ul>
-    <% end %>
-  </li>
+    <li>
+      <%= form_tag(deliver_maily_email_path(maily_params), method: :post, class: 'mail_deliver') do %>
+        <ul>
+          <li>Send to</li>
+          <li><%= email_field_tag :to, nil, placeholder: "Enter email", required: true %></li>
+          <li><%= submit_tag 'Send', class: 'button' %></li>
+        </ul>
+      <% end %>
+    </li>
+  <% end %>
 </ul>
 
 <% if @maily_email.has_versions? %>
