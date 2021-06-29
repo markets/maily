@@ -2,9 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.2]
+
+- UI: Hide delivery form if `allow_delivery` is false (#54)
+
 ## [2.0.1]
 
-- Don't show empty mailer classes in sidebar (#51)
+- UI: Don't show empty mailer classes in sidebar (#51)
 
 ## [2.0.0]
 
@@ -153,6 +157,7 @@ All notable changes to this project will be documented in this file.
 
 - First real usable release :tada:
 
+[2.0.2]: https://github.com/markets/maily/compare/v2.0.1...v2.0.2
 [2.0.1]: https://github.com/markets/maily/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/markets/maily/compare/v1.0.0...v2.0.0
 [1.0.0]: https://github.com/markets/maily/compare/v0.12.3...v1.0.0
