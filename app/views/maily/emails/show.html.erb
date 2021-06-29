@@ -18,7 +18,7 @@
     <% end %>
   </li>
 
-  <% if Maily.allow_delivery %>
+  <% if Maily.allowed_action?(:deliver) %>
     <li class="splitter">|</li>
 
     <li>
