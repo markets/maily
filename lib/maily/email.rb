@@ -88,11 +88,17 @@ module Maily
     def call
       *args = arguments && arguments.map { |arg| arg.respond_to?(:call) ? arg.call : arg }
 
-      if args == [nil]
+      message = if args == [nil]
         parameterized_mailer_klass.public_send(name)
       else
         parameterized_mailer_klass.public_send(name, *args)
       end
+
+      ActionMailer::Base.preview_interceptors.each do |interceptor|
+        interceptor.previewing_email(message)
+      end
+
+      message
     end
 
     def base_path(part)
