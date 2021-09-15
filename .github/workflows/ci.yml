@@ -36,6 +36,9 @@ jobs:
             gemfile: rails_6.0
           - ruby: head
             gemfile: rails_6.1
+          - ruby: head
+            gemfile: rails_head
+            experimental: false
         include:
           - ruby: 2.7
             gemfile: rails_head
