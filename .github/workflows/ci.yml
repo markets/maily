@@ -17,27 +17,24 @@ jobs:
         gemfile: ["rails_5.2", "rails_6.0", "rails_6.1", "rails_head"]
         experimental: [false]
         exclude:
-          - ruby: 3.0
-            gemfile: rails_5.2
-          - ruby: head
-            gemfile: rails_5.2
           - ruby: 2.5
             gemfile: rails_head
           - ruby: 2.6
             gemfile: rails_head
           - ruby: 2.7
             gemfile: rails_head
-            experimental: false
+          - ruby: 3.0
+            gemfile: rails_5.2
           - ruby: 3.0
             gemfile: rails_head
-            experimental: false
+          - ruby: head
+            gemfile: rails_5.2
           - ruby: head
             gemfile: rails_6.0
           - ruby: head
             gemfile: rails_6.1
           - ruby: head
             gemfile: rails_head
-            experimental: false
         include:
           - ruby: 2.7
             gemfile: rails_head
