@@ -7,3 +7,7 @@
     gem "rails", "~> #{version}.0"
   end
 end
+
+appraise "rails-head" do
+  gem "rails", github: "rails/rails", branch: "main"
+end
