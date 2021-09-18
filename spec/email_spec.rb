@@ -92,7 +92,8 @@ RSpec.describe Maily::Email do
 
       email.arguments = ["asd"]
       expect(email.validate_arguments[1]).to match(/email requires at the most 0 arguments, passed 1/)
-      email.arguments = nil
+
+      email.arguments = nil # reset arguments for future calls
     end
 
     it 'emails with arguments required' do
