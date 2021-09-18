@@ -4,7 +4,7 @@
   </p>
   <p align="center">
     <a href="https://rubygems.org/gems/maily"><img src="https://img.shields.io/gem/v/maily.svg?style=flat-square"></a>
-    <a href="https://github.com/markets/maily/actions"><img src="https://github.com/wmarkets/maily/workflows/CI/badge.svg"></a>
+    <a href="https://github.com/markets/maily/actions"><img src="https://github.com/markets/maily/workflows/CI/badge.svg"></a>
     <a href="https://codeclimate.com/github/markets/maily/maintainability"><img src="https://api.codeclimate.com/v1/badges/fff01b2137fd73070b14/maintainability"></a>
     <a href="https://github.com/markets/maily/blob/master/MIT-LICENSE"><img alt="GitHub" src="https://img.shields.io/github/license/markets/maily.svg?style=flat-square"></a>
   </p>
@@ -233,20 +233,20 @@ Any kind of feedback, bug report, idea or enhancement are really appreciated :ta
 To contribute, just fork the repo, hack on it and send a pull request. Don't forget to add tests for behaviour changes and run the test suite:
 
 ```
-> bundle exec rake
+> bundle exec rspec
 ```
 
 Run the test suite against all supported versions:
 
 ```
 > bundle exec appraisal install
-> bundle exec appraisal rake
+> bundle exec appraisal rspec
 ```
 
 Run specs against specific version:
 
 ```
-> bundle exec appraisal rails-6.0 rake
+> bundle exec appraisal rails-6.0 rspec
 ```
 
 ### Demo
