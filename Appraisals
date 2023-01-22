@@ -1,4 +1,5 @@
 %w(
+  7.0
   6.1
   6.0
   5.2
@@ -6,8 +7,4 @@
   appraise "rails-#{version}" do
     gem "rails", "~> #{version}.0"
   end
-end
-
-appraise "rails-head" do
-  gem "rails", github: "rails/rails", branch: "main"
 end
